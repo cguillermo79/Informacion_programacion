@@ -1,3 +1,274 @@
-# Información de Programación
+# Proyecto integrador — Programación y Base de Datos
 
-Repositorio privado para organizar la información y las bases de datos del proyecto integrador de Programación.
+Este repositorio contiene las bases y orientaciones para desarrollar el proyecto integrador de Programación con información territorial de **FIRELAB_Loja**. Cada grupo construirá una solución reproducible para cargar, validar, transformar, analizar y presentar los datos asignados.
+
+El producto final no consiste únicamente en gráficos o tablas. Debe incluir un programa organizado, documentación, validaciones, pruebas y resultados que puedan regenerarse desde el archivo CSV original.
+
+## Objetivo general
+
+Desarrollar una aplicación o flujo de procesamiento de datos que:
+
+1. lea correctamente la base asignada;
+2. compruebe su estructura, periodo y zona;
+3. aplique reglas explícitas de limpieza y calidad;
+4. responda una pregunta concreta mediante consultas, resúmenes y visualizaciones;
+5. exporte resultados sin modificar la fuente; y
+6. pueda instalarse y ejecutarse siguiendo las instrucciones del grupo.
+
+## Datos autorizados
+
+- Dataset: FIRELAB_Loja v1.1.0.
+- Periodo permitido: enero de 2019 a diciembre de 2024.
+- Unidad de observación: una celda espacial de 500 m en un mes.
+- Clave esperada de cada observación: `cell_id`, `anio` y `mes`.
+- El año 2025 está reservado como conjunto OOT y no debe incorporarse al proyecto.
+- El CSV asignado es de **solo lectura**: no se debe editar, renombrar ni sobrescribir.
+
+La descripción técnica completa está en la [guía de las bases](bases_datos_proyecto_integrador/README.md). También están disponibles el [manifiesto de archivos](bases_datos_proyecto_integrador/MANIFIESTO_BASES.csv), el [diccionario de grupos de variables](bases_datos_proyecto_integrador/dataset_maestro_diccionario_grupos_v1_1_0.json) y el [reporte de validación](bases_datos_proyecto_integrador/dataset_maestro_validacion_v1_1_0.json).
+
+## Asignación de grupos
+
+| Grupo | Tema | Zona asignada | Registros | Celdas | Base de trabajo |
+|---:|---|---|---:|---:|---|
+| 1 | Relieve y accesibilidad | Norte | 288.072 | 4.001 | [Carpeta del grupo 1](bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte) |
+| 2 | Relieve y accesibilidad | Sur | 287.712 | 3.996 | [Carpeta del grupo 2](bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur) |
+| 3 | Cobertura vegetal y uso del suelo | Loja completo | 575.784 | 7.997 | [Carpeta del grupo 3](bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo) |
+| 4 | Clima y condiciones atmosféricas | Norte | 288.072 | 4.001 | [Carpeta del grupo 4](bases_datos_proyecto_integrador/equipo_04_clima_zona_norte) |
+| 5 | Clima y condiciones atmosféricas | Sur | 287.712 | 3.996 | [Carpeta del grupo 5](bases_datos_proyecto_integrador/equipo_05_clima_zona_sur) |
+| 6 | Incendios forestales y riesgo | Loja completo | 575.784 | 7.997 | [Carpeta del grupo 6](bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo) |
+
+## Regla para los grupos que comparten tema
+
+Los grupos 1 y 2 comparten el tema **Relieve y accesibilidad**, mientras que los grupos 4 y 5 comparten **Clima y condiciones atmosféricas**. Sin embargo, sus territorios son distintos:
+
+- Zona norte: `centro_y_m >= 9555250.0`.
+- Zona sur: `centro_y_m < 9555250.0`.
+
+Las bases ya están separadas; no deben volver a dividirse ni unirse.
+
+> **Compartir tema no significa compartir proyecto.** Cada grupo debe trabajar exclusivamente con su zona, formular su propia pregunta, escribir su código, producir sus resultados y redactar sus conclusiones. No se permite intercambiar bases procesadas, funciones completas, tablas, gráficos ni conclusiones. Una comparación norte–sur solo se realizará si el docente la solicita como actividad adicional.
+
+## Trabajo común para todos los grupos
+
+### 1. Planteamiento
+
+Cada grupo deberá:
+
+- formular una pregunta que pueda responderse con su tema y zona;
+- definir el usuario o propósito de la solución;
+- establecer entradas, procesos y salidas;
+- seleccionar las variables necesarias y explicar su significado;
+- definir al menos tres consultas o resultados que producirá el programa; y
+- especificar las reglas de calidad que aplicará antes del análisis.
+
+### 2. Carga y validación
+
+El programa deberá comprobar automáticamente:
+
+- existencia y lectura del archivo;
+- presencia de las columnas requeridas;
+- tipos de datos esperados;
+- periodo 2019–2024 y meses del 1 al 12;
+- cantidad de registros y celdas únicas;
+- unicidad de `cell_id`–`anio`–`mes`;
+- cumplimiento de la zona asignada; y
+- valores faltantes, rangos imposibles y campos de control de calidad.
+
+Cuando una validación crítica falle, el programa debe detenerse con un mensaje comprensible. Las exclusiones no críticas deben contarse y registrarse.
+
+### 3. Procesamiento
+
+- Separar la carga, validación, transformación, análisis y exportación en funciones o módulos.
+- Convertir tipos de datos de manera explícita.
+- Conservar un registro de filas iniciales, aceptadas, descartadas y motivo de exclusión.
+- Evitar código duplicado y valores “mágicos”; los umbrales deben definirse como parámetros o constantes documentadas.
+- No alterar silenciosamente datos faltantes ni sustituirlos sin justificación.
+- Diferenciar las variables analíticas de los campos de cobertura, disponibilidad, soporte, observabilidad y validez.
+
+### 4. Resultados mínimos
+
+Cada solución generará automáticamente:
+
+- un resumen de calidad de la base;
+- al menos dos tablas analíticas exportadas en CSV;
+- al menos tres figuras con título, unidades, periodo y zona;
+- una salida principal relacionada con la pregunta del grupo; y
+- un registro breve de ejecución o reporte final.
+
+Los archivos se guardarán en `resultados/tablas` y `resultados/figuras`. Una ejecución nueva debe regenerarlos sin pasos manuales.
+
+### 5. Pruebas y documentación
+
+- Incluir al menos cinco pruebas o verificaciones reproducibles.
+- Probar la regla territorial, el esquema, las claves, los filtros de calidad y un cálculo principal.
+- Entregar `requirements.txt` o equivalente.
+- Escribir instrucciones de instalación y ejecución desde cero.
+- Documentar funciones, parámetros, archivos generados y limitaciones.
+- No subir `.venv`, cachés, archivos temporales o copias innecesarias de los CSV.
+
+## Actividades específicas por grupo
+
+### Grupo 1 — Relieve y accesibilidad de la zona norte
+
+El grupo desarrollará una aplicación para caracterizar la accesibilidad y dificultad territorial del norte de Loja.
+
+Debe:
+
+- validar que las 4.001 celdas cumplan `centro_y_m >= 9555250.0`;
+- reducir de manera controlada las variables estáticas a una fila por `cell_id`;
+- comprobar la consistencia de elevación, pendiente, orientación, vías y asentamientos entre meses;
+- crear funciones para resumir elevación, pendiente, distancia a vías y distancia a asentamientos;
+- implementar una clasificación configurable de accesibilidad o dificultad;
+- permitir consultar una celda o un nivel de clasificación; y
+- exportar el inventario clasificado, una tabla resumen y una visualización espacial del norte.
+
+Las pruebas deben cubrir la deduplicación temporal, la regla norte, los límites de clase y el total final de celdas.
+
+### Grupo 2 — Relieve y accesibilidad de la zona sur
+
+El grupo desarrollará su propia solución para las 3.996 celdas del sur de Loja.
+
+Debe:
+
+- validar `centro_y_m < 9555250.0`;
+- obtener una fila consistente por `cell_id` para las variables estáticas;
+- analizar elevación, pendiente, vías y asentamientos exclusivamente del sur;
+- diseñar una clasificación propia de accesibilidad o dificultad, con parámetros justificados;
+- implementar consultas por celda y categoría; y
+- exportar resultados, gráficos y representación espacial correspondientes al sur.
+
+El código, los puntos de corte y las conclusiones no deben copiarse del grupo 1. Las pruebas verificarán zona, deduplicación, clasificación y conteos finales.
+
+### Grupo 3 — Cobertura vegetal y uso del suelo de Loja
+
+El grupo construirá una aplicación para consultar la composición de coberturas y la evolución de índices Sentinel-2 en todo el cantón.
+
+Debe:
+
+- validar las nueve proporciones MAATE y `suma_prop_maate_9v`;
+- revisar `soporte_maate`, `anio_cut`, disponibilidad y faltantes de Sentinel-2;
+- calcular la cobertura dominante por celda sin duplicar las proporciones basales en cada mes;
+- crear series temporales parametrizadas de NDVI, NDMI, NBR o NDWI;
+- permitir filtrar por índice, año, mes o cobertura dominante;
+- comparar al menos dos tipos de cobertura o periodos; y
+- exportar composición territorial, series, tablas comparativas y visualización espacial.
+
+Las pruebas cubrirán suma de proporciones, cobertura dominante, filtros temporales y tratamiento de `sentinel_t1_missing`.
+
+### Grupo 4 — Clima de la zona norte
+
+El grupo desarrollará una aplicación para consultar precipitación, sequedad y viento en la zona norte.
+
+Debe:
+
+- validar las 4.001 celdas y la regla territorial norte;
+- comprobar disponibilidad, días válidos e historia completa de CHIRPS y CHELSA;
+- resumir precipitación, días secos, días húmedos y viento por mes y año;
+- permitir seleccionar variable, año y mes mediante parámetros;
+- comparar correctamente el mes actual (`t1`) con los antecedentes `prev2m` y `prev3m`;
+- identificar y ordenar periodos lluviosos, secos o ventosos; y
+- exportar perfiles mensuales, ranking de extremos, gráficos de relación y distribución espacial norte.
+
+Las ventanas móviles se solapan y no deben sumarse. Las pruebas cubrirán calendario, historia completa, filtros, unidades y ordenamiento de extremos.
+
+### Grupo 5 — Clima de la zona sur
+
+El grupo implementará una solución independiente para analizar las condiciones atmosféricas del sur.
+
+Debe:
+
+- validar las 3.996 celdas y `centro_y_m < 9555250.0`;
+- revisar calidad y disponibilidad de CHIRPS/CHELSA;
+- crear funciones propias para resumir precipitación, sequedad y viento;
+- implementar consultas configurables por variable y periodo;
+- distinguir `t1`, `prev2m` y `prev3m` sin duplicar o sumar ventanas solapadas;
+- detectar periodos extremos según parámetros derivados de la zona sur; y
+- exportar tablas, rankings, figuras y distribución espacial del sur.
+
+No debe reutilizar código ni resultados del grupo 4. Las pruebas cubrirán regla sur, periodos móviles, filtros de calidad y conteos resultantes.
+
+### Grupo 6 — Incendios forestales y riesgo en Loja
+
+El grupo construirá una aplicación para describir la frecuencia y recurrencia espacial y temporal de incendios.
+
+Debe:
+
+- usar `y_incendio_ge7_obs90` como respuesta principal;
+- aplicar `y_principal_valida` y documentar las observaciones excluidas;
+- calcular frecuencias y proporciones por mes, año y celda usando denominadores correctos;
+- identificar celdas y periodos con mayor recurrencia;
+- permitir seleccionar mediante un parámetro los umbrales alternativos `ge7`/`ge8` y `obs80`/`obs95`/`obs100`;
+- comparar la estabilidad de los resultados entre definiciones; y
+- exportar tabla principal, serie temporal, ranking espacial, visualización territorial y tabla de sensibilidad.
+
+Las variables VIIRS de cobertura, disponibilidad y evidencia son campos de trazabilidad; no deben utilizarse automáticamente para predecir el resultado del que proceden. Las pruebas cubrirán valores binarios, validez, denominadores, umbrales y consistencia de totales.
+
+## Desarrollo por unidades
+
+| Unidad | Resultado esperado |
+|---|---|
+| **Unidad 1 — Formulación** | Pregunta, requisitos, variables, reglas de calidad, diseño de módulos, estructura de entradas y salidas, y prototipo de lectura. |
+| **Unidad 2 — Implementación** | Carga y validación completas, funciones principales, primeras pruebas, tablas y visualizaciones preliminares. |
+| **Unidad 3 — Producto final** | Solución integrada, pruebas corregidas, resultados definitivos, documentación, informe y defensa individual. |
+
+Cada unidad debe incorporar la retroalimentación recibida. El producto final integra y corrige los avances anteriores; no empieza nuevamente desde cero.
+
+## Estructura recomendada de la entrega
+
+```text
+equipo_XX/
+├── README.md
+├── requirements.txt
+├── src/
+│   ├── main.py
+│   ├── carga.py
+│   ├── validacion.py
+│   ├── transformacion.py
+│   └── analisis.py
+├── tests/
+├── resultados/
+│   ├── tablas/
+│   └── figuras/
+└── informe/
+```
+
+El `README.md` de cada grupo incluirá integrantes, pregunta, zona, variables, requisitos, instalación, comando de ejecución, salidas generadas, pruebas y limitaciones.
+
+Ejemplo de ejecución esperada:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python src\main.py --input "ruta\a\la_base.csv" --output "resultados"
+```
+
+El comando definitivo podrá variar, pero deberá funcionar de acuerdo con la documentación entregada y no contener rutas personales fijas.
+
+## Criterios de revisión
+
+Se comprobará que:
+
+- el programa utilice únicamente la base y zona asignadas;
+- el CSV original permanezca intacto;
+- las validaciones se ejecuten antes del análisis;
+- el código sea modular, legible y sin duplicación innecesaria;
+- las decisiones de limpieza y los umbrales estén documentados;
+- las tablas y gráficos se generen automáticamente;
+- las pruebas cubran las reglas críticas del tema;
+- las conclusiones correspondan a los resultados obtenidos; y
+- cada integrante pueda explicar y modificar el código durante la defensa.
+
+## Lista de comprobación final
+
+- [ ] La pregunta corresponde al tema y a la zona asignada.
+- [ ] Solo se utilizaron registros de 2019–2024.
+- [ ] La fuente no fue modificada ni sobrescrita.
+- [ ] El programa valida esquema, claves, periodo, zona y calidad.
+- [ ] Las transformaciones están implementadas en funciones documentadas.
+- [ ] Las tablas y figuras se regeneran con una sola ejecución.
+- [ ] Existen al menos cinco pruebas reproducibles.
+- [ ] El repositorio no contiene entornos virtuales ni archivos temporales.
+- [ ] El README permite instalar y ejecutar la solución desde cero.
+- [ ] Los resultados son propios del grupo, aunque otro equipo comparta el tema.
+- [ ] Todos los integrantes están preparados para la defensa individual.

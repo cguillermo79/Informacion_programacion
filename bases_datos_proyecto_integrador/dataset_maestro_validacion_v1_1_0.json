@@ -1,0 +1,75 @@
+{
+    "proyecto": "FIRELAB-Loja",
+    "modulo": "11_dataset_modelado",
+    "script": "s01_construir_dataset_maestro_v1_1_0.py",
+    "version": "1.1.0",
+    "periodo": {
+        "inicio": "2019-01",
+        "fin": "2025-12",
+        "numero_meses": 84
+    },
+    "panel": {
+        "numero_celdas": 7997,
+        "numero_registros": 671748,
+        "clave": [
+            "cell_index",
+            "anio_mes"
+        ],
+        "tipo_union": "LEFT JOIN"
+    },
+    "respuesta_principal": {
+        "variable": "y_incendio_ge7_obs90",
+        "n_validos": 641709,
+        "n_na": 30039,
+        "n_positivos": 3088,
+        "n_negativos": 638621,
+        "prevalencia_validos": 0.004812150055554776
+    },
+    "sentinel2": {
+        "2019_01_preservado": true,
+        "imputacion_realizada": false
+    },
+    "maate": {
+        "especificacion": "CUT 2018 basal estático",
+        "n_clases": 9,
+        "clases": [
+            "prop_area_poblada",
+            "prop_area_sin_cobertura_vegetal",
+            "prop_bosque_nativo",
+            "prop_cobertura_agropecuaria_total",
+            "prop_cuerpo_de_agua_natural",
+            "prop_infraestructura",
+            "prop_paramo",
+            "prop_plantacion_forestal",
+            "prop_vegetacion_natural_arbustiva_herbacea"
+        ]
+    },
+    "proteccion_2025": {
+        "flag": "es_test_oot_2025",
+        "estado": "reservado para evaluación temporal final"
+    },
+    "leakage": {
+        "clima_concurrente_excluido": true,
+        "viirs_contemporaneo_no_predictor": true
+    },
+    "controles": {
+        "numero_registros_671748": true,
+        "numero_meses_84": true,
+        "7997_celdas_por_mes": true,
+        "clave_celda_mes_unica": true,
+        "sentinel_2019_01_preservado_sin_t1": true,
+        "maate_asignacion_completa": true,
+        "maate_estatico_temporalmente_constante": true,
+        "maate_9_clases_presentes": true,
+        "chirps_historia_3m_completa": true,
+        "chelsa_historia_3m_completa": true,
+        "y_conteos_validos": true,
+        "prevalencia_y_principal": true,
+        "2025_presente_completo": true,
+        "flag_oot_2025_correcto": true,
+        "sin_clima_concurrente_t": true,
+        "sin_viirs_predictor_contemporaneo": true,
+        "persistencia": true
+    },
+    "control_global": true
+}

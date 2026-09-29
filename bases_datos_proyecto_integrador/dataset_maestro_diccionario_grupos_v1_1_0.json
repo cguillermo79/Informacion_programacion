@@ -1,0 +1,171 @@
+{
+    "version": "1.1.0",
+    "especificacion_maate": "CUT 2018 Basal Estático (9 clases composicionales)",
+    "claves": [
+        "cell_index",
+        "cell_id",
+        "anio",
+        "mes",
+        "anio_mes"
+    ],
+    "estructura_espacial": [
+        "fila",
+        "columna",
+        "centro_x_m",
+        "centro_y_m",
+        "area_dentro_loja_m2",
+        "fraccion_dentro_loja",
+        "es_celda_completa",
+        "es_borde_o_sliver"
+    ],
+    "predictores_alos": [
+        "alos_elevacion_m_mean",
+        "alos_elevacion_m_std",
+        "alos_elevacion_m_min",
+        "alos_elevacion_m_max",
+        "alos_pendiente_grados_mean",
+        "alos_pendiente_grados_std",
+        "alos_pendiente_grados_min",
+        "alos_pendiente_grados_max",
+        "alos_northness_mean",
+        "alos_northness_std",
+        "alos_northness_min",
+        "alos_northness_max",
+        "alos_eastness_mean",
+        "alos_eastness_std",
+        "alos_eastness_min",
+        "alos_eastness_max"
+    ],
+    "qc_alos": [
+        "alos_elevacion_m_coverage",
+        "alos_elevacion_m_n_pixels",
+        "alos_pendiente_grados_coverage",
+        "alos_pendiente_grados_n_pixels",
+        "alos_northness_coverage",
+        "alos_northness_n_pixels",
+        "alos_eastness_coverage",
+        "alos_eastness_n_pixels"
+    ],
+    "predictores_ghsl_osm": [
+        "ghsl_distancia_asentamiento_m_mean",
+        "ghsl_distancia_asentamiento_m_std",
+        "ghsl_distancia_asentamiento_m_min",
+        "ghsl_distancia_asentamiento_m_max",
+        "ghsl_presencia_construida_100m_prop_soporte_presente",
+        "osm_distancia_vias_m_mean",
+        "osm_distancia_vias_m_std",
+        "osm_distancia_vias_m_min",
+        "osm_distancia_vias_m_max",
+        "osm_presencia_vial_100m_prop_soporte_presente"
+    ],
+    "qc_ghsl_osm": [
+        "ghsl_distancia_asentamiento_m_coverage",
+        "ghsl_distancia_asentamiento_m_n_pixels",
+        "ghsl_presencia_construida_100m_coverage",
+        "ghsl_presencia_construida_100m_n_pixels",
+        "osm_distancia_vias_m_coverage",
+        "osm_distancia_vias_m_n_pixels",
+        "osm_presencia_vial_100m_coverage",
+        "osm_presencia_vial_100m_n_pixels"
+    ],
+    "predictores_maate": [
+        "prop_area_poblada",
+        "prop_area_sin_cobertura_vegetal",
+        "prop_bosque_nativo",
+        "prop_cobertura_agropecuaria_total",
+        "prop_cuerpo_de_agua_natural",
+        "prop_infraestructura",
+        "prop_paramo",
+        "prop_plantacion_forestal",
+        "prop_vegetacion_natural_arbustiva_herbacea"
+    ],
+    "qc_maate": [
+        "anio_cut",
+        "soporte_maate",
+        "suma_prop_maate_9v"
+    ],
+    "predictores_chirps": [
+        "chirps_precipitacion_acumulada_t1_mm",
+        "chirps_precipitacion_acumulada_prev2m_mm",
+        "chirps_precipitacion_acumulada_prev3m_mm",
+        "chirps_precipitacion_maxima_diaria_t1_mm",
+        "chirps_precipitacion_maxima_diaria_prev3m_mm",
+        "chirps_dias_secos_t1",
+        "chirps_dias_secos_prev3m",
+        "chirps_fraccion_dias_secos_t1",
+        "chirps_fraccion_dias_secos_prev3m",
+        "chirps_dias_humedos_t1",
+        "chirps_dias_humedos_prev3m",
+        "chirps_fraccion_dias_humedos_t1",
+        "chirps_fraccion_dias_humedos_prev3m"
+    ],
+    "qc_chirps": [
+        "chirps_dias_validos_t1",
+        "chirps_dias_validos_prev3m",
+        "chirps_disponibilidad_t1_pct",
+        "chirps_valid_coverage_t1",
+        "chirps_valid_coverage_prev3m_min",
+        "chirps_historia_3m_completa"
+    ],
+    "predictores_chelsa": [
+        "chelsa_sfcwind_media_t1_ms",
+        "chelsa_sfcwind_media_prev2m_ms",
+        "chelsa_sfcwind_media_prev3m_ms",
+        "chelsa_sfcwind_maxima_t1_ms",
+        "chelsa_sfcwind_maxima_prev3m_ms",
+        "chelsa_sfcwind_desviacion_t1_ms"
+    ],
+    "qc_chelsa": [
+        "chelsa_dias_validos_t1",
+        "chelsa_dias_validos_prev2m",
+        "chelsa_dias_validos_prev3m",
+        "chelsa_disponibilidad_t1_pct",
+        "chelsa_disponibilidad_prev3m_min_pct",
+        "chelsa_valid_coverage_t1",
+        "chelsa_valid_coverage_prev3m_min",
+        "chelsa_historia_3m_completa"
+    ],
+    "predictores_sentinel2": [
+        "s2_ndvi_mean",
+        "s2_ndvi_std",
+        "s2_ndmi_mean",
+        "s2_ndmi_std",
+        "s2_nbr_mean",
+        "s2_nbr_std",
+        "s2_ndwi_mean",
+        "s2_ndwi_std"
+    ],
+    "qc_sentinel2": [
+        "mes_fuente_sentinel2",
+        "lag_meses",
+        "disponible_sentinel_t1",
+        "s2_nobs_mean",
+        "s2_nobs_median",
+        "s2_cobertura_valida_pct",
+        "s2_observabilidad_ge2_pct"
+    ],
+    "respuesta_principal": "y_incendio_ge7_obs90",
+    "respuestas_sensibilidad": [
+        "y_incendio_ge8_obs90",
+        "y_incendio_ge7_obs80",
+        "y_incendio_ge7_obs95",
+        "y_incendio_ge7_obs100",
+        "y_incendio_ge8_obs80",
+        "y_incendio_ge8_obs95",
+        "y_incendio_ge8_obs100"
+    ],
+    "target_provenance_no_predictor": [
+        "viirs_disponibilidad_support_pct",
+        "viirs_evidencia_fuego_any",
+        "viirs_evidencia_fuego_nominal_alta_any",
+        "viirs_source_coverage_frac"
+    ],
+    "gobernanza": [
+        "y_principal_valida",
+        "fila_elegible_modelado_principal",
+        "es_test_oot_2025",
+        "sentinel_t1_missing",
+        "maate_anio_cut_asignado"
+    ],
+    "regla": "QC, estados y target provenance se conservan para trazabilidad; no entran automáticamente como predictores."
+}

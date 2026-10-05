@@ -1,0 +1,130 @@
+% Plantilla del informe de la Parte 1 (Unidad 1) - Proyecto integrador
+% Compilar con: pdflatex -> biber -> pdflatex -> pdflatex (o latexmk -pdf)
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{times}
+\usepackage[margin=2.54cm]{geometry}
+\usepackage{setspace}
+\doublespacing
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{referencias.bib}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{parskip}
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\centering
+\singlespacing
+\vspace*{2cm}
+{\bfseries T\'itulo del proyecto (m\'aximo 12 palabras)\par}
+\vspace{1.5cm}
+Equipo N.$^{\circ}$ \_\_\ \\
+Integrantes: Nombre Apellido, Nombre Apellido, Nombre Apellido, Nombre Apellido\\[1cm]
+Carrera de Ingenier\'ia Ambiental, Universidad Nacional de Loja\\
+Programaci\'on y Base de Datos\\
+Docente: Carlos Guillermo Chuncho Morocho\\[1cm]
+Octubre de 2026
+\end{titlepage}
+
+% ---------------- RESUMEN ----------------
+\section*{Resumen}
+\singlespacing
+Resumen de 120 a 150 palabras: tema, zona, problema, pregunta, hip\'otesis y objetivo general.
+
+\noindent\textit{Palabras clave:} FIRELAB-Loja, tema, zona, programaci\'on, Python.
+\doublespacing
+\newpage
+
+% ---------------- 1. INTRODUCCION ----------------
+\section{Introducci\'on y contexto}
+Contexto territorial del cant\'on Loja, descripci\'on breve del proyecto FIRELAB-Loja y relevancia del tema del equipo. Incluya citas verificables \parencite{firelab2025}.
+
+% ---------------- 2. PROBLEMA ----------------
+\section{Planteamiento del problema}
+Situaci\'on, vac\'io o dificultad y oportunidad de resolverlo con un programa y los datos asignados.
+
+% ---------------- 3. PREGUNTA ----------------
+\section{Pregunta de investigaci\'on}
+Una sola pregunta: qu\'e se analiza, d\'onde (zona) y cu\'ando (2019--2024).
+
+% ---------------- 4. HIPOTESIS ----------------
+\section{Hip\'otesis}
+Afirmaci\'on contrastable, con variables, zona, periodo y criterio cuantitativo.
+
+% ---------------- 5. OBJETIVOS ----------------
+\section{Objetivos}
+\subsection{Objetivo general}
+Verbo en infinitivo + qu\'e + d\'onde + con qu\'e datos.
+
+\subsection{Objetivos espec\'ificos}
+\begin{enumerate}
+  \item Objetivo espec\'ifico 1.
+  \item Objetivo espec\'ifico 2.
+  \item Objetivo espec\'ifico 3 (opcional; m\'aximo tres).
+\end{enumerate}
+
+% ---------------- 6. DATOS ----------------
+\section{Datos y variables}
+Base asignada, periodo (2019--2024), zona y unidad de observaci\'on (una celda de 500\,m en un mes). Variables:
+
+\begin{table}[ht]
+\centering
+\singlespacing
+\caption*{\textbf{Tabla 1}\\\textit{Variables seleccionadas para el proyecto}}
+\begin{tabular}{llll}
+\toprule
+Variable & Significado & Unidad & Tipo \\
+\midrule
+nombre\_1 & ... & ... & num\'erica \\
+nombre\_2 & ... & ... & categ\'orica \\
+\bottomrule
+\end{tabular}
+\end{table}
+\doublespacing
+
+% ---------------- 7. ALCANCE ----------------
+\section{Alcance y limitaciones}
+Qu\'e incluye y qu\'e no (por ejemplo, el a\~no 2025 no se utiliza).
+
+% ---------------- 8. MATRIZ ----------------
+\section{Matriz de coherencia}
+\begin{table}[ht]
+\centering
+\singlespacing
+\caption*{\textbf{Tabla 2}\\\textit{Matriz de coherencia de la Parte 1}}
+\begin{tabular}{p{3cm}p{7cm}p{4cm}}
+\toprule
+Elemento & Redacci\'on & Salida verificable \\
+\midrule
+Problema & & \\
+Pregunta & & \\
+Hip\'otesis & & \\
+Objetivo general & & \\
+OE1 & & \\
+OE2 & & \\
+OE3 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+\doublespacing
+
+% ---------------- REFERENCIAS ----------------
+\printbibliography[title={Referencias}]
+
+% ---------------- ANEXO ----------------
+\appendix
+\section{Uso de inteligencia artificial}
+Declare para qu\'e se us\'o, qu\'e se verific\'o y qu\'e parte fue reescrita por el equipo.
+
+\end{document}

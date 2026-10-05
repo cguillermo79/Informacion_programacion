@@ -20,6 +20,7 @@ Desarrollar una aplicación o flujo de procesamiento de datos que:
 - Dataset: FIRELAB_Loja v1.1.0.
 - Periodo permitido: enero de 2019 a diciembre de 2024.
 - Unidad de observación: una celda espacial de 500 m en un mes.
+- **Muestra didáctica:** para que las bases sean manejables en un curso introductorio, cada base contiene una **muestra de celdas completas** (con sus 72 meses) del dataset original: **250 celdas** en las zonas norte y sur, y **500 celdas** (las 250 del norte + las 250 del sur) en Loja completo. Se mantienen **todas las columnas y las mismas zonas**; solo se redujo el número de celdas. La selección fue aleatoria con semilla fija (2026), por zona: 50 celdas con al menos un evento de incendio válido y 200 sin evento. Las celdas elegidas están en `bases_datos_proyecto_integrador/muestra_celdas_didactica.csv`. Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
 - Clave esperada de cada observación: `cell_id`, `anio` y `mes`.
 - El año 2025 está reservado como conjunto OOT y no debe incorporarse al proyecto.
 - El CSV asignado es de **solo lectura**: no se debe editar, renombrar ni sobrescribir.
@@ -30,12 +31,12 @@ La descripción técnica completa está en la [guía de las bases](bases_datos_p
 
 | Grupo | Tema | Zona asignada | Registros | Celdas | Base de trabajo |
 |---:|---|---|---:|---:|---|
-| 1 | Relieve y accesibilidad | Norte | 288.072 | 4.001 | [Carpeta del grupo 1](bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte) |
-| 2 | Relieve y accesibilidad | Sur | 287.712 | 3.996 | [Carpeta del grupo 2](bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur) |
-| 3 | Cobertura vegetal y uso del suelo | Loja completo | 575.784 | 7.997 | [Carpeta del grupo 3](bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo) |
-| 4 | Clima y condiciones atmosféricas | Norte | 288.072 | 4.001 | [Carpeta del grupo 4](bases_datos_proyecto_integrador/equipo_04_clima_zona_norte) |
-| 5 | Clima y condiciones atmosféricas | Sur | 287.712 | 3.996 | [Carpeta del grupo 5](bases_datos_proyecto_integrador/equipo_05_clima_zona_sur) |
-| 6 | Incendios forestales y riesgo | Loja completo | 575.784 | 7.997 | [Carpeta del grupo 6](bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo) |
+| 1 | Relieve y accesibilidad | Norte | 18.000 | 250 | [Carpeta del grupo 1](bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte) |
+| 2 | Relieve y accesibilidad | Sur | 18.000 | 250 | [Carpeta del grupo 2](bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur) |
+| 3 | Cobertura vegetal y uso del suelo | Loja completo | 36.000 | 500 | [Carpeta del grupo 3](bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo) |
+| 4 | Clima y condiciones atmosféricas | Norte | 18.000 | 250 | [Carpeta del grupo 4](bases_datos_proyecto_integrador/equipo_04_clima_zona_norte) |
+| 5 | Clima y condiciones atmosféricas | Sur | 18.000 | 250 | [Carpeta del grupo 5](bases_datos_proyecto_integrador/equipo_05_clima_zona_sur) |
+| 6 | Incendios forestales y riesgo | Loja completo | 36.000 | 500 | [Carpeta del grupo 6](bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo) |
 
 ## Regla para los grupos que comparten tema
 
@@ -114,7 +115,7 @@ El grupo desarrollará una aplicación para caracterizar la accesibilidad y difi
 
 Debe:
 
-- validar que las 4.001 celdas cumplan `centro_y_m >= 9555250.0`;
+- validar que las 250 celdas cumplan `centro_y_m >= 9555250.0`;
 - reducir de manera controlada las variables estáticas a una fila por `cell_id`;
 - comprobar la consistencia de elevación, pendiente, orientación, vías y asentamientos entre meses;
 - crear funciones para resumir elevación, pendiente, distancia a vías y distancia a asentamientos;
@@ -126,7 +127,7 @@ Las pruebas deben cubrir la deduplicación temporal, la regla norte, los límite
 
 ### Grupo 2 — Relieve y accesibilidad de la zona sur
 
-El grupo desarrollará su propia solución para las 3.996 celdas del sur de Loja.
+El grupo desarrollará su propia solución para las 250 celdas del sur de Loja.
 
 Debe:
 
@@ -161,7 +162,7 @@ El grupo desarrollará una aplicación para consultar precipitación, sequedad y
 
 Debe:
 
-- validar las 4.001 celdas y la regla territorial norte;
+- validar las 250 celdas y la regla territorial norte;
 - comprobar disponibilidad, días válidos e historia completa de CHIRPS y CHELSA;
 - resumir precipitación, días secos, días húmedos y viento por mes y año;
 - permitir seleccionar variable, año y mes mediante parámetros;
@@ -177,7 +178,7 @@ El grupo implementará una solución independiente para analizar las condiciones
 
 Debe:
 
-- validar las 3.996 celdas y `centro_y_m < 9555250.0`;
+- validar las 250 celdas y `centro_y_m < 9555250.0`;
 - revisar calidad y disponibilidad de CHIRPS/CHELSA;
 - crear funciones propias para resumir precipitación, sequedad y viento;
 - implementar consultas configurables por variable y periodo;
@@ -207,11 +208,29 @@ Las variables VIIRS de cobertura, disponibilidad y evidencia son campos de traza
 
 | Unidad | Resultado esperado |
 |---|---|
-| **Unidad 1 — Formulación** | Pregunta, requisitos, variables, reglas de calidad, diseño de módulos, estructura de entradas y salidas, y prototipo de lectura. |
-| **Unidad 2 — Implementación** | Carga y validación completas, funciones principales, primeras pruebas, tablas y visualizaciones preliminares. |
-| **Unidad 3 — Producto final** | Solución integrada, pruebas corregidas, resultados definitivos, documentación, informe y defensa individual. |
+| **Unidad 1 — Formulación** | Problema, pregunta de investigación, hipótesis, objetivo general y máximo tres objetivos específicos; variables y exploración preliminar de los datos. Informe de la Parte 1. |
+| **Unidad 2 — Metodología** | Proceso metodológico por objetivo (entradas, procedimiento, reglas, verificación, salida) e implementación parcial. **Informe unificado Unidad 1 + 2.** |
+| **Unidad 3 — Resultados y conclusiones** | Resultados por objetivo, pruebas, contraste de hipótesis, discusión y conclusiones. **Informe final unificado Unidad 1 + 2 + 3** y defensa individual. |
 
 Cada unidad debe incorporar la retroalimentación recibida. El producto final integra y corrige los avances anteriores; no empieza nuevamente desde cero.
+
+**Guía completa del proyecto (equipos, fases, fechas, estructura de informes):** [01_unidad_1/05_proyecto_integrador/GUIA_PROYECTO_INTEGRADOR.md](01_unidad_1/05_proyecto_integrador/GUIA_PROYECTO_INTEGRADOR.md).
+
+## Contenido por unidad
+
+| Carpeta | Qué encontrará |
+|---|---|
+| `01_unidad_1/00_guia_instalacion` | Guía de instalación del entorno (VS Code y Python). |
+| `01_unidad_1/01_material_clase` | Cuaderno de clase de la unidad. |
+| `01_unidad_1/02_micro_retos` | 4 micro-retos (MR1–MR4), escala 0–3, 5 %. |
+| `01_unidad_1/03_trabajo_tecnico` | 3 trabajos técnicos (TT1–TT3), escala 0–3, 5 %. |
+| `01_unidad_1/04_sustentacion_validacion` | Cómo prepararse para las 2 sustentaciones/validaciones, 5 %. |
+| `01_unidad_1/05_proyecto_integrador` | Guía maestra del proyecto y plantilla LaTeX del informe. |
+| `01_unidad_1/06_guia_github_git_vscode` | Guía paso a paso para descargar este repositorio con Git, crear el entorno virtual y trabajar en Visual Studio Code. |
+| `02_unidad_2/05_proyecto_integrador` | Guía de la Parte 2 (metodología). |
+| `03_unidad_3/05_proyecto_integrador` | Guía de la Parte 3 (resultados y conclusiones). |
+
+Las lecciones y los exámenes no se publican en este repositorio.
 
 ## Estructura recomendada de la entrega
 

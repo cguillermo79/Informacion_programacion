@@ -13,26 +13,27 @@ El proyecto avanza durante las tres unidades: definición del problema y requisi
 - Unidad de observación: una **celda espacial de 500 m en un mes**.
 - Periodo: enero de 2019 a diciembre de 2024 (72 meses).
 - El año 2025 no está incluido y no deberá obtenerse de otra fuente.
+- **Muestra didáctica:** para que las bases sean manejables en un curso introductorio, cada base contiene una **muestra de celdas completas** (con sus 72 meses) del dataset original: **250 celdas** en las zonas norte y sur, y **500 celdas** (las 250 del norte + las 250 del sur) en Loja completo. Se mantienen **todas las columnas y las mismas zonas**; solo se redujo el número de celdas. La selección fue aleatoria con semilla fija (2026), por zona: 50 celdas con al menos un evento de incendio válido y 200 sin evento. Las celdas elegidas están en `muestra_celdas_didactica.csv`. Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
 - El CSV entregado es de solo lectura. El programa generará nuevas salidas sin sobrescribirlo.
 
 ## Asignación de equipos
 
 | Equipo | Tema | Zona exclusiva | Registros | Celdas | Columnas | Archivo |
 |---:|---|---|---:|---:|---:|---|
-| 1 | Relieve y accesibilidad | Norte | 288.072 | 4.001 | 66 | `equipo_01_relieve_zona_norte/base_programacion_equipo_01_relieve_zona_norte_2019_2024.csv` |
-| 2 | Relieve y accesibilidad | Sur | 287.712 | 3.996 | 66 | `equipo_02_relieve_zona_sur/base_programacion_equipo_02_relieve_zona_sur_2019_2024.csv` |
-| 3 | Cobertura vegetal y uso del suelo | Loja completo | 575.784 | 7.997 | 53 | `equipo_03_cobertura_loja_completo/base_programacion_equipo_03_cobertura_loja_completo_2019_2024.csv` |
-| 4 | Clima y condiciones atmosféricas | Norte | 288.072 | 4.001 | 57 | `equipo_04_clima_zona_norte/base_programacion_equipo_04_clima_zona_norte_2019_2024.csv` |
-| 5 | Clima y condiciones atmosféricas | Sur | 287.712 | 3.996 | 57 | `equipo_05_clima_zona_sur/base_programacion_equipo_05_clima_zona_sur_2019_2024.csv` |
-| 6 | Incendios forestales y riesgo | Loja completo | 575.784 | 7.997 | 41 | `equipo_06_incendios_loja_completo/base_programacion_equipo_06_incendios_loja_completo_2019_2024.csv` |
+| 1 | Relieve y accesibilidad | Norte | 18.000 | 250 | 66 | `equipo_01_relieve_zona_norte/base_programacion_equipo_01_relieve_zona_norte_2019_2024.csv` |
+| 2 | Relieve y accesibilidad | Sur | 18.000 | 250 | 66 | `equipo_02_relieve_zona_sur/base_programacion_equipo_02_relieve_zona_sur_2019_2024.csv` |
+| 3 | Cobertura vegetal y uso del suelo | Loja completo | 36.000 | 500 | 53 | `equipo_03_cobertura_loja_completo/base_programacion_equipo_03_cobertura_loja_completo_2019_2024.csv` |
+| 4 | Clima y condiciones atmosféricas | Norte | 18.000 | 250 | 57 | `equipo_04_clima_zona_norte/base_programacion_equipo_04_clima_zona_norte_2019_2024.csv` |
+| 5 | Clima y condiciones atmosféricas | Sur | 18.000 | 250 | 57 | `equipo_05_clima_zona_sur/base_programacion_equipo_05_clima_zona_sur_2019_2024.csv` |
+| 6 | Incendios forestales y riesgo | Loja completo | 36.000 | 500 | 41 | `equipo_06_incendios_loja_completo/base_programacion_equipo_06_incendios_loja_completo_2019_2024.csv` |
 
 ## Regla territorial para los temas compartidos
 
 Los equipos 1–2 comparten relieve y accesibilidad; los equipos 4–5 comparten clima. En cada pareja, las columnas son las mismas, pero la población territorial es distinta:
 
-- **Norte:** `centro_y_m >= 9555250.0` (4.001 celdas).
-- **Sur:** `centro_y_m < 9555250.0` (3.996 celdas).
-- **Loja completo:** 7.997 celdas; se asigna a los equipos 3 y 6 en temas diferentes.
+- **Norte:** `centro_y_m >= 9555250.0` (250 celdas).
+- **Sur:** `centro_y_m < 9555250.0` (250 celdas).
+- **Loja completo:** 500 celdas; se asigna a los equipos 3 y 6 en temas diferentes.
 
 La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pero no volver a dividir ni unir las bases.
 
@@ -74,7 +75,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 ### Equipo 1 — Aplicación de relieve y accesibilidad, zona norte
 
-- Implementar una carga que valide las 4.001 celdas del norte y la regla `centro_y_m >= 9555250.0`.
+- Implementar una carga que valide las 250 celdas del norte y la regla `centro_y_m >= 9555250.0`.
 - Crear funciones para obtener una fila por `cell_id`, validar cobertura ALOS/GHSL/OSM y resumir elevación, pendiente, vías y asentamientos.
 - Programar una clasificación configurable de accesibilidad o dificultad territorial y exportar las celdas por nivel.
 - Generar una tabla de resumen, gráficos de distribución/relación y una visualización espacial del norte.
@@ -82,7 +83,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 ### Equipo 2 — Aplicación de relieve y accesibilidad, zona sur
 
-- Implementar el flujo exclusivamente para las 3.996 celdas del sur y validar `centro_y_m < 9555250.0`.
+- Implementar el flujo exclusivamente para las 250 celdas del sur y validar `centro_y_m < 9555250.0`.
 - Crear sus propias funciones de control, resumen y clasificación; el código y los parámetros no deben ser una copia del equipo 1.
 - Exportar una clasificación de accesibilidad o dificultad derivada de elevación, pendiente, vías y asentamientos del sur.
 - Generar tabla, gráficos y visualización espacial propios de la zona sur.

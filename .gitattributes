@@ -1,1 +1,1 @@
-*.csv filter=lfs diff=lfs merge=lfs -text
+# Las bases del proyecto son pequenas (menos de 15 MB cada una); no se usa Git LFS.

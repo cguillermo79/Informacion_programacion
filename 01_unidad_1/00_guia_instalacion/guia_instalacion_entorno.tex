@@ -1,0 +1,437 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% Guía de instalación y configuración del entorno de trabajo
+% Programación y Base de Datos - Proyecto integrador FIRELAB-Loja
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{2.3em}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% ---------------- Paleta (misma identidad que Programación) ----------------
+\definecolor{morado}{RGB}{74,20,99}
+\definecolor{moradoOsc}{RGB}{48,11,68}
+\definecolor{moradoMedio}{RGB}{123,63,157}
+\definecolor{moradoClaro}{RGB}{224,208,235}
+\definecolor{tealProfundo}{RGB}{0,90,99}
+\definecolor{tealClaro}{RGB}{204,232,232}
+\definecolor{acento}{RGB}{198,110,38}
+\definecolor{acentoClaro}{RGB}{247,226,201}
+\definecolor{alerta}{RGB}{165,40,40}
+\definecolor{alertaClara}{RGB}{242,213,208}
+\definecolor{grafito}{RGB}{51,51,51}
+\definecolor{grisClaro}{RGB}{244,246,245}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=morado,
+  urlcolor=moradoMedio,
+  citecolor=morado,
+  pdftitle={Guía de instalación y configuración del entorno de trabajo},
+  pdfauthor={Programación y Base de Datos},
+  bookmarksopen=true
+}
+
+\titleformat{\section}{\Large\bfseries\color{morado}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{moradoOsc}}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{grafito}Programación y Base de Datos -- FIRELAB-Loja}
+\fancyhead[R]{\small\color{grafito}Guía de instalación}
+\fancyfoot[C]{\small\thepage}
+
+\setlist[itemize]{itemsep=2pt, topsep=3pt}
+\setlist[enumerate]{itemsep=4pt, topsep=3pt}
+
+% ---------------- Cajas de aviso ----------------
+\newtcolorbox{tip}[1][]{colback=tealClaro!45,colframe=tealProfundo,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Consejo,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=tealProfundo,#1}
+\newtcolorbox{warn}[1][]{colback=acentoClaro!70,colframe=acento,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Atención,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=acento,#1}
+\newtcolorbox{crit}[1][]{colback=alertaClara!60,colframe=alerta,arc=2pt,boxrule=1.1pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=¡Muy importante!,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=alerta,#1}
+\newtcolorbox{verify}[1][]{colback=moradoClaro!35,colframe=morado,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Verifique antes de continuar,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=morado,#1}
+\newtcolorbox{stepbox}[1][]{colback=grisClaro,colframe=moradoMedio,arc=2pt,boxrule=0.7pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,#1}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\link}[1]{\url{#1}}
+
+\begin{document}
+\shorthandoff{"}
+
+% ============================================================
+% Portada
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Huge\bfseries\color{morado} Guía de instalación\\[4pt] y configuración del entorno}\\[1.2cm]
+{\Large\color{moradoOsc} Programación y Base de Datos -- Unidad 1}\\[6pt]
+{\large\color{grafito} Proyecto integrador FIRELAB-Loja}\\[2cm]
+
+\begin{tcolorbox}[colback=moradoClaro!30,colframe=morado,arc=3pt,boxrule=1pt,width=0.82\textwidth,
+  left=14pt,right=14pt,top=10pt,bottom=10pt]
+\textbf{¿Qué instalará con esta guía?}
+\begin{itemize}[itemsep=3pt]
+  \item Visual Studio Code (editor de código)
+  \item Python y las librerías del curso (\code{pandas}, \code{matplotlib})
+  \item Git (control de versiones) y una cuenta de GitHub
+  \item El repositorio de trabajo de su equipo para el proyecto FIRELAB-Loja
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{1.3cm}
+{\small\color{grafito} Tiempo estimado: 45--60 minutos \quad\textbullet\quad Hágalo con conexión a internet estable}\\[0.4cm]
+{\small\color{grafito} Traiga su equipo con esta instalación completa a la primera sesión práctica}
+
+\vfill
+{\small\color{grafito} Universidad Nacional de Loja -- Carrera de Ingeniería Ambiental}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Antes de empezar}
+% ============================================================
+
+Esta guía lo llevará, paso a paso, desde un computador recién formateado hasta tener listo el entorno completo de trabajo del curso: editor, lenguaje, librerías, control de versiones y el repositorio de su equipo para el proyecto integrador.
+
+\begin{tip}
+Siga los pasos \textbf{en el orden en que aparecen}. Cada paso depende del anterior (por ejemplo, VS Code necesita que Python ya esté instalado para poder usarlo). Si se salta un paso, es probable que algo falle más adelante.
+\end{tip}
+
+\subsection*{Requisitos previos}
+\begin{itemize}
+  \item Un computador con Windows 10/11, macOS o Linux, con al menos 3\,GB de espacio libre.
+  \item Conexión a internet estable (las descargas suman cerca de 300--400\,MB en total).
+  \item Permisos de administrador en el equipo (para instalar programas).
+  \item Una dirección de correo electrónico personal (para crear la cuenta de GitHub).
+\end{itemize}
+
+\begin{crit}
+Todos los pasos marcados como \textbf{¡Atención en Windows!} son la causa más frecuente de que "nada funcione" en la primera sesión práctica. Léalos con calma, no los salte.
+\end{crit}
+
+% ============================================================
+\section{Instalar Visual Studio Code}
+% ============================================================
+
+Visual Studio Code (VS Code) es el editor de código que usaremos durante todo el curso.
+
+\begin{stepbox}
+\textbf{Paso 1.} Abra su navegador y vaya a:
+\begin{center}\link{https://code.visualstudio.com/download}\end{center}
+La página detecta automáticamente su sistema operativo y le muestra el botón de descarga correcto (Windows, macOS o Linux). Haga clic en ese botón.
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 2.} Ejecute el instalador descargado.
+\begin{itemize}
+  \item \textbf{Windows:} abra el archivo \code{VSCodeUserSetup-*.exe}. Acepte el acuerdo de licencia y deje todas las casillas marcadas por defecto en la pantalla de "Tareas adicionales" (incluida \textbf{"Add to PATH"}, si aparece). Pulse "Siguiente" hasta finalizar.
+  \item \textbf{macOS:} abra el archivo \code{.zip} descargado, arrastre \code{Visual Studio Code.app} a la carpeta \code{Aplicaciones}.
+  \item \textbf{Linux (Ubuntu/Debian):} instale el paquete \code{.deb} descargado con \code{sudo apt install ./nombre-del-archivo.deb}, o siga las instrucciones específicas de su distribución en la misma página de descarga.
+\end{itemize}
+\end{stepbox}
+
+\begin{verify}
+Abra Visual Studio Code desde el menú de inicio (Windows), Launchpad (macOS) o su lanzador de aplicaciones (Linux). Debe abrirse una ventana de bienvenida de VS Code. Si esto ocurre, este paso está completo.
+\end{verify}
+
+% ============================================================
+\section{Instalar Python}
+% ============================================================
+
+Python es el lenguaje de programación que usaremos en todo el curso.
+
+\begin{stepbox}
+\textbf{Paso 3.} Vaya a:
+\begin{center}\link{https://www.python.org/downloads/}\end{center}
+Haga clic en el botón amarillo que descarga la última versión estable (por ejemplo, "Download Python 3.12.x"). Evite versiones marcadas como "pre-release" o "rc".
+\end{stepbox}
+
+\begin{crit}
+\textbf{¡Atención en Windows!} En la \textbf{primera pantalla} del instalador aparecen dos casillas en la parte inferior: \textbf{"Add python.exe to PATH"} y "Install launcher for all users". \textbf{Marque "Add python.exe to PATH" antes} de hacer clic en "Install Now".
+
+Si no marca esa casilla, Windows no sabrá dónde encontrar Python, y VS Code tampoco. Los síntomas típicos son mensajes como \code{'python' no se reconoce como un comando interno o externo}. Si esto le pasa, desinstale Python desde "Agregar o quitar programas" y vuelva a instalarlo marcando la casilla correctamente.
+\end{crit}
+
+\begin{stepbox}
+\textbf{macOS:} el instalador \code{.pkg} no tiene la casilla de PATH (macOS lo configura automáticamente); simplemente siga los pasos del asistente con las opciones por defecto.
+
+\textbf{Linux:} la mayoría de distribuciones ya incluyen Python 3. Verifique con el comando del Paso 4; si falta, instálelo con el gestor de paquetes de su distribución (por ejemplo \code{sudo apt install python3 python3-pip} en Ubuntu/Debian).
+\end{stepbox}
+
+\begin{verify}
+\textbf{Paso 4.} Abra una terminal:
+\begin{itemize}
+  \item \textbf{Windows:} busque "PowerShell" o "Símbolo del sistema" en el menú de inicio.
+  \item \textbf{macOS/Linux:} busque "Terminal" en el lanzador de aplicaciones.
+\end{itemize}
+Escriba (en Windows) \code{python --version} o (en macOS/Linux) \code{python3 --version} y presione Enter. Debe aparecer algo como:
+\begin{center}\code{Python 3.12.4}\end{center}
+Si en cambio aparece un error de "comando no reconocido", revise el aviso de PATH de arriba.
+\end{verify}
+
+% ============================================================
+\section{Configurar VS Code para trabajar con Python}
+% ============================================================
+
+\begin{stepbox}
+\textbf{Paso 5.} Abra Visual Studio Code. En la barra lateral izquierda, haga clic en el ícono de extensiones (cuatro cuadrados, el cuarto separado) o use el atajo \code{Ctrl+Shift+X} (Windows/Linux) o \code{Cmd+Shift+X} (macOS).
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 6.} Busque e instale (botón azul "Install" junto a cada resultado) estas dos extensiones oficiales de Microsoft:
+\begin{itemize}
+  \item \textbf{Python} -- \link{https://marketplace.visualstudio.com/items?itemName=ms-python.python}
+  \item \textbf{Jupyter} -- \link{https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter}
+\end{itemize}
+Busque exactamente por el nombre \code{Python} y \code{Jupyter}; ambas son publicadas por "Microsoft" (verifique el editor/publisher en la ficha de la extensión antes de instalar).
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 7.} Cree un archivo de prueba:
+\begin{enumerate}
+  \item En VS Code, vaya a \textbf{Archivo $\to$ Nuevo archivo de texto}.
+  \item Guárdelo (\code{Ctrl+S}) con el nombre \code{prueba.py} en una carpeta de su elección (por ejemplo, cree una carpeta \code{Escritorio/prueba\_python}).
+  \item Escriba esta línea: \code{print("Hola FIRELAB")}
+  \item En la esquina inferior derecha de VS Code debe aparecer la versión de Python detectada (por ejemplo, "3.12.4"). Si dice "Select Interpreter", haga clic ahí y elija la versión de Python instalada en el Paso 3.
+  \item Ejecute el archivo con el botón $\blacktriangleright$ (arriba a la derecha) o clic derecho $\to$ "Run Python File in Terminal".
+\end{enumerate}
+\end{stepbox}
+
+\begin{verify}
+En la terminal integrada, en la parte inferior de VS Code, debe aparecer el texto \code{Hola FIRELAB}. Si lo ve, VS Code y Python ya están correctamente conectados.
+\end{verify}
+
+% ============================================================
+\section{Instalar las librerías del curso}
+% ============================================================
+
+\begin{stepbox}
+\textbf{Paso 8.} Abra la terminal integrada de VS Code: menú \textbf{Terminal $\to$ Nueva terminal}, o el atajo \code{Ctrl+\textasciigrave} (comilla invertida, tecla arriba del Tab).
+
+Escriba el siguiente comando y presione Enter:
+\begin{center}\code{pip install pandas matplotlib}\end{center}
+(En macOS/Linux, si \code{pip} no funciona, use \code{pip3 install pandas matplotlib}.)
+
+Espere a que termine la instalación; puede tardar uno o dos minutos.
+\end{stepbox}
+
+\begin{tip}
+\code{sqlite3} \textbf{no se instala}: viene incluido de fábrica con Python, listo para usar con \code{import sqlite3}.
+\end{tip}
+
+\begin{verify}
+\textbf{Paso 9.} En su archivo \code{prueba.py} (o uno nuevo, \code{prueba\_final.py}), reemplace el contenido por:
+\begin{center}\code{import pandas; import matplotlib; import sqlite3; print("Todo listo")}\end{center}
+Ejecútelo. Si aparece \code{Todo listo} sin ningún error en rojo, la instalación de Python y sus librerías está completa.
+\end{verify}
+
+% ============================================================
+\section{Crear una cuenta de GitHub}
+% ============================================================
+
+GitHub es la plataforma donde su equipo alojará el código y los datos del proyecto integrador, y donde el docente revisará su avance.
+
+\begin{stepbox}
+\textbf{Paso 10.} Vaya a:
+\begin{center}\link{https://github.com/signup}\end{center}
+Regístrese con su correo electrónico personal (no institucional, para poder seguir usando la cuenta después de graduarse). Elija un \textbf{nombre de usuario profesional}: evite apodos; use algo basado en su nombre real (por ejemplo, \code{cguillermo-chuncho} en vez de \code{cracker123}), ya que este perfil puede formar parte de su portafolio profesional a futuro.
+\end{stepbox}
+
+\begin{tip}
+GitHub ofrece cuentas gratuitas con repositorios privados ilimitados para estudiantes y en general. No es necesario pagar nada para este curso. Adicionalmente, con un correo institucional (.edu) puede solicitar el \href{https://education.github.com/pack}{GitHub Student Developer Pack}, que da acceso a herramientas profesionales gratuitas.
+\end{tip}
+
+\begin{verify}
+Inicie sesión en \link{https://github.com} con su nuevo usuario y contraseña. Debe ver su panel principal ("Dashboard") de GitHub.
+\end{verify}
+
+% ============================================================
+\section{Instalar Git}
+% ============================================================
+
+Git es el programa que registra el historial de cambios de su código y lo sincroniza con GitHub. GitHub es la plataforma web; Git es la herramienta que se instala en su computador.
+
+\begin{stepbox}
+\textbf{Paso 11.} Descargue Git desde:
+\begin{center}\link{https://git-scm.com/downloads}\end{center}
+Elija su sistema operativo y descargue el instalador.
+\begin{itemize}
+  \item \textbf{Windows:} ejecute el instalador y acepte las opciones por defecto en todas las pantallas (son más de diez pantallas; para este curso los valores predeterminados funcionan bien). Un detalle a revisar: en la pantalla "Adjusting your PATH environment", deje seleccionada la opción recomendada ("Git from the command line and also from 3rd-party software").
+  \item \textbf{macOS:} si tiene Xcode Command Line Tools, es posible que Git ya esté instalado. Si no, el instalador de la página oficial funciona igual de bien.
+  \item \textbf{Linux:} instale con \code{sudo apt install git} (Ubuntu/Debian) o el gestor de paquetes equivalente.
+\end{itemize}
+\end{stepbox}
+
+\begin{verify}
+\textbf{Paso 12.} Abra una terminal nueva (ciérrela y ábrala de nuevo si ya tenía una abierta) y escriba:
+\begin{center}\code{git --version}\end{center}
+Debe mostrar algo como \code{git version 2.45.0}.
+\end{verify}
+
+\begin{stepbox}
+\textbf{Paso 13.} Configure su identidad en Git (una sola vez, en este computador). En la terminal, ejecute estas dos líneas reemplazando sus datos:
+\begin{center}
+\code{git config --global user.name "Su Nombre Completo"}\\
+\code{git config --global user.email "su\_correo@ejemplo.com"}
+\end{center}
+Use \textbf{el mismo correo} con el que se registró en GitHub, para que sus contribuciones queden asociadas a su perfil.
+\end{stepbox}
+
+% ============================================================
+\section{Conectar VS Code con GitHub}
+% ============================================================
+
+\begin{stepbox}
+\textbf{Paso 14.} En VS Code, haga clic en el ícono de "Control de código fuente" (Source Control) en la barra lateral izquierda (el ícono con forma de rama, o el atajo \code{Ctrl+Shift+G}).
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 15.} La primera vez que intente subir código a GitHub desde VS Code (más adelante, en el Paso 17), aparecerá una ventana pidiéndole iniciar sesión. Haga clic en \textbf{"Sign in with GitHub"} y autorice el acceso en la ventana del navegador que se abre. No necesita configurar nada más de forma manual: VS Code gestiona la autenticación por usted.
+\end{stepbox}
+
+\begin{tip}
+Si en algún momento le pide usuario y contraseña de Git \textbf{en la terminal} (no en una ventana de VS Code) y su contraseña normal de GitHub no funciona, es porque GitHub ya no acepta contraseñas por línea de comandos: use el inicio de sesión de VS Code (Paso 15) en vez de escribir credenciales manualmente.
+\end{tip}
+
+% ============================================================
+\section{Construir el repositorio de su equipo}
+% ============================================================
+
+Cada pareja o grupo de equipos trabaja un bloque temático del dataset FIRELAB-Loja (cantón Loja, 2019--2024). Use esta tabla para identificar el suyo:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c p{9.5cm}}
+\hline
+\textbf{Equipos} & \textbf{Bloque temático} \\
+\hline
+1 y 2 & Relieve y accesibilidad \\
+3 & Cobertura vegetal y uso del suelo \\
+4 y 5 & Clima y condiciones atmosféricas \\
+6 & Incendios forestales y riesgo \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{stepbox}
+\textbf{Paso 16 -- Crear el repositorio en GitHub.}
+\begin{enumerate}
+  \item Inicie sesión en \link{https://github.com} y haga clic en el botón verde \textbf{"New"} (o el signo \code{+} en la esquina superior derecha $\to$ "New repository").
+  \item \textbf{Nombre del repositorio:} use el patrón \code{firelab-loja-equipoN-bloque}, reemplazando \code{N} por su número de equipo y \code{bloque} por una palabra corta de su tema. Ejemplos: \code{firelab-loja-equipo1-relieve}, \code{firelab-loja-equipo3-cobertura}, \code{firelab-loja-equipo6-incendios}.
+  \item \textbf{Visibilidad:} elija \textbf{Private} (privado), y agregue como colaboradores a sus compañeros de equipo y al docente (Settings $\to$ Collaborators, una vez creado).
+  \item Marque la casilla \textbf{"Add a README file"}.
+  \item Haga clic en \textbf{"Create repository"}.
+\end{enumerate}
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 17 -- Clonar el repositorio en su computador con VS Code.}
+\begin{enumerate}
+  \item En VS Code, presione \code{Ctrl+Shift+P} (o \code{Cmd+Shift+P} en macOS) para abrir la paleta de comandos.
+  \item Escriba \code{Git: Clone} y selecciónelo.
+  \item Elija \textbf{"Clone from GitHub"}, inicie sesión si se lo pide (vea el Paso 15), y busque su repositorio \code{firelab-loja-equipoN-bloque} en la lista.
+  \item Elija una carpeta local donde guardarlo (por ejemplo, \code{Documentos/proyectos}).
+  \item Cuando termine, VS Code preguntará si desea abrir el repositorio clonado: elija \textbf{"Open"}.
+\end{enumerate}
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 18 -- Estructura de carpetas recomendada.} Dentro de su repositorio recién clonado, cree esta estructura (clic derecho en el panel de "Explorador" de VS Code $\to$ "New Folder" / "New File"):
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+\ttfamily
+firelab-loja-equipoN-bloque/\\
+\hspace*{1em}datos/\quad\rmfamily\itshape (datos crudos y procesados de su bloque)\\
+\ttfamily\hspace*{1em}notebooks/\quad\rmfamily\itshape (exploración en Jupyter, archivos .ipynb)\\
+\ttfamily\hspace*{1em}src/\quad\rmfamily\itshape (funciones y scripts .py reutilizables)\\
+\ttfamily\hspace*{1em}resultados/\quad\rmfamily\itshape (gráficos y tablas que generen)\\
+\ttfamily\hspace*{1em}README.md
+\end{minipage}
+\end{center}
+\end{stepbox}
+
+\begin{stepbox}
+\textbf{Paso 19 -- Completar el README y su primer commit.} Abra el archivo \code{README.md} y escriba una descripción breve: nombre del equipo, integrantes, bloque temático asignado y la pregunta guía del proyecto (tómela de la diapositiva "Proyecto integrador" de la presentación del curso). Guarde el archivo.
+
+Luego, en el panel de \textbf{Control de código fuente} (Paso 14):
+\begin{enumerate}
+  \item Escriba un mensaje corto en el recuadro de arriba, por ejemplo: \code{Estructura inicial del proyecto y README}.
+  \item Haga clic en el botón \textbf{"Commit"} (o el ícono de check $\checkmark$).
+  \item Haga clic en \textbf{"Sync Changes"} (o "Push") para subir los cambios a GitHub.
+\end{enumerate}
+\end{stepbox}
+
+\begin{verify}
+Abra su repositorio en \link{https://github.com} desde el navegador y actualice la página. Debe ver la carpeta \code{datos/}, \code{notebooks/}, \code{src/}, \code{resultados/} y su \code{README.md} ya con el contenido que escribió. Si es así, su equipo ya tiene el proyecto listo para empezar a trabajar.
+\end{verify}
+
+% ============================================================
+\section{Lista de verificación final}
+% ============================================================
+
+Antes de la próxima sesión práctica, confirme que puede marcar \textbf{todos} estos puntos:
+
+\begin{itemize}[label=$\square$]
+  \item Visual Studio Code instalado y abre correctamente.
+  \item \code{python --version} (o \code{python3 --version}) muestra una versión 3.11 o superior.
+  \item Las extensiones \textbf{Python} y \textbf{Jupyter} instaladas en VS Code.
+  \item Un archivo \code{.py} con \code{print(...)} se ejecuta sin errores desde VS Code.
+  \item \code{pip install pandas matplotlib} se ejecutó sin errores.
+  \item Cuenta de GitHub creada, con nombre de usuario profesional.
+  \item \code{git --version} funciona, y \code{git config --global user.name/user.email} configurados.
+  \item Repositorio \code{firelab-loja-equipoN-bloque} creado en GitHub, clonado en su computador, con la estructura de carpetas y el primer commit ya subido ("pusheado").
+\end{itemize}
+
+% ============================================================
+\section{Problemas frecuentes}
+% ============================================================
+
+\begin{description}
+  \item[\textcolor{alerta}{\textbf{"python" no se reconoce como un comando}}] Python se instaló sin marcar "Add python.exe to PATH". Desinstale Python desde el Panel de control y reinstálelo marcando esa casilla (Sección 3).
+
+  \item[\textcolor{alerta}{\textbf{"pip" no se reconoce}}] Mismo origen que el anterior: revise el PATH de Python. Como alternativa temporal, use \code{python -m pip install pandas matplotlib}.
+
+  \item[\textcolor{alerta}{\textbf{VS Code no detecta el intérprete de Python}}] Con un archivo \code{.py} abierto, haga clic en la esquina inferior derecha (donde dice la versión de Python o "Select Interpreter") y elija manualmente la versión instalada.
+
+  \item[\textcolor{alerta}{\textbf{"git" no se reconoce como un comando}}] Cierre todas las ventanas de terminal y VS Code, y vuelva a abrirlas (Git actualiza el PATH del sistema, pero las terminales ya abiertas no se enteran hasta reiniciarlas).
+
+  \item[\textcolor{alerta}{\textbf{No puedo hacer "push" a GitHub (permiso denegado)}}] Verifique que inició sesión con "Sign in with GitHub" dentro de VS Code (Sección 8), y que su usuario de GitHub fue agregado como colaborador del repositorio si no es el dueño.
+
+  \item[\textcolor{alerta}{\textbf{Instalé todo pero algo más no funciona}}] Revise primero la Lista de verificación final (Sección 10) para aislar cuál paso específico falló, y traiga su equipo con el error visible en pantalla a la próxima sesión práctica.
+\end{description}
+
+\vspace{0.6cm}
+\begin{tcolorbox}[colback=moradoClaro!30,colframe=morado,arc=3pt,boxrule=1pt]
+\textbf{¿Sigue con problemas?} Consulte en el horario de tutoría del curso, o escriba al docente antes de la sesión práctica adjuntando una captura de pantalla del error. Es normal que la primera instalación tenga algún tropiezo -para eso está esta guía y el acompañamiento en clase.
+\end{tcolorbox}
+
+\end{document}

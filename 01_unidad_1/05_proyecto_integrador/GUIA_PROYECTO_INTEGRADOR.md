@@ -50,87 +50,74 @@ Los equipos quedaron conformados según los grupos que el curso entregó; el **e
 
 > Los nombres corresponden a la lista oficial del curso. Las personas que mencionaron su grupo pero aún no constan en esa lista se agregarán cuando se confirme su registro. Todo cambio de integrantes debe ser autorizado por el docente.
 
-### 2.2 Tema, zona de estudio y base de datos de cada equipo
+### 2.2 Qué zona y qué variables trabaja cada equipo
 
-Cada equipo trabaja **un bloque temático** en **una zona de estudio** concreta. Los equipos 1–2 y 4–5 usan **las mismas variables**, pero **zonas distintas**; por eso sus bases y sus resultados son diferentes.
+- **Equipo 1:** trabaja la **zona norte** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 250 celdas.
+- **Equipo 2:** trabaja la **zona sur** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 250 celdas.
+- **Equipo 3:** trabaja **todo el cantón Loja** con las variables de **cobertura vegetal y uso del suelo**: proporciones de cobertura (bosque nativo, páramo, área agropecuaria, plantación forestal, etc.) e índices Sentinel-2 (NDVI, NDMI, NBR, NDWI). Su base tiene 500 celdas.
+- **Equipo 4:** trabaja la **zona norte** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 250 celdas.
+- **Equipo 5:** trabaja la **zona sur** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 250 celdas.
+- **Equipo 6:** trabaja **todo el cantón Loja** con las variables de **incendios forestales y riesgo**: evidencia satelital de fuego y ocurrencia de incendios por celda, mes y año (`y_incendio_ge7_obs90` como respuesta principal). Su base tiene 500 celdas.
 
-| Equipo | Bloque temático | Zona de estudio | Celdas | Registros |
-|:--:|--------------------------|----------------|-------:|---------:|
-| **1** | Relieve y accesibilidad | **Norte** de Loja | 250 | 18.000 |
-| **2** | Relieve y accesibilidad | **Sur** de Loja | 250 | 18.000 |
-| **3** | Cobertura vegetal y uso del suelo | **Loja completo** | 500 | 36.000 |
-| **4** | Clima y condiciones atmosféricas | **Norte** de Loja | 250 | 18.000 |
-| **5** | Clima y condiciones atmosféricas | **Sur** de Loja | 250 | 18.000 |
-| **6** | Incendios forestales y riesgo | **Loja completo** | 500 | 36.000 |
-
-**Cómo se define la zona** (se usa la coordenada `centro_y_m` de cada celda de 500 m):
+**Cómo se define la zona** (con la coordenada `centro_y_m` de cada celda):
 
 - **Norte:** `centro_y_m >= 9555250.0`
 - **Sur:** `centro_y_m < 9555250.0`
 - **Loja completo:** todas las celdas del cantón.
 
-**Qué significa esto para cada pareja de equipos:**
-
-- **Equipos 1 y 2 (relieve y accesibilidad):** mismas variables (elevación, pendiente, orientación, distancia a vías y a asentamientos). El equipo 1 trabaja **solo el norte**; el equipo 2, **solo el sur**.
-- **Equipos 4 y 5 (clima):** mismas variables (precipitación, días secos y húmedos, viento). El equipo 4 trabaja **solo el norte**; el equipo 5, **solo el sur**.
-- **Equipos 3 y 6:** cada uno tiene un tema distinto (cobertura vegetal; incendios) y trabaja **todo el cantón**.
-
-Las bases **ya vienen separadas por zona**: no deben volver a dividirse ni unirse. El programa solo debe **comprobar** que se cumple la regla de zona.
+Los equipos 1–2 y 4–5 trabajan con **las mismas variables**, pero cada uno en **su zona**. Las bases ya vienen separadas por zona: no deben volver a dividirse ni unirse; el programa solo debe **comprobar** que se cumple la regla.
 
 ### 2.3 Dónde está la base de datos de su equipo
 
-Todas las bases están en la carpeta **`Informacion_programacion`** del repositorio de GitHub del curso (<https://github.com/cguillermo79/Informacion_programacion>), dentro de la subcarpeta `bases_datos_proyecto_integrador`. Cómo descargarla se explica en la guía de la carpeta `01_unidad_1/06_guia_github_git_vscode`.
+Todas las bases están en el repositorio de GitHub del curso (<https://github.com/cguillermo79/Informacion_programacion>), dentro de la carpeta `bases_datos_proyecto_integrador`. Cómo descargarlo se explica en la guía de `01_unidad_1/06_guia_github_git_vscode`.
 
 Cada equipo usa **únicamente su carpeta y su archivo**:
 
-**Equipo 1 (relieve, norte)**
+**Equipo 1**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte
 Archivo: base_programacion_equipo_01_relieve_zona_norte_2019_2024.csv
 ```
 
-**Equipo 2 (relieve, sur)**
+**Equipo 2**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur
 Archivo: base_programacion_equipo_02_relieve_zona_sur_2019_2024.csv
 ```
 
-**Equipo 3 (cobertura vegetal, Loja completo)**
+**Equipo 3**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo
 Archivo: base_programacion_equipo_03_cobertura_loja_completo_2019_2024.csv
 ```
 
-**Equipo 4 (clima, norte)**
+**Equipo 4**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_04_clima_zona_norte
 Archivo: base_programacion_equipo_04_clima_zona_norte_2019_2024.csv
 ```
 
-**Equipo 5 (clima, sur)**
+**Equipo 5**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_05_clima_zona_sur
 Archivo: base_programacion_equipo_05_clima_zona_sur_2019_2024.csv
 ```
 
-**Equipo 6 (incendios, Loja completo)**
+**Equipo 6**
 
 ```text
 Carpeta: bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo
 Archivo: base_programacion_equipo_06_incendios_loja_completo_2019_2024.csv
 ```
 
-
-En la misma carpeta encontrará el `README.md` de las bases, el manifiesto de archivos (`MANIFIESTO_BASES.csv`), el diccionario de variables (`dataset_maestro_diccionario_grupos_v1_1_0.json`) y el reporte de validación (`dataset_maestro_validacion_v1_1_0.json`).
+En la misma carpeta `bases_datos_proyecto_integrador` están el `README.md` de las bases, el manifiesto (`MANIFIESTO_BASES.csv`), el diccionario de variables (`dataset_maestro_diccionario_grupos_v1_1_0.json`) y el reporte de validación (`dataset_maestro_validacion_v1_1_0.json`).
 
 > **Importante:** trabaje solo con **su** archivo. El CSV es de **solo lectura** (no se edita, renombra ni sobrescribe) y solo contiene registros de **2019 a 2024**.
-
-> **Las bases son una muestra didáctica.** Para que el trabajo sea manejable en un curso introductorio, cada base contiene una **muestra de celdas completas** (con sus 72 meses) del dataset original: **250 celdas** por zona (norte o sur) y **500 celdas** en Loja completo (las 250 del norte más las 250 del sur). Se mantienen **las mismas variables y las mismas zonas**; solo se redujo el número de celdas. Sus resultados describen **esas celdas**, no todo el cantón: indíquelo en el informe como una limitación. Cada base pesa solo unos 10–15 MB, por lo que se puede trabajar con ella en `pandas` y en SQLite (`sqlite3`) sin dificultad.
 
 ### 2.4 Reglas para formar y mantener el equipo
 

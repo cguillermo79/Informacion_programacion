@@ -5,7 +5,7 @@
 **Peso:** 25 % de la nota de cada unidad (2,50 de 10,00), en las tres unidades.
 
 > Esta es la guía **maestra** del proyecto: describe qué deben hacer en las tres unidades. En cada unidad encontrará también una guía breve con el detalle de esa parte:
-> [Unidad 2](../../02_unidad_2/05_proyecto_integrador/README.md) · [Unidad 3](../../03_unidad_3/05_proyecto_integrador/README.md).
+> [Unidad 2](../../../../02_unidad_2/05_proyecto_integrador/README.md) · [Unidad 3](../../../../03_unidad_3/05_proyecto_integrador/README.md).
 
 ---
 
@@ -31,91 +31,93 @@ Además de la investigación, el proyecto tiene un producto técnico en Python: 
 
 Los equipos se forman según la **diapositiva 7** de la presentación de la Unidad 1:
 
-- **25 estudiantes** se organizan en **6 equipos de 4 integrantes (uno de 5)**.
+- Los estudiantes se organizan en **6 equipos de 4 a 5 integrantes**.
 - Cada equipo es responsable de un **bloque temático** del dataset.
 - Hay más equipos que bloques temáticos: en dos de los cuatro bloques, **dos equipos comparten el tema** (mismas variables y mismo reto), pero cada uno trabaja una **zona distinta** del cantón (norte o sur).
 
 ### 2.1 Integrantes de cada equipo
 
-Los equipos quedaron conformados según los grupos que el curso entregó; el **equipo 6** es el de cinco integrantes. Cada estudiante pertenece **a un solo equipo** durante las tres unidades. El equipo 6 es el de cinco integrantes.
+Los equipos quedaron conformados según los grupos que el curso entregó. Cada estudiante pertenece **a un solo equipo** durante las tres unidades.
 
 | Equipo | Integrantes |
 |:--:|-----------------------------------------------------------------------------|
-| **1** | Gilmar Ivan Campoverde Sarango · Kevin Josue Jimenez Macau · Carlos Daniel Cajamarca Gordillo · Nelson Sebastian Pullaguari Cuenca |
-| **2** | Isidro Francisco Chamba Mendoza · John David Jimenez Troya · Andy Alcides Aguilar Arteaga |
-| **3** | Dulce Isabel Barreto Zapata · Mayerly Stefanny Moreno Vera · Jhanine Fernanda Toledo Merino |
-| **4** | Barbara Salome Saritama Maldonado · Yulian Jeraldine Guaman Aguirre · Kristel Pauleth Cevallos Azanza · Ana Gabriela Medina Yaguana |
-| **5** | Jamileth Stefania Galvez Cornejo · Yurixi Maribel Riofrio Medina · Ibelia Araceli Japon Caillagua · Shislayne Azucena Chalan Jumbo |
-| **6** | Carlos Daniel Gonzalez Castillo · Sonia Noemi Rodriguez Jaramillo · Yanira Maily Rojas Vega |
+| **1** | Jhanine Fernanda Toledo Merino · Mayerly Stefanny Moreno Vera · Dulce Isabel Barreto Zapata · Kevin Josue Jimenez Macau · Mateo Jhoel Gonzales Samaniego\* |
+| **2** | Yanira Maily Rojas Vega · Sonia Noemi Rodriguez Jaramillo · Carlos Daniel Gonzalez Castillo · Nashelly Estephania Abarca Alarcon · Lucia Ester Marin Rojas\* |
+| **3** | John David Jimenez Troya · Isidro Francisco Chamba Mendoza · Andy Alcides Aguilar Arteaga · Giorgi Chamba\* |
+| **4** | Barbara Salome Saritama Maldonado · Yulian Jeraldine Guaman Aguirre · Kristel Pauleth Cevallos Azanza · Ana Gabriela Medina Yaguana · Diana Patricia Cardenas Campoverde |
+| **5** | Shislayne Azucena Chalan Jumbo · Yurixi Maribel Riofrio Medina · Jamileth Stefania Galvez Cornejo · Ibelia Araceli Japon Caillagua · Nelson Sebastian Pullaguari Cuenca |
+| **6** | Jhonny Francisco Narvaez Macas · Jorge Isai Landacay Hidalgo · Carlos Daniel Cajamarca Gordillo · Adrian Aguilar\* · Diana Livisaca\* |
 
-> Los nombres corresponden a la lista oficial del curso. Las personas que mencionaron su grupo pero aún no constan en esa lista se agregarán cuando se confirme su registro. Todo cambio de integrantes debe ser autorizado por el docente.
+> Los nombres corresponden a la lista oficial del curso. Las personas marcadas con \* aún no constan en esa lista; su nombre completo se actualizará cuando se confirme su registro. Todo cambio de integrantes debe ser autorizado por el docente.
 
 ### 2.2 Qué zona y qué variables trabaja cada equipo
 
-- **Equipo 1:** trabaja la **zona norte** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 250 celdas.
-- **Equipo 2:** trabaja la **zona sur** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 250 celdas.
-- **Equipo 3:** trabaja **todo el cantón Loja** con las variables de **cobertura vegetal y uso del suelo**: proporciones de cobertura (bosque nativo, páramo, área agropecuaria, plantación forestal, etc.) e índices Sentinel-2 (NDVI, NDMI, NBR, NDWI). Su base tiene 500 celdas.
-- **Equipo 4:** trabaja la **zona norte** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 250 celdas.
-- **Equipo 5:** trabaja la **zona sur** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 250 celdas.
-- **Equipo 6:** trabaja **todo el cantón Loja** con las variables de **incendios forestales y riesgo**: evidencia satelital de fuego y ocurrencia de incendios por celda, mes y año (`y_incendio_ge7_obs90` como respuesta principal). Su base tiene 500 celdas.
+- **Equipo 1:** trabaja la **zona norte** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 30 celdas (2.160 registros).
+- **Equipo 2:** trabaja la **zona sur** de Loja con las variables de **relieve y accesibilidad**: elevación, pendiente, orientación (northness y eastness), distancia a asentamientos y distancia a vías. Su base tiene 30 celdas (2.160 registros).
+- **Equipo 3:** trabaja **todo el cantón Loja** con las variables de **cobertura vegetal y uso del suelo**: proporciones de cobertura (bosque nativo, páramo, área agropecuaria, plantación forestal, etc.) e índices Sentinel-2 (NDVI, NDMI, NBR, NDWI). Su base tiene 60 celdas (4.320 registros).
+- **Equipo 4:** trabaja la **zona norte** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 30 celdas (2.160 registros).
+- **Equipo 5:** trabaja la **zona sur** de Loja con las variables de **clima y condiciones atmosféricas**: precipitación acumulada, días secos y húmedos, y velocidad del viento. Su base tiene 30 celdas (2.160 registros).
+- **Equipo 6:** trabaja **todo el cantón Loja** con las variables de **incendios forestales y riesgo**: evidencia satelital de fuego y ocurrencia de incendios por celda, mes y año (`y_incendio_ge7_obs90` como respuesta principal). Su base tiene 60 celdas (4.320 registros).
 
 **Cómo se define la zona** (con la coordenada `centro_y_m` de cada celda):
 
 - **Norte:** `centro_y_m >= 9555250.0`
 - **Sur:** `centro_y_m < 9555250.0`
-- **Loja completo:** todas las celdas del cantón.
+- **Loja completo:** las celdas de ambas zonas (norte + sur).
+
+> **Bases reducidas para programación básica.** Cada base es una muestra pequeña del dataset original: 30 celdas por zona (60 en Loja completo), cada una con sus 72 meses (2019–2024), y solo las 15 a 22 columnas del tema del equipo. Así se pueden abrir sin problema en VS Code o en una hoja de cálculo y recorrer con un `for`. Los resultados describen estas celdas, no todo el cantón.
 
 Los equipos 1–2 y 4–5 trabajan con **las mismas variables**, pero cada uno en **su zona**. Las bases ya vienen separadas por zona: no deben volver a dividirse ni unirse; el programa solo debe **comprobar** que se cumple la regla.
 
 ### 2.3 Dónde está la base de datos de su equipo
 
-Todas las bases están en el repositorio de GitHub del curso (<https://github.com/cguillermo79/Informacion_programacion>), dentro de la carpeta `bases_datos_proyecto_integrador`. Cómo descargarlo se explica en la guía de `01_unidad_1/06_guia_github_git_vscode`.
+Todas las bases están en el repositorio de GitHub del curso (<https://github.com/cguillermo79/Informacion_programacion>), dentro de la carpeta `01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador`. Cómo descargarlo se explica en la guía de `01_unidad_1/06_guia_github_git_vscode`.
 
 Cada equipo usa **únicamente su carpeta y su archivo**:
 
 **Equipo 1**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte
-Archivo: base_programacion_equipo_01_relieve_zona_norte_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_01_relieve_norte
+Archivo: equipo_01_relieve_norte.csv
 ```
 
 **Equipo 2**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur
-Archivo: base_programacion_equipo_02_relieve_zona_sur_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_02_relieve_sur
+Archivo: equipo_02_relieve_sur.csv
 ```
 
 **Equipo 3**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo
-Archivo: base_programacion_equipo_03_cobertura_loja_completo_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_03_cobertura_loja
+Archivo: equipo_03_cobertura_loja.csv
 ```
 
 **Equipo 4**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_04_clima_zona_norte
-Archivo: base_programacion_equipo_04_clima_zona_norte_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_04_clima_norte
+Archivo: equipo_04_clima_norte.csv
 ```
 
 **Equipo 5**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_05_clima_zona_sur
-Archivo: base_programacion_equipo_05_clima_zona_sur_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_05_clima_sur
+Archivo: equipo_05_clima_sur.csv
 ```
 
 **Equipo 6**
 
 ```text
-Carpeta: bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo
-Archivo: base_programacion_equipo_06_incendios_loja_completo_2019_2024.csv
+Carpeta: bases_datos_proyecto_integrador/equipo_06_incendios_loja
+Archivo: equipo_06_incendios_loja.csv
 ```
 
-En la misma carpeta `bases_datos_proyecto_integrador` están el `README.md` de las bases, el manifiesto (`MANIFIESTO_BASES.csv`), el diccionario de variables (`dataset_maestro_diccionario_grupos_v1_1_0.json`) y el reporte de validación (`dataset_maestro_validacion_v1_1_0.json`).
+En la misma carpeta `bases_datos_proyecto_integrador` están el `README.md` de las bases, el **diccionario de variables** (`DICCIONARIO_VARIABLES.csv`: qué significa cada columna, su unidad y sus valores esperados), el manifiesto (`MANIFIESTO_BASES.csv`), la lista de celdas de la muestra (`muestra_celdas_didactica.csv`) y, como referencia, el diccionario de grupos y el reporte de validación del dataset maestro (archivos `.json`).
 
 > **Importante:** trabaje solo con **su** archivo. El CSV es de **solo lectura** (no se edita, renombra ni sobrescribe) y solo contiene registros de **2019 a 2024**.
 
@@ -209,7 +211,7 @@ Fechas estimadas según el calendario institucional; se confirman en el EVA/SIAA
 | 4 y 5 | Clima y condiciones atmosféricas: precipitación acumulada, días secos y húmedos, velocidad del viento | ¿Qué algoritmo cuenta los días secos y húmedos de un periodo a partir de los registros de precipitación? |
 | 6 | Incendios forestales y riesgo: evidencia satelital de fuego y ocurrencia por celda, mes y año | ¿Qué programa identifica y cuenta los eventos de incendio por celda, mes y año? |
 
-Las condiciones técnicas de cada equipo (validaciones, resultados mínimos y pruebas por tema) están en el [README general](../../README.md) y en la [guía de las bases de datos](../../bases_datos_proyecto_integrador/README.md). **Léalas antes de formular los objetivos**: los objetivos deben ser coherentes con lo que su programa debe producir.
+Las condiciones técnicas de cada equipo (validaciones, resultados mínimos y pruebas por tema) están en el [README general](../../../../README.md) y en la [guía de las bases de datos](../bases_datos_proyecto_integrador/README.md). **Léalas antes de formular los objetivos**: los objetivos deben ser coherentes con lo que su programa debe producir.
 
 ### 4.3 La hipótesis
 
@@ -273,8 +275,8 @@ Ejemplo con un tema ajeno al curso: *«La estación A supera el límite de turbi
 
 En la Unidad 1 todavía no se maneja pandas ni archivos (eso es Unidad 3). La exploración se hace con herramientas simples y debe quedar **documentada**:
 
-1. **Abra su CSV de solo lectura** (en VS Code, o en una hoja de cálculo sin guardar cambios) y registre: número de columnas, nombres de las que usará, número de filas visibles y 5 filas de ejemplo.
-2. **Consulte el diccionario** (`dataset_maestro_diccionario_grupos_v1_1_0.json`) y la guía de las bases: complete una **tabla de variables** (nombre, significado, unidad, tipo, rango observado en las filas revisadas).
+1. **Abra su CSV de solo lectura** (en VS Code, o en una hoja de cálculo sin guardar cambios) y registre: número de columnas, nombres de las que usará, número de filas y 5 filas de ejemplo. La base es pequeña (2.160 o 4.320 filas), así que puede revisarla completa.
+2. **Consulte el diccionario** (`DICCIONARIO_VARIABLES.csv`) y la guía de las bases: complete una **tabla de variables** (nombre, significado, unidad, tipo, rango observado en las filas revisadas).
 3. Identifique **al menos tres hechos observados** que justifiquen su pregunta (por ejemplo: valores faltantes visibles, rangos, variables que se repiten por mes, una regla territorial).
 4. Si ya lo desea, puede leer una muestra con `pandas.read_csv(..., nrows=100)`; **es opcional** y debe poder explicar cada línea.
 5. **Nunca modifique, renombre ni sobrescriba el CSV.** No incorpore datos de 2025.
@@ -426,7 +428,7 @@ La coherencia del proyecto se verifica siguiendo cada objetivo a lo largo de las
 
 ### 8.1 Informe
 
-- **LaTeX** compilable (puede partir de la [plantilla de la carpeta `plantilla_latex`](plantilla_latex/)) y **PDF** compilado. Se entregan ambos.
+- **LaTeX** compilable (puede partir de la [plantilla de la carpeta `06_plantilla_latex`](../06_plantilla_latex/)) y **PDF** compilado. Se entregan ambos.
 - **Normas APA 7**: citas en el texto, lista de referencias, tablas y figuras numeradas con título y fuente.
 - Cite como mínimo: el dataset FIRELAB-Loja v1.1.0 y las fuentes técnicas que respalden el problema y los métodos. **No invente referencias**: toda cita debe poder verificarse.
 - Redacción impersonal, clara, sin copiar texto de otras fuentes ni de herramientas de IA sin reescribirlo y sin entenderlo.

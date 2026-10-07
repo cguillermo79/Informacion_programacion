@@ -13,27 +13,34 @@ El proyecto avanza durante las tres unidades: definición del problema y requisi
 - Unidad de observación: una **celda espacial de 500 m en un mes**.
 - Periodo: enero de 2019 a diciembre de 2024 (72 meses).
 - El año 2025 no está incluido y no deberá obtenerse de otra fuente.
-- **Muestra didáctica:** para que las bases sean manejables en un curso introductorio, cada base contiene una **muestra de celdas completas** (con sus 72 meses) del dataset original: **250 celdas** en las zonas norte y sur, y **500 celdas** (las 250 del norte + las 250 del sur) en Loja completo. Se mantienen **todas las columnas y las mismas zonas**; solo se redujo el número de celdas. La selección fue aleatoria con semilla fija (2026), por zona: 50 celdas con al menos un evento de incendio válido y 200 sin evento. Las celdas elegidas están en `muestra_celdas_didactica.csv`. Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
+- **Base didáctica reducida:** para que las bases sean manejables en un curso de programación básica (se pueden abrir en VS Code o en una hoja de cálculo y recorrer con un `for`), cada base es una **muestra pequeña** del dataset original:
+  - **30 celdas** por zona (norte y sur) y **60 celdas** (las 30 del norte + las 30 del sur) en Loja completo, cada una con sus 72 meses;
+  - **solo las columnas del tema** de cada equipo (15 a 22), con sus controles de calidad; se quitaron columnas técnicas de geometría y estadísticas auxiliares (desviación, mínimo, máximo, número de píxeles);
+  - valores numéricos **redondeados** (2 decimales si el valor es 10 o mayor; 4 decimales si es menor).
+  - Selección aleatoria con semilla fija (2026), por zona: **10 celdas con al menos un incendio** válido y **20 sin incendio**. Las mismas 60 celdas se usan en todas las bases; la lista está en `muestra_celdas_didactica.csv`.
+  - Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
 - El CSV entregado es de solo lectura. El programa generará nuevas salidas sin sobrescribirlo.
 
 ## Asignación de equipos
 
 | Equipo | Tema | Zona exclusiva | Registros | Celdas | Columnas | Archivo |
 |---:|---|---|---:|---:|---:|---|
-| 1 | Relieve y accesibilidad | Norte | 18.000 | 250 | 66 | `equipo_01_relieve_zona_norte/base_programacion_equipo_01_relieve_zona_norte_2019_2024.csv` |
-| 2 | Relieve y accesibilidad | Sur | 18.000 | 250 | 66 | `equipo_02_relieve_zona_sur/base_programacion_equipo_02_relieve_zona_sur_2019_2024.csv` |
-| 3 | Cobertura vegetal y uso del suelo | Loja completo | 36.000 | 500 | 53 | `equipo_03_cobertura_loja_completo/base_programacion_equipo_03_cobertura_loja_completo_2019_2024.csv` |
-| 4 | Clima y condiciones atmosféricas | Norte | 18.000 | 250 | 57 | `equipo_04_clima_zona_norte/base_programacion_equipo_04_clima_zona_norte_2019_2024.csv` |
-| 5 | Clima y condiciones atmosféricas | Sur | 18.000 | 250 | 57 | `equipo_05_clima_zona_sur/base_programacion_equipo_05_clima_zona_sur_2019_2024.csv` |
-| 6 | Incendios forestales y riesgo | Loja completo | 36.000 | 500 | 41 | `equipo_06_incendios_loja_completo/base_programacion_equipo_06_incendios_loja_completo_2019_2024.csv` |
+| 1 | Relieve y accesibilidad | Norte | 2.160 | 30 | 15 | `equipo_01_relieve_norte/equipo_01_relieve_norte.csv` |
+| 2 | Relieve y accesibilidad | Sur | 2.160 | 30 | 15 | `equipo_02_relieve_sur/equipo_02_relieve_sur.csv` |
+| 3 | Cobertura vegetal y uso del suelo | Loja completo | 4.320 | 60 | 22 | `equipo_03_cobertura_loja/equipo_03_cobertura_loja.csv` |
+| 4 | Clima y condiciones atmosféricas | Norte | 2.160 | 30 | 18 | `equipo_04_clima_norte/equipo_04_clima_norte.csv` |
+| 5 | Clima y condiciones atmosféricas | Sur | 2.160 | 30 | 18 | `equipo_05_clima_sur/equipo_05_clima_sur.csv` |
+| 6 | Incendios forestales y riesgo | Loja completo | 4.320 | 60 | 15 | `equipo_06_incendios_loja/equipo_06_incendios_loja.csv` |
+
+Todas las bases comparten seis columnas de identificación: `cell_id`, `centro_x_m`, `centro_y_m`, `anio`, `mes` y `anio_mes`. El significado, la unidad y los valores esperados de **cada columna** están en `DICCIONARIO_VARIABLES.csv`.
 
 ## Regla territorial para los temas compartidos
 
 Los equipos 1–2 comparten relieve y accesibilidad; los equipos 4–5 comparten clima. En cada pareja, las columnas son las mismas, pero la población territorial es distinta:
 
-- **Norte:** `centro_y_m >= 9555250.0` (250 celdas).
-- **Sur:** `centro_y_m < 9555250.0` (250 celdas).
-- **Loja completo:** 500 celdas; se asigna a los equipos 3 y 6 en temas diferentes.
+- **Norte:** `centro_y_m >= 9555250.0` (30 celdas).
+- **Sur:** `centro_y_m < 9555250.0` (30 celdas).
+- **Loja completo:** 60 celdas; se asigna a los equipos 3 y 6 en temas diferentes.
 
 La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pero no volver a dividir ni unir las bases.
 
@@ -75,7 +82,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 ### Equipo 1 — Aplicación de relieve y accesibilidad, zona norte
 
-- Implementar una carga que valide las 250 celdas del norte y la regla `centro_y_m >= 9555250.0`.
+- Implementar una carga que valide las 30 celdas del norte y la regla `centro_y_m >= 9555250.0`.
 - Crear funciones para obtener una fila por `cell_id`, validar cobertura ALOS/GHSL/OSM y resumir elevación, pendiente, vías y asentamientos.
 - Programar una clasificación configurable de accesibilidad o dificultad territorial y exportar las celdas por nivel.
 - Generar una tabla de resumen, gráficos de distribución/relación y una visualización espacial del norte.
@@ -83,7 +90,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 ### Equipo 2 — Aplicación de relieve y accesibilidad, zona sur
 
-- Implementar el flujo exclusivamente para las 250 celdas del sur y validar `centro_y_m < 9555250.0`.
+- Implementar el flujo exclusivamente para las 30 celdas del sur y validar `centro_y_m < 9555250.0`.
 - Crear sus propias funciones de control, resumen y clasificación; el código y los parámetros no deben ser una copia del equipo 1.
 - Exportar una clasificación de accesibilidad o dificultad derivada de elevación, pendiente, vías y asentamientos del sur.
 - Generar tabla, gráficos y visualización espacial propios de la zona sur.
@@ -93,17 +100,17 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 ### Equipo 3 — Aplicación de cobertura vegetal y uso del suelo, Loja completo
 
-- Validar las nueve proporciones MAATE, `suma_prop_maate_9v`, soporte, año CUT y disponibilidad Sentinel-2.
+- Validar las nueve proporciones MAATE, `suma_prop_maate_9v` y la disponibilidad Sentinel-2 (`sentinel_t1_missing`, `s2_cobertura_valida_pct`).
 - Implementar funciones para resumir coberturas, calcular la cobertura dominante y producir series de NDVI, NDMI, NBR o NDWI.
 - Permitir seleccionar por parámetro el índice, año o mes que se desea consultar.
 - Exportar composición territorial, serie temporal, comparación por cobertura y visualización espacial de Loja.
 - Probar sumas de proporciones, categorías dominantes, tratamiento de `sentinel_t1_missing` y filtros temporales.
 
-> Las proporciones MAATE son basales; no deben duplicarse al calcular totales mensuales. Los índices Sentinel-2 sí cambian con el tiempo y deben acompañarse de controles de observabilidad, cobertura válida y `lag_meses`.
+> Las proporciones MAATE son basales; no deben duplicarse al calcular totales mensuales. Los índices Sentinel-2 sí cambian con el tiempo y deben acompañarse de los controles `sentinel_t1_missing` y `s2_cobertura_valida_pct`.
 
 ### Equipo 4 — Aplicación climática, zona norte
 
-- Validar la zona norte, el calendario 2019–2024 y las columnas CHIRPS/CHELSA requeridas.
+- Validar la zona norte, el calendario 2019–2024, las columnas CHIRPS/CHELSA requeridas y sus controles de disponibilidad.
 - Crear funciones parametrizadas para resumir precipitación, días secos/húmedos y viento por mes y año.
 - Implementar una consulta de periodos extremos y una comparación entre `t1`, `prev2m` y `prev3m`.
 - Exportar perfiles mensuales, ranking de periodos, relaciones entre variables y distribución espacial del norte.
@@ -112,7 +119,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 ### Equipo 5 — Aplicación climática, zona sur
 
 - Implementar el mismo tipo de producto solo para la zona sur, con arquitectura, funciones y resultados propios.
-- Validar `centro_y_m < 9555250.0`, disponibilidad, días válidos e historia completa de CHIRPS/CHELSA.
+- Validar `centro_y_m < 9555250.0`, disponibilidad, días válidos e historia completa de CHIRPS.
 - Permitir consultar variables, meses y años mediante parámetros; detectar periodos secos, lluviosos o ventosos.
 - Exportar perfiles, ranking, gráficos de relación y distribución espacial del sur.
 - Probar regla territorial, periodos móviles, filtros y conteos resultantes sin reutilizar salidas del equipo 4.
@@ -123,7 +130,7 @@ La zona ya viene filtrada en el archivo. El programa debe comprobar la regla, pe
 
 - Usar `y_incendio_ge7_obs90` como respuesta principal y filtrar registros mediante `y_principal_valida` cuando corresponda.
 - Implementar funciones para calcular frecuencias y proporciones por mes, año y celda, además de localizar recurrencia espacial.
-- Crear un parámetro para elegir umbrales alternativos `ge7`/`ge8` y `obs80`/`obs95`/`obs100`, sin duplicar el código.
+- Crear un parámetro para elegir la definición alternativa de incendio (`y_incendio_ge8_obs90`, `y_incendio_ge7_obs80`, `y_incendio_ge7_obs95` o `y_incendio_ge7_obs100`), sin duplicar el código.
 - Exportar resumen principal, serie temporal, ranking espacial y tabla comparativa de sensibilidad.
 - Probar valores binarios, denominadores, cambio de umbral, exclusión de observaciones inválidas y consistencia de totales.
 
@@ -151,9 +158,11 @@ El `README.md` del equipo indicará integrantes, pregunta, zona, requisitos, ins
 
 ## Archivos auxiliares
 
-- `MANIFIESTO_BASES.csv`: inventario, dimensiones, zona y huellas SHA-256.
-- `dataset_maestro_diccionario_grupos_v1_1_0.json`: familias de variables y reglas de gobernanza.
-- `dataset_maestro_validacion_v1_1_0.json`: validaciones del dataset maestro.
+- `DICCIONARIO_VARIABLES.csv`: significado, unidad, tipo y valores esperados de cada columna (punto de partida para la tabla de variables del informe).
+- `MANIFIESTO_BASES.csv`: inventario, dimensiones, zona, tamaño y huellas SHA-256.
+- `muestra_celdas_didactica.csv`: las 60 celdas de la muestra, su zona y si tuvieron incendio.
+- `dataset_maestro_diccionario_grupos_v1_1_0.json`: familias de variables del dataset maestro completo (incluye columnas que no están en las bases reducidas).
+- `dataset_maestro_validacion_v1_1_0.json`: validaciones del dataset maestro completo.
 
 ## Lista de comprobación final
 

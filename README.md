@@ -20,23 +20,23 @@ Desarrollar una aplicación o flujo de procesamiento de datos que:
 - Dataset: FIRELAB_Loja v1.1.0.
 - Periodo permitido: enero de 2019 a diciembre de 2024.
 - Unidad de observación: una celda espacial de 500 m en un mes.
-- **Muestra didáctica:** para que las bases sean manejables en un curso introductorio, cada base contiene una **muestra de celdas completas** (con sus 72 meses) del dataset original: **250 celdas** en las zonas norte y sur, y **500 celdas** (las 250 del norte + las 250 del sur) en Loja completo. Se mantienen **todas las columnas y las mismas zonas**; solo se redujo el número de celdas. La selección fue aleatoria con semilla fija (2026), por zona: 50 celdas con al menos un evento de incendio válido y 200 sin evento. Las celdas elegidas están en `bases_datos_proyecto_integrador/muestra_celdas_didactica.csv`. Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
+- **Base didáctica reducida:** para que las bases sean manejables en un curso de programación básica, cada base es una **muestra pequeña** del dataset original: **30 celdas** por zona (norte y sur) y **60 celdas** en Loja completo, cada una con sus 72 meses, y **solo las columnas del tema** del equipo (15 a 22) con valores redondeados. La selección fue aleatoria con semilla fija (2026), por zona: 10 celdas con al menos un incendio válido y 20 sin incendio. Las celdas elegidas están en `01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/muestra_celdas_didactica.csv`. Por ser una muestra, **los resultados describen estas celdas y no deben presentarse como cifras oficiales de todo el cantón**.
 - Clave esperada de cada observación: `cell_id`, `anio` y `mes`.
 - El año 2025 está reservado como conjunto OOT y no debe incorporarse al proyecto.
 - El CSV asignado es de **solo lectura**: no se debe editar, renombrar ni sobrescribir.
 
-La descripción técnica completa está en la [guía de las bases](bases_datos_proyecto_integrador/README.md). También están disponibles el [manifiesto de archivos](bases_datos_proyecto_integrador/MANIFIESTO_BASES.csv), el [diccionario de grupos de variables](bases_datos_proyecto_integrador/dataset_maestro_diccionario_grupos_v1_1_0.json) y el [reporte de validación](bases_datos_proyecto_integrador/dataset_maestro_validacion_v1_1_0.json).
+La descripción técnica completa está en la [guía de las bases](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/README.md). También están disponibles el [diccionario de variables](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/DICCIONARIO_VARIABLES.csv) (qué significa cada columna), el [manifiesto de archivos](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/MANIFIESTO_BASES.csv), el [diccionario de grupos del dataset maestro](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/dataset_maestro_diccionario_grupos_v1_1_0.json) y el [reporte de validación](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/dataset_maestro_validacion_v1_1_0.json).
 
 ## Asignación de grupos
 
 | Grupo | Tema | Zona asignada | Registros | Celdas | Base de trabajo |
 |---:|---|---|---:|---:|---|
-| 1 | Relieve y accesibilidad | Norte | 18.000 | 250 | [Carpeta del grupo 1](bases_datos_proyecto_integrador/equipo_01_relieve_zona_norte) |
-| 2 | Relieve y accesibilidad | Sur | 18.000 | 250 | [Carpeta del grupo 2](bases_datos_proyecto_integrador/equipo_02_relieve_zona_sur) |
-| 3 | Cobertura vegetal y uso del suelo | Loja completo | 36.000 | 500 | [Carpeta del grupo 3](bases_datos_proyecto_integrador/equipo_03_cobertura_loja_completo) |
-| 4 | Clima y condiciones atmosféricas | Norte | 18.000 | 250 | [Carpeta del grupo 4](bases_datos_proyecto_integrador/equipo_04_clima_zona_norte) |
-| 5 | Clima y condiciones atmosféricas | Sur | 18.000 | 250 | [Carpeta del grupo 5](bases_datos_proyecto_integrador/equipo_05_clima_zona_sur) |
-| 6 | Incendios forestales y riesgo | Loja completo | 36.000 | 500 | [Carpeta del grupo 6](bases_datos_proyecto_integrador/equipo_06_incendios_loja_completo) |
+| 1 | Relieve y accesibilidad | Norte | 2.160 | 30 | [Carpeta del grupo 1](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_01_relieve_norte) |
+| 2 | Relieve y accesibilidad | Sur | 2.160 | 30 | [Carpeta del grupo 2](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_02_relieve_sur) |
+| 3 | Cobertura vegetal y uso del suelo | Loja completo | 4.320 | 60 | [Carpeta del grupo 3](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_03_cobertura_loja) |
+| 4 | Clima y condiciones atmosféricas | Norte | 2.160 | 30 | [Carpeta del grupo 4](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_04_clima_norte) |
+| 5 | Clima y condiciones atmosféricas | Sur | 2.160 | 30 | [Carpeta del grupo 5](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_05_clima_sur) |
+| 6 | Incendios forestales y riesgo | Loja completo | 4.320 | 60 | [Carpeta del grupo 6](01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador/equipo_06_incendios_loja) |
 
 ## Regla para los grupos que comparten tema
 
@@ -115,7 +115,7 @@ El grupo desarrollará una aplicación para caracterizar la accesibilidad y difi
 
 Debe:
 
-- validar que las 250 celdas cumplan `centro_y_m >= 9555250.0`;
+- validar que las 30 celdas cumplan `centro_y_m >= 9555250.0`;
 - reducir de manera controlada las variables estáticas a una fila por `cell_id`;
 - comprobar la consistencia de elevación, pendiente, orientación, vías y asentamientos entre meses;
 - crear funciones para resumir elevación, pendiente, distancia a vías y distancia a asentamientos;
@@ -127,7 +127,7 @@ Las pruebas deben cubrir la deduplicación temporal, la regla norte, los límite
 
 ### Grupo 2 — Relieve y accesibilidad de la zona sur
 
-El grupo desarrollará su propia solución para las 250 celdas del sur de Loja.
+El grupo desarrollará su propia solución para las 30 celdas del sur de Loja.
 
 Debe:
 
@@ -147,7 +147,7 @@ El grupo construirá una aplicación para consultar la composición de cobertura
 Debe:
 
 - validar las nueve proporciones MAATE y `suma_prop_maate_9v`;
-- revisar `soporte_maate`, `anio_cut`, disponibilidad y faltantes de Sentinel-2;
+- revisar la disponibilidad y los faltantes de Sentinel-2 (`sentinel_t1_missing`, `s2_cobertura_valida_pct`);
 - calcular la cobertura dominante por celda sin duplicar las proporciones basales en cada mes;
 - crear series temporales parametrizadas de NDVI, NDMI, NBR o NDWI;
 - permitir filtrar por índice, año, mes o cobertura dominante;
@@ -162,8 +162,8 @@ El grupo desarrollará una aplicación para consultar precipitación, sequedad y
 
 Debe:
 
-- validar las 250 celdas y la regla territorial norte;
-- comprobar disponibilidad, días válidos e historia completa de CHIRPS y CHELSA;
+- validar las 30 celdas y la regla territorial norte;
+- comprobar disponibilidad, días válidos e historia completa de CHIRPS, y disponibilidad de CHELSA;
 - resumir precipitación, días secos, días húmedos y viento por mes y año;
 - permitir seleccionar variable, año y mes mediante parámetros;
 - comparar correctamente el mes actual (`t1`) con los antecedentes `prev2m` y `prev3m`;
@@ -178,7 +178,7 @@ El grupo implementará una solución independiente para analizar las condiciones
 
 Debe:
 
-- validar las 250 celdas y `centro_y_m < 9555250.0`;
+- validar las 30 celdas y `centro_y_m < 9555250.0`;
 - revisar calidad y disponibilidad de CHIRPS/CHELSA;
 - crear funciones propias para resumir precipitación, sequedad y viento;
 - implementar consultas configurables por variable y periodo;
@@ -198,7 +198,7 @@ Debe:
 - aplicar `y_principal_valida` y documentar las observaciones excluidas;
 - calcular frecuencias y proporciones por mes, año y celda usando denominadores correctos;
 - identificar celdas y periodos con mayor recurrencia;
-- permitir seleccionar mediante un parámetro los umbrales alternativos `ge7`/`ge8` y `obs80`/`obs95`/`obs100`;
+- permitir seleccionar mediante un parámetro la definición alternativa de incendio (`ge8_obs90`, `ge7_obs80`, `ge7_obs95` o `ge7_obs100`);
 - comparar la estabilidad de los resultados entre definiciones; y
 - exportar tabla principal, serie temporal, ranking espacial, visualización territorial y tabla de sensibilidad.
 
@@ -214,18 +214,18 @@ Las variables VIIRS de cobertura, disponibilidad y evidencia son campos de traza
 
 Cada unidad debe incorporar la retroalimentación recibida. El producto final integra y corrige los avances anteriores; no empieza nuevamente desde cero.
 
-**Guía completa del proyecto (equipos, fases, fechas, estructura de informes):** [01_unidad_1/05_proyecto_integrador/GUIA_PROYECTO_INTEGRADOR.md](01_unidad_1/05_proyecto_integrador/GUIA_PROYECTO_INTEGRADOR.md).
+**Guía completa del proyecto (equipos, fases, fechas, estructura de informes):** [GUIA_PROYECTO_INTEGRADOR.md](01_unidad_1/05_proyecto_integrador/Unidad_1/05_Guia_de_presentacion/GUIA_PROYECTO_INTEGRADOR.md).
 
 ## Contenido por unidad
 
 | Carpeta | Qué encontrará |
 |---|---|
 | `01_unidad_1/00_guia_instalacion` | Guía de instalación del entorno (VS Code y Python). |
-| `01_unidad_1/01_material_clase` | Cuaderno de clase de la unidad. |
+| `01_unidad_1/01_guias` | Cuaderno y guía práctica de clase de la unidad. |
 | `01_unidad_1/02_micro_retos` | 4 micro-retos (MR1–MR4), escala 0–3, 5 %. |
 | `01_unidad_1/03_trabajo_tecnico` | 3 trabajos técnicos (TT1–TT3), escala 0–3, 5 %. |
 | `01_unidad_1/04_sustentacion_validacion` | Cómo prepararse para las 2 sustentaciones/validaciones, 5 %. |
-| `01_unidad_1/05_proyecto_integrador` | Guía maestra del proyecto y plantilla LaTeX del informe. |
+| `01_unidad_1/05_proyecto_integrador/Unidad_1` | Guía maestra del proyecto (`05_Guia_de_presentacion`), plantilla LaTeX del informe (`06_plantilla_latex`) y **bases de datos de los equipos** (`bases_datos_proyecto_integrador`). |
 | `01_unidad_1/06_guia_github_git_vscode` | Guía paso a paso para descargar este repositorio con Git, crear el entorno virtual y trabajar en Visual Studio Code. |
 | `02_unidad_2/05_proyecto_integrador` | Guía de la Parte 2 (metodología). |
 | `03_unidad_3/05_proyecto_integrador` | Guía de la Parte 3 (resultados y conclusiones). |

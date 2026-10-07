@@ -1,6 +1,6 @@
 # Proyecto integrador — Unidad 2: Metodología por objetivo
 
-> Guía completa y reglas generales: [Guía maestra del proyecto integrador](../../01_unidad_1/05_proyecto_integrador/GUIA_PROYECTO_INTEGRADOR.md) (secciones 5 y 7).
+> Guía completa y reglas generales: [Guía maestra del proyecto integrador](../../01_unidad_1/05_proyecto_integrador/Unidad_1/05_Guia_de_presentacion/GUIA_PROYECTO_INTEGRADOR.md) (secciones 5 y 7).
 
 ## Qué debe lograr su equipo en esta unidad
 

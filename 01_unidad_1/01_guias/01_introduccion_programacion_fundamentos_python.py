@@ -2,31 +2,36 @@
   "cells": [
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "MgriYkgQrYgQ"
+      },
       "source": [
         "# Universidad Nacional de Loja\n",
         "## Facultad Agropecuaria y de los Recursos Naturales Renovables\n",
         "### Carrera de Ingeniería Ambiental\n",
         "**Asignatura:** Programación y Base de Datos (2do Ciclo)  \n",
-        "**Docente:** Ing. Carlos Guillermo Chuncho Morocho, Mg.  \n",
+        "**Docente:** Guillermo Chuncho Morocho.\n",
         "**Ciclo Académico:** Septiembre 2026 – Febrero 2027  \n",
         "\n",
         "---\n",
         "# Cuaderno de Aprendizaje 01: Fundamentos de Programación en Python\n",
         "\n",
         "\n",
-        "> **Propósito de este Cuaderno:**  \n",
+        "> **Propósito de este notebook:**  \n",
         "> Este material está pensado para quienes **nunca han escrito una sola línea de código**. A lo largo de esta práctica aprenderás qué es una computadora desde la perspectiva de un programador, cómo darle instrucciones precisas en Python, cómo almacenar datos de campo (temperatura, lluvia, viento, cobertura vegetal) y cómo evitar y corregir los errores más comunes.\n",
         ">\n",
         "> **Estructura pedagógica:** Cada concepto se presenta en 3 momentos:\n",
         "> 1. **¿Qué vamos a realizar?** (Contexto del problema ambiental y qué queremos lograr).\n",
         "> 2. **Código Python** (Instrucciones claras y comentadas).\n",
         "> 3. **Explicación detallada** (Desglose línea por línea de lo que ocurrió).\n"
-      ]
+      ],
+      "id": "MgriYkgQrYgQ"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "86s6JH22rYgV"
+      },
       "source": [
         "---\n",
         "## Parte 1: Mi Primer Programa y el Entorno de Trabajo\n",
@@ -35,13 +40,29 @@
         "Vamos a escribir nuestra primera instrucción para comunicarnos con la computadora. Queremos que la máquina imprima en pantalla un mensaje formal de bienvenida al laboratorio ambiental.\n",
         "\n",
         "Para lograrlo, utilizaremos una **función predefinida** de Python llamada `print()`. Una función es como una herramienta que ya viene construida: nosotros le entregamos un mensaje entre comillas y ella se encarga de mostrarlo en la terminal. También aprenderemos a usar los **comentarios** (`#`), que son notas escritas por nosotros que la computadora ignora por completo al ejecutar el programa.\n"
-      ]
+      ],
+      "id": "86s6JH22rYgV"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mxMV3mt8rYgZ",
+        "outputId": "b0b9c333-27c9-45e2-c729-451373f4150c"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Bienvenido al curso de Programación y Base de Datos - UNL\n",
+            "Iniciando análisis ambiental con Python...\n"
+          ]
+        }
+      ],
       "source": [
         "# =====================================================================\n",
         "# Mi primer programa en Python\n",
@@ -51,22 +72,28 @@
         "# La siguiente instrucción envía un texto a la pantalla de salida:\n",
         "print(\"Bienvenido al curso de Programación y Base de Datos - UNL\")\n",
         "print(\"Iniciando análisis ambiental con Python...\")\n"
-      ]
+      ],
+      "id": "mxMV3mt8rYgZ"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "zTjXXBnDrYgc"
+      },
       "source": [
         "### 1.2. Explicación detallada de lo que acabamos de hacer:\n",
         "* **Líneas con `#` (Comentarios):** Todo texto que empiece con el símbolo `#` es un **comentario**. Python lo ignora por completo. Su objetivo es documentar el código para que tú o cualquier colega entienda qué hace el programa semanas o meses después.\n",
         "* **`print(...)`:** Es una sentencia que ordena a la computadora proyectar en pantalla lo que esté dentro de los paréntesis.\n",
         "* **Las comillas `\"...\"`:** Indican que el contenido es una **cadena de texto** literal (*string*). Si olvidas poner las comillas, Python pensará que el texto es el nombre de una variable u orden interna y arrojará un error.\n",
         "* **El salto de línea:** Cada vez que ejecutas un `print()`, Python muestra el texto y salta automáticamente a la siguiente línea.\n"
-      ]
+      ],
+      "id": "zTjXXBnDrYgc"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "k3kS2dsBrYgd"
+      },
       "source": [
         "---\n",
         "## Parte 2: Los Tres Tipos de Errores (Aprender a no temerle al error)\n",
@@ -78,13 +105,29 @@
         "3. **Errores Lógicos:** El programa corre sin quejarse ni arrojar ninguna alerta roja, pero el resultado numérico es **incorrecto** porque la fórmula matemática fue mal planteada.\n",
         "\n",
         "Veamos un ejemplo de cálculo correcto vs. un error lógico en el cálculo de un promedio de precipitación.\n"
-      ]
+      ],
+      "id": "k3kS2dsBrYgd"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "E34ufl_hrYgg",
+        "outputId": "63cdaf64-09ab-4d39-ad1e-78cab47c5033"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Resultado con error lógico (fórmula mal agrupada): 35.0 mm\n",
+            "Resultado correcto: 15.0 mm\n"
+          ]
+        }
+      ],
       "source": [
         "# Cálculo del promedio de precipitación de 3 días en Loja:\n",
         "# Datos en milímetros (mm):\n",
@@ -101,21 +144,27 @@
         "\n",
         "print(\"Resultado con error lógico (fórmula mal agrupada):\", promedio_incorrecto, \"mm\")\n",
         "print(\"Resultado correcto:\", promedio_correcto, \"mm\")\n"
-      ]
+      ],
+      "id": "E34ufl_hrYgg"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "M5SUATrYrYgh"
+      },
       "source": [
         "### 2.2. Explicación detallada:\n",
         "* En `dia1 + dia2 + dia3 / 3`, la computadora divide primero `15.0 / 3 = 5.0` y luego suma `12.0 + 18.0 + 5.0 = 35.0 mm`. La máquina no sabe que querías un promedio; ella solo obedece la jerarquía matemática.\n",
         "* En `(dia1 + dia2 + dia3) / 3`, los paréntesis fuerzan a que primero se sumen los tres valores (`45.0 mm`) y finalmente se divida entre 3, obteniendo el valor real de `15.0 mm`.\n",
         "* **Lección clave:** Los errores lógicos son los más peligrosos en la ingeniería ambiental porque el programa no se detiene, pero entrega datos erróneos a los informes técnicos.\n"
-      ]
+      ],
+      "id": "M5SUATrYrYgh"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "87o6cti_rYgi"
+      },
       "source": [
         "---\n",
         "## Parte 3: Variables, Identificadores y Constantes\n",
@@ -125,13 +174,31 @@
         "Una **constante** es un valor de referencia que no cambia (como el valor de $\\pi$ o la aceleración de la gravedad $g$).\n",
         "\n",
         "Aprenderemos la convención internacional `snake_case` (palabras en minúsculas separadas por guion bajo) para nombrar variables con claridad científica.\n"
-      ]
+      ],
+      "id": "87o6cti_rYgi"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "auTK8rE1rYgk",
+        "outputId": "d23d0f00-140a-4d2a-b576-90cd8388d54b"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Estación: La Argelia - UNL\n",
+            "Altitud: 2160 metros sobre el nivel del mar\n",
+            "Temperatura: 19.4 °C\n",
+            "¿Está lloviendo actualmente?: False\n"
+          ]
+        }
+      ],
       "source": [
         "# =====================================================================\n",
         "# Definición de variables ambientales en el cantón Loja\n",
@@ -151,11 +218,14 @@
         "print(\"Altitud:\", altitud_msnm, \"metros sobre el nivel del mar\")\n",
         "print(\"Temperatura:\", temperatura_actual_celsius, \"°C\")\n",
         "print(\"¿Está lloviendo actualmente?:\", lluvia_activa)\n"
-      ]
+      ],
+      "id": "auTK8rE1rYgk"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "BTI0Z1KVrYgm"
+      },
       "source": [
         "### 3.2. Explicación detallada:\n",
         "* **El operador `=` (Asignación):** En programación, el signo `=` **no significa igualdad matemática**. Significa: *\"evalúa lo que está a la derecha y guárdalo dentro de la variable de la izquierda\"*.\n",
@@ -163,11 +233,14 @@
         "  * Deben iniciar con una letra o guion bajo, nunca con un número (`2estacion` es inválido; `estacion_2` es válido).\n",
         "  * No pueden contener espacios ni guiones medios (`altitud msnm` es error; usa `altitud_msnm`).\n",
         "  * Python distingue entre mayúsculas y minúsculas: `Temperatura`, `temperatura` y `TEMPERATURA` son tres variables completamente distintas.\n"
-      ]
+      ],
+      "id": "BTI0Z1KVrYgm"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "FkKszoYarYgo"
+      },
       "source": [
         "---\n",
         "## Parte 4: Los Cuatro Tipos de Datos Primitivos\n",
@@ -182,13 +255,31 @@
         "4. **`bool` (Booleano):** Solo admite dos valores lógicos: `True` (Verdadero) o `False` (Falso).\n",
         "\n",
         "Utilizaremos la función `type()` para pedirle a Python que nos revele el tipo interno de cada dato.\n"
-      ]
+      ],
+      "id": "FkKszoYarYgo"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 4,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UDiFevTGrYgp",
+        "outputId": "dc2fd778-1b14-4a67-c1d0-fb7b425d18e0"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "parroquia: Malacatos --> Tipo: <class 'str'>\n",
+            "numero_focos_calor: 7 --> Tipo: <class 'int'>\n",
+            "velocidad_viento_kmh: 24.85 --> Tipo: <class 'float'>\n",
+            "alerta_incendio_activada: True --> Tipo: <class 'bool'>\n"
+          ]
+        }
+      ],
       "source": [
         "# Inspección de tipos de datos en ciencias ambientales:\n",
         "parroquia = \"Malacatos\"                # Cadena de texto (str)\n",
@@ -201,21 +292,27 @@
         "print(\"numero_focos_calor:\", numero_focos_calor, \"--> Tipo:\", type(numero_focos_calor))\n",
         "print(\"velocidad_viento_kmh:\", velocidad_viento_kmh, \"--> Tipo:\", type(velocidad_viento_kmh))\n",
         "print(\"alerta_incendio_activada:\", alerta_incendio_activada, \"--> Tipo:\", type(alerta_incendio_activada))\n"
-      ]
+      ],
+      "id": "UDiFevTGrYgp"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "T04yEWGIrYgp"
+      },
       "source": [
         "### 4.2. Explicación detallada:\n",
         "* `type(variable)` devuelve la clase a la que pertenece la información: `<class 'str'>`, `<class 'int'>`, `<class 'float'>`, `<class 'bool'>`.\n",
         "* En Python los decimales se escriben obligatoriamente con **punto (`.`)** y nunca con coma (escribir `24,85` crearía una tupla de dos números en lugar de un flotante).\n",
         "* Los booleanos `True` y `False` deben escribirse con la primera letra en **mayúscula**.\n"
-      ]
+      ],
+      "id": "T04yEWGIrYgp"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "UygrtXS-rYgp"
+      },
       "source": [
         "---\n",
         "## Parte 5: Operadores Aritméticos y Fórmulas Ambientales\n",
@@ -231,13 +328,35 @@
         "* `**`: Potencia (exponente)\n",
         "\n",
         "Aplicaremos estos operadores a un caso real de ingeniería: **la conversión de temperatura de grados Celsius a Fahrenheit** ($F = C \\times \\frac{9}{5} + 32$) y la distribución de horas de monitoreo.\n"
-      ]
+      ],
+      "id": "UygrtXS-rYgp"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 5,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xCY1yc63rYgp",
+        "outputId": "4b042b8b-742b-4dd0-d376-e5edb6922340"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Temperatura en Celsius: 25.0 °C\n",
+            "Temperatura equivalente en Fahrenheit: 77.0 °F\n",
+            "--------------------------------------------------\n",
+            "Total de horas de monitoreo: 58\n",
+            "Turnos completos de 8 horas: 7\n",
+            "Horas restantes para el siguiente turno: 2\n",
+            "--------------------------------------------------\n",
+            "Área de monitoreo del sensor: 63.617238 km²\n"
+          ]
+        }
+      ],
       "source": [
         "# =====================================================================\n",
         "# Operaciones aritméticas y fórmulas ambientales\n",
@@ -268,22 +387,28 @@
         "print(\"Horas restantes para el siguiente turno:\", horas_sobrantes)\n",
         "print(\"--------------------------------------------------\")\n",
         "print(\"Área de monitoreo del sensor:\", area_cobertura_km2, \"km²\")\n"
-      ]
+      ],
+      "id": "xCY1yc63rYgp"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "OkDTKt4nrYgq"
+      },
       "source": [
         "### 5.2. Explicación detallada:\n",
         "* `temp_celsius * 9 / 5 + 32`: Primero se efectúa la multiplicación y división, y al final la suma con 32.\n",
         "* `//` (División entera): `58 // 8` da `7`, porque el 8 cabe 7 veces enteras en 58.\n",
         "* `%` (Módulo): `58 % 8` da `2`, que es el residuo sobrante ($7 \\times 8 = 56$, sobran 2). Este operador es muy útil para saber si un número es par o impar, o para ciclos de tiempo.\n",
         "* `**` (Potencia): En Python la potencia se escribe con doble asterisco `**` (no se usa el símbolo `^`, el cual en Python tiene otro significado lógico llamado XOR a nivel de bits).\n"
-      ]
+      ],
+      "id": "OkDTKt4nrYgq"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "6Z-Q9QfLrYgq"
+      },
       "source": [
         "---\n",
         "## Parte 6: Operadores Relacionales y Lógicos (Condiciones de Alerta)\n",
@@ -302,13 +427,33 @@
         "  * `not`: Invierte el valor lógico (lo verdadero lo hace falso y viceversa).\n",
         "\n",
         "Evaluaremos la conocida regla meteorológica de riesgo de incendios forestales (**Regla del 30-30-30**: Temperatura $> 30$ °C, Humedad relativa $< 30$ % y Viento $> 30$ km/h).\n"
-      ]
+      ],
+      "id": "6Z-Q9QfLrYgq"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 6,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zvuDMD-5rYgr",
+        "outputId": "e53e2741-aba5-4ede-ed24-9d93b086b03f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "¿La temperatura supera los 30 °C?: True\n",
+            "¿La humedad es menor al 30 %?: True\n",
+            "¿El viento supera los 30 km/h?: True\n",
+            "==================================================\n",
+            "¿ESTADO DE ALERTA CRÍTICA (30-30-30)?: True\n",
+            "¿ESTADO DE ALERTA PREVENTIVA MODERADA?: True\n"
+          ]
+        }
+      ],
       "source": [
         "# Datos meteorológicos captados por una estación en Loja:\n",
         "temperatura = 31.5        # °C\n",
@@ -332,22 +477,28 @@
         "print(\"==================================================\")\n",
         "print(\"¿ESTADO DE ALERTA CRÍTICA (30-30-30)?:\", alerta_critica_30_30_30)\n",
         "print(\"¿ESTADO DE ALERTA PREVENTIVA MODERADA?:\", alerta_moderada)\n"
-      ]
+      ],
+      "id": "zvuDMD-5rYgr"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "1ZtutpqvrYgr"
+      },
       "source": [
         "### 6.2. Explicación detallada:\n",
         "* Cada comparación `temperatura > 30.0` genera un valor booleano (`True`).\n",
         "* `and` es muy estricto: requiere que la condición 1 **y** la condición 2 **y** la condición 3 sean verdaderas. Si una sola falla, el resultado final es `False`.\n",
         "* `or` es flexible: con que una de las condiciones sea verdadera, el resultado final es `True`.\n",
         "* Esto sienta las bases para las estructuras condicionales (`if`, `elif`, `else`) que se abordarán en la siguiente unidad.\n"
-      ]
+      ],
+      "id": "1ZtutpqvrYgr"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "tJQ8wefOrYgr"
+      },
       "source": [
         "---\n",
         "## Parte 7: Entrada de Datos (`input()`), Conversión de Tipos y Cadenas F-String\n",
@@ -361,13 +512,31 @@
         "> Si necesitas hacer cálculos matemáticos, debes convertir (*castear*) esa entrada a número usando `int()` o `float()`.\n",
         "\n",
         "También aprenderemos a mostrar resultados elegantes con **f-strings** (`f\"Texto con {variable:.2f}\"`), controlando la cantidad de decimales en pantalla.\n"
-      ]
+      ],
+      "id": "tJQ8wefOrYgr"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 7,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Dy3JrKEkrYgs",
+        "outputId": "45d92405-e805-48da-e6f9-1765e18b638d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sector evaluado: Vilcabamba\n",
+            "Precipitación registrada: 14.80 mm\n",
+            "Precipitación adicional estimada: 5.20 mm\n",
+            "Precipitación acumulada final: 20.00 mm\n"
+          ]
+        }
+      ],
       "source": [
         "# Demostración del comportamiento de input() y conversión de tipos:\n",
         "\n",
@@ -390,22 +559,28 @@
         "print(f\"Precipitación registrada: {lluvia_mm:.2f} mm\")\n",
         "print(f\"Precipitación adicional estimada: {lluvia_adicional:.2f} mm\")\n",
         "print(f\"Precipitación acumulada final: {lluvia_total:.2f} mm\")\n"
-      ]
+      ],
+      "id": "Dy3JrKEkrYgs"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "602p5lYJrYgt"
+      },
       "source": [
         "### 7.2. Explicación detallada:\n",
         "* `float(\"14.8\")` transforma el texto `\"14.8\"` en el número real `14.8` apto para operar matemáticamente.\n",
         "* Si el dato fuera una cantidad entera de personas o árboles, usaríamos `int(\"10\")`.\n",
         "* **Las f-strings (`f\"...\"`):** Al colocar la letra `f` antes de las comillas, puedes insertar variables directamente dentro del texto entre llaves `{variable}`.\n",
         "* `{lluvia_total:.2f}` le indica a Python: *\"muestra este número con exactamente 2 decimales\"*. Esto es fundamental para reportes técnicos de ingeniería con cifras significativas.\n"
-      ]
+      ],
+      "id": "602p5lYJrYgt"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "D5zDKVQcrYgt"
+      },
       "source": [
         "---\n",
         "## Parte 8: Proyecto Integrado: Entrada $\\to$ Proceso $\\to$ Salida\n",
@@ -425,13 +600,40 @@
         "  3. Convertir el volumen neto a metros cúbicos ($1 \\text{ mm en } 1 \\text{ ha} = 10 \\text{ m}^3$).\n",
         "* **Salida:**\n",
         "  1. Generar un informe técnico en consola con formato profesional para la toma de decisiones.\n"
-      ]
+      ],
+      "id": "D5zDKVQcrYgt"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 8,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gP6IWU1DrYgt",
+        "outputId": "dfe3b7be-5617-47ac-90b6-4f5b7173cf90"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "=====================================================================\n",
+            "          INFORME TÉCNICO DE BALANCE HÍDRICO MENSUAL                 \n",
+            "               Carrera de Ingeniería Ambiental - UNL                \n",
+            "=====================================================================\n",
+            "Zona de estudio:             Microcuenca Malacatos - Sector El Carmen\n",
+            "Área territorial:            450.0 hectáreas\n",
+            "Precipitación mensual (P):   65.4 mm\n",
+            "Evapotranspiración (ETP):    88.2 mm\n",
+            "---------------------------------------------------------------------\n",
+            "Balance Hídrico Neto:        -22.80 mm\n",
+            "¿Existe déficit de agua?:    True\n",
+            "Volumen hídrico resultante:  -102,600.00 m³ de agua\n",
+            "=====================================================================\n"
+          ]
+        }
+      ],
       "source": [
         "# =====================================================================\n",
         "# PROGRAMA: Balance Hídrico y Monitoreo de Déficit en Microcuencas\n",
@@ -469,11 +671,14 @@
         "print(f\"¿Existe déficit de agua?:    {existe_deficit}\")\n",
         "print(f\"Volumen hídrico resultante:  {volumen_neto_m3:,.2f} m³ de agua\")\n",
         "print(\"=====================================================================\")\n"
-      ]
+      ],
+      "id": "gP6IWU1DrYgt"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "yKBX4cy0rYgu"
+      },
       "source": [
         "### 8.2. Explicación detallada del flujo completo:\n",
         "1. **Fase de Entrada:** Definimos los parámetros físicos de la cuenca con nombres explícitos y unidades en comentarios (`_mm`, `_hectareas`).\n",
@@ -483,11 +688,14 @@
         "   * Multiplicamos el déficit por el área y por el factor $10$, calculando que faltan `-102,600.00 m³` de agua en la cuenca durante ese periodo.\n",
         "3. **Fase de Salida:**\n",
         "   * Empleamos `{area_hectareas:,.1f}` donde la coma `,` formatea los millares automáticamente y `.1f` fija un decimal.\n"
-      ]
+      ],
+      "id": "yKBX4cy0rYgu"
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
+      "metadata": {
+        "id": "4ekC-BSPrYgu"
+      },
       "source": [
         "---\n",
         "## Parte 9: Buenas Prácticas y Uso Ético de la Inteligencia Artificial (IA)\n",
@@ -513,13 +721,30 @@
         "2. Calcula la densidad: $\\text{densidad} = \\frac{\\text{total\\_arboles}}{\\text{area\\_ha}}$.\n",
         "3. Evalúa si la densidad es óptima (se considera óptima si supera los $250$ árboles/ha).\n",
         "4. Imprime el reporte formateado en pantalla con f-strings.\n"
-      ]
+      ],
+      "id": "4ekC-BSPrYgu"
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
+      "execution_count": 9,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "B5Sjh1oTrYgu",
+        "outputId": "e7b0900c-3ba2-4028-c8f4-c510275162c8"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Especie: Alnus acuminata (Aliso)\n",
+            "Densidad calculada: 320.0 árboles/ha\n",
+            "¿Cumple con la densidad óptima?: True\n"
+          ]
+        }
+      ],
       "source": [
         "# Espacio para tu solución del Micro-Reto:\n",
         "# -------------------------------------------------------------\n",
@@ -535,7 +760,8 @@
         "print(f\"Especie: {nombre_especie}\")\n",
         "print(f\"Densidad calculada: {densidad_arboles_ha:.1f} árboles/ha\")\n",
         "print(f\"¿Cumple con la densidad óptima?: {es_densidad_optima}\")\n"
-      ]
+      ],
+      "id": "B5Sjh1oTrYgu"
     }
   ],
   "metadata": {
@@ -555,6 +781,9 @@
       "nbformat": 4,
       "nbformat_minor": 5,
       "version": "3.11.0"
+    },
+    "colab": {
+      "provenance": []
     }
   },
   "nbformat": 4,

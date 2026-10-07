@@ -1,0 +1,53 @@
+variable,equipos,significado,unidad,tipo,valores_esperados
+cell_id,todos,Identificador de la celda de 500 m x 500 m (fila R y columna C de la malla),texto,str,LJ500_Rxxx_Cxxx
+centro_x_m,todos,Coordenada X (este) del centro de la celda en proyección UTM,m,float,positiva
+centro_y_m,todos,Coordenada Y (norte) del centro de la celda en proyección UTM; define la zona norte o sur,m,float,norte >= 9555250; sur < 9555250
+anio,todos,Año del registro,año,int,2019 a 2024
+mes,todos,Mes del registro,mes,int,1 a 12
+anio_mes,todos,Año y mes del registro en forma de texto,texto,str,AAAA-MM
+alos_elevacion_m_mean,1 y 2,Elevación media de la celda (modelo digital ALOS),m,float,mayor que 0
+alos_pendiente_grados_mean,1 y 2,Pendiente media del terreno,grados,float,0 a 90
+alos_northness_mean,1 y 2,Orientación hacia el norte (coseno de la orientación); 1 = ladera hacia el norte y -1 = hacia el sur,adimensional,float,-1 a 1
+alos_eastness_mean,1 y 2,Orientación hacia el este (seno de la orientación); 1 = ladera hacia el este y -1 = hacia el oeste,adimensional,float,-1 a 1
+ghsl_distancia_asentamiento_m_mean,1 y 2,Distancia media de la celda al asentamiento (zona construida) más cercano según GHSL,m,float,0 o más; vacío si no hay dato
+osm_distancia_vias_m_mean,1 y 2,Distancia media de la celda a la vía más cercana según OpenStreetMap,m,float,0 o más; vacío si no hay dato
+alos_elevacion_m_coverage,1 y 2,Fracción de la celda con dato válido de ALOS (control de calidad),fracción,float,0 a 1
+ghsl_distancia_asentamiento_m_coverage,1 y 2,Fracción de la celda con dato válido de GHSL (control de calidad),fracción,float,0 a 1
+osm_distancia_vias_m_coverage,1 y 2,Fracción de la celda con dato válido de OSM (control de calidad),fracción,float,0 a 1
+prop_bosque_nativo,3,Proporción del área de la celda con bosque nativo (mapa MAATE 2018),proporción,float,0 a 1
+prop_paramo,3,Proporción del área de la celda con páramo,proporción,float,0 a 1
+prop_vegetacion_natural_arbustiva_herbacea,3,Proporción del área con vegetación arbustiva y herbácea,proporción,float,0 a 1
+prop_plantacion_forestal,3,Proporción del área con plantación forestal,proporción,float,0 a 1
+prop_cobertura_agropecuaria_total,3,Proporción del área con uso agropecuario (cultivos y pastos),proporción,float,0 a 1
+prop_area_poblada,3,Proporción del área poblada,proporción,float,0 a 1
+prop_infraestructura,3,Proporción del área con infraestructura,proporción,float,0 a 1
+prop_area_sin_cobertura_vegetal,3,Proporción del área sin cobertura vegetal,proporción,float,0 a 1
+prop_cuerpo_de_agua_natural,3,Proporción del área con cuerpos de agua naturales,proporción,float,0 a 1
+suma_prop_maate_9v,3,Suma de las nueve proporciones anteriores (control de calidad),proporción,float,cercana a 1
+s2_ndvi_mean,3,Índice de vegetación NDVI medio del mes (Sentinel-2); mayor valor = vegetación más vigorosa,adimensional,float,-1 a 1; vacío si no hay imagen
+s2_ndmi_mean,3,Índice de humedad de la vegetación NDMI medio del mes,adimensional,float,-1 a 1; vacío si no hay imagen
+s2_nbr_mean,3,Índice de área quemada NBR medio del mes,adimensional,float,-1 a 1; vacío si no hay imagen
+s2_ndwi_mean,3,Índice de agua NDWI medio del mes,adimensional,float,-1 a 1; vacío si no hay imagen
+s2_cobertura_valida_pct,3,Porcentaje de la celda con píxeles Sentinel-2 válidos (sin nubes),%,float,0 a 100
+sentinel_t1_missing,3,Indica si falta el dato Sentinel-2 del mes (1 = falta; 0 = hay dato),código,int,0 o 1
+chirps_precipitacion_acumulada_t1_mm,4 y 5,Precipitación total del mes (CHIRPS),mm,float,0 o más
+chirps_precipitacion_acumulada_prev2m_mm,4 y 5,Precipitación total de los 2 meses anteriores al mes del registro,mm,float,0 o más
+chirps_precipitacion_acumulada_prev3m_mm,4 y 5,Precipitación total de los 3 meses anteriores al mes del registro (incluye los 2 anteriores; no sumar con prev2m),mm,float,0 o más
+chirps_precipitacion_maxima_diaria_t1_mm,4 y 5,Mayor precipitación registrada en un solo día del mes,mm,float,0 o más
+chirps_dias_secos_t1,4 y 5,Número de días secos del mes (promedio de la celda; puede tener decimales),días,float,0 a 31
+chirps_dias_humedos_t1,4 y 5,Número de días húmedos del mes (promedio de la celda; puede tener decimales),días,float,0 a 31
+chirps_dias_validos_t1,4 y 5,Número de días del mes con dato válido de CHIRPS,días,float,28 a 31
+chirps_disponibilidad_t1_pct,4 y 5,Porcentaje de días del mes con dato de CHIRPS (control de calidad),%,float,0 a 100
+chirps_historia_3m_completa,4 y 5,Indica si los 3 meses anteriores tienen datos completos (1 = sí; 0 = no),código,int,0 o 1
+chelsa_sfcwind_media_t1_ms,4 y 5,Velocidad media del viento en superficie en el mes (CHELSA),m/s,float,0 o más
+chelsa_sfcwind_maxima_t1_ms,4 y 5,Velocidad máxima del viento en superficie en el mes,m/s,float,0 o más
+chelsa_disponibilidad_t1_pct,4 y 5,Porcentaje de días del mes con dato de CHELSA (control de calidad),%,float,0 a 100
+viirs_disponibilidad_support_pct,6,Porcentaje del mes en que el satélite VIIRS pudo observar la celda,%,float,0 a 100; vacío si no hay soporte
+viirs_evidencia_fuego_any,6,Indica si VIIRS detectó alguna señal de fuego en el mes (1 = sí; 0 = no),código,int,0 o 1; vacío si no hay soporte
+estado_ge7_obs90,6,Estado del registro según la definición principal de incendio,texto,str,incendio_observado; no_incendio_observado; indeterminado_baja_observabilidad; indeterminado_sin_soporte
+y_incendio_ge7_obs90,6,Respuesta principal: incendio en la celda y el mes (1 = sí; 0 = no; vacío = indeterminado),código,int,0 o 1; vacío
+y_incendio_ge8_obs90,6,Variante con umbral de detección más exigente (ge8 en lugar de ge7),código,int,0 o 1; vacío
+y_incendio_ge7_obs80,6,Variante que exige al menos 80 % de observabilidad (en lugar de 90 %),código,int,0 o 1; vacío
+y_incendio_ge7_obs95,6,Variante que exige al menos 95 % de observabilidad,código,int,0 o 1; vacío
+y_incendio_ge7_obs100,6,Variante que exige 100 % de observabilidad,código,int,0 o 1; vacío
+y_principal_valida,6,Indica si el registro es válido para usar y_incendio_ge7_obs90 (1 = válido; 0 = excluir),código,int,0 o 1

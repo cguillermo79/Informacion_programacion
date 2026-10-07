@@ -1,0 +1,1115 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% Guía de práctica 01: Introducción a la programación y
+% fundamentos de Python (trabajo en Google Colab)
+% Programación y Base de Datos - Unidad 1
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-nodecimaldot,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{2.3em}
+\setlength{\cftsubsecnumwidth}{3em}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{needspace}
+\pretocmd{\subsubsection}{\needspace{6\baselineskip}}{}{}
+\pretocmd{\subsection}{\needspace{8\baselineskip}}{}{}
+
+% ---------------- Paleta (misma identidad que Programación) ----------------
+\definecolor{morado}{RGB}{74,20,99}
+\definecolor{moradoOsc}{RGB}{48,11,68}
+\definecolor{moradoMedio}{RGB}{123,63,157}
+\definecolor{moradoClaro}{RGB}{224,208,235}
+\definecolor{tealProfundo}{RGB}{0,90,99}
+\definecolor{tealClaro}{RGB}{204,232,232}
+\definecolor{acento}{RGB}{198,110,38}
+\definecolor{acentoClaro}{RGB}{247,226,201}
+\definecolor{alerta}{RGB}{165,40,40}
+\definecolor{alertaClara}{RGB}{242,213,208}
+\definecolor{grafito}{RGB}{51,51,51}
+\definecolor{grisClaro}{RGB}{244,246,245}
+\definecolor{codigoFondo}{RGB}{248,247,251}
+\definecolor{salidaFondo}{RGB}{33,33,38}
+\definecolor{salidaTexto}{RGB}{230,230,230}
+\definecolor{comentario}{RGB}{106,135,89}
+\definecolor{cadena}{RGB}{176,82,24}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=morado,
+  urlcolor=moradoMedio,
+  citecolor=morado,
+  pdftitle={Guía de práctica 01: Fundamentos de programación en Python},
+  pdfauthor={Programación y Base de Datos - UNL},
+  bookmarksopen=true
+}
+
+\titleformat{\section}{\Large\bfseries\color{morado}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{moradoOsc}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{tealProfundo}}{}{0em}{}
+\titleformat{name=\subsubsection,numberless}{\normalsize\bfseries\color{tealProfundo}}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{14pt}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{grafito}Programación y Base de Datos -- Unidad 1}
+\fancyhead[R]{\small\color{grafito}Práctica 01: Fundamentos de Python}
+\fancyfoot[C]{\small\thepage}
+
+\setlist[itemize]{itemsep=2pt, topsep=3pt}
+\setlist[enumerate]{itemsep=4pt, topsep=3pt}
+
+% ---------------- Código Python ----------------
+\lstdefinestyle{py}{
+  language=Python,
+  basicstyle=\ttfamily\small\color{grafito},
+  keywordstyle=\color{morado}\bfseries,
+  commentstyle=\color{comentario}\itshape,
+  stringstyle=\color{cadena},
+  emph={print,type,input,float,int,str,bool,True,False},
+  emphstyle=\color{tealProfundo}\bfseries,
+  backgroundcolor=\color{codigoFondo},
+  frame=leftline, framerule=3pt, rulecolor=\color{moradoMedio},
+  numbers=left, numberstyle=\scriptsize\color{grafito!60}, numbersep=14pt,
+  xleftmargin=26pt, framexleftmargin=5pt,
+  breaklines=true, breakatwhitespace=false, columns=fullflexible, keepspaces=true,
+  showstringspaces=false, tabsize=4, aboveskip=8pt, belowskip=6pt,
+  upquote=true,
+  extendedchars=true,
+  literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1
+    {¿}{{?`}}1 {¡}{{!`}}1 {°}{{\textdegree}}1
+    {²}{{\textsuperscript{2}}}1 {³}{{\textsuperscript{3}}}1
+    {–}{{--}}1 {→}{{$\rightarrow$}}1
+}
+\lstdefinestyle{salida}{
+  basicstyle=\ttfamily\small\color{salidaTexto},
+  backgroundcolor=\color{salidaFondo},
+  frame=single, rulecolor=\color{salidaFondo},
+  xleftmargin=4pt, xrightmargin=4pt, framexleftmargin=2pt,
+  breaklines=true, columns=fullflexible, keepspaces=true,
+  aboveskip=4pt, belowskip=8pt, upquote=true,
+  extendedchars=true,
+  literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+    {¿}{{?`}}1 {¡}{{!`}}1 {°}{{\textdegree}}1
+    {²}{{\textsuperscript{2}}}1 {³}{{\textsuperscript{3}}}1
+}
+\lstnewenvironment{codigo}{\lstset{style=py}}{}
+\newcommand{\etiquetasalida}{\vspace{-2pt}\noindent{\scriptsize\bfseries\color{moradoMedio}SALIDA ESPERADA}\endgraf}
+\lstnewenvironment{salida}{\lstset{style=salida}\etiquetasalida}{}
+
+% ---------------- Cajas de aviso ----------------
+\newtcolorbox{tip}[1][]{colback=tealClaro!45,colframe=tealProfundo,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Consejo,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=tealProfundo,breakable,#1}
+\newtcolorbox{warn}[1][]{colback=acentoClaro!70,colframe=acento,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Atención,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=acento,breakable,#1}
+\newtcolorbox{crit}[1][]{colback=alertaClara!60,colframe=alerta,arc=2pt,boxrule=1.1pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=¡Muy importante!,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=alerta,breakable,#1}
+\newtcolorbox{verify}[1][]{colback=moradoClaro!35,colframe=morado,arc=2pt,boxrule=0.9pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Verifique antes de continuar,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=morado,breakable,#1}
+\newtcolorbox{experimente}[1][]{colback=grisClaro,colframe=moradoMedio,arc=2pt,boxrule=0.7pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title=Experimente usted mismo,fonttitle=\bfseries,coltitle=white,
+  colbacktitle=moradoMedio,breakable,#1}
+\newtcolorbox{objetivo}[1][]{colback=white,colframe=tealProfundo,arc=2pt,boxrule=0.6pt,
+  left=8pt,right=8pt,top=5pt,bottom=5pt,breakable,#1}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\nbfile}{\texttt{01\_\allowbreak introduccion\_\allowbreak programacion\_\allowbreak fundamentos\_\allowbreak python.ipynb}}
+\newcommand{\menu}[1]{\textbf{\color{moradoOsc}#1}}
+\newcommand{\tecla}[1]{\tcbox[on line,boxsep=1pt,left=3pt,right=3pt,top=1pt,bottom=1pt,
+  colback=grisClaro,colframe=grafito!60,boxrule=0.5pt,arc=2pt]{\ttfamily\small #1}}
+\newcommand{\actividad}[1]{\begin{objetivo}\textbf{\color{tealProfundo}¿Qué vamos a lograr?}\enspace #1\end{objetivo}}
+
+\begin{document}
+
+% ============================================================
+% Portada
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{0.6cm}
+{\large\color{grafito} Universidad Nacional de Loja}\\[2pt]
+{\normalsize\color{grafito} Facultad Agropecuaria y de Recursos Naturales Renovables}\\[2pt]
+{\normalsize\color{grafito} Carrera de Ingeniería Ambiental}\\[1.6cm]
+
+{\large\color{moradoMedio}\bfseries GUÍA DE PRÁCTICA N.º 01}\\[10pt]
+{\Huge\bfseries\color{morado} Introducción a la programación\\[4pt] y fundamentos de Python}\\[1.0cm]
+{\Large\color{moradoOsc} Programación y Base de Datos -- Unidad 1}\\[6pt]
+{\large\color{grafito} Entorno de trabajo: Google Colab}\\[1.4cm]
+
+\begin{tcolorbox}[colback=moradoClaro!30,colframe=morado,arc=3pt,boxrule=1pt,width=0.86\textwidth,
+  left=14pt,right=14pt,top=10pt,bottom=10pt]
+\textbf{¿Qué aprenderá en esta práctica?}
+\begin{itemize}[itemsep=3pt]
+  \item Usar Google Colab para escribir, ejecutar y guardar programas en Python.
+  \item Mostrar información con \code{print()} y documentar con comentarios.
+  \item Reconocer y corregir errores de sintaxis, de ejecución y lógicos.
+  \item Trabajar con variables, constantes y los tipos \code{int}, \code{float}, \code{str} y \code{bool}.
+  \item Aplicar operadores aritméticos, relacionales y lógicos a problemas ambientales.
+  \item Leer datos con \code{input()}, convertir tipos y presentar resultados con \emph{f-strings}.
+  \item Construir un programa completo \emph{Entrada} $\rightarrow$ \emph{Proceso} $\rightarrow$ \emph{Salida}.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{1.0cm}
+\begin{tabular}{rl}
+\textbf{Docente:} & Guillermo Chuncho Morocho \\
+\textbf{Ciclo académico:} & Septiembre 2026 -- Febrero 2027 \\
+\textbf{Cuaderno de trabajo:} & \nbfile{} \\
+\textbf{Duración estimada:} & 4 horas (2 en clase + 2 de trabajo autónomo) \\
+\end{tabular}
+
+\vfill
+{\small\color{grafito} Requisitos: cuenta de Google (Gmail o institucional), navegador actualizado y conexión a internet}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Datos informativos}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{moradoOsc}}p{4.2cm} X}
+\toprule
+Asignatura & Programación y Base de Datos (2.\textsuperscript{o} ciclo) \\
+Unidad & Unidad 1 -- Fundamentos de programación \\
+Tema de la práctica & Introducción a la programación y fundamentos de Python \\
+Modalidad & Práctica guiada en laboratorio / trabajo autónomo \\
+Herramienta & Google Colab (\url{https://colab.research.google.com}) \\
+Material base & Cuaderno \nbfile{} \\
+Contexto de aplicación & Datos ambientales del cantón Loja: precipitación, temperatura, viento, cobertura vegetal y balance hídrico \\
+Nivel de partida & Ninguno: la guía asume que el estudiante nunca ha programado \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\section{Objetivos}
+% ============================================================
+
+\subsection{Objetivo general}
+Desarrollar programas básicos en Python, ejecutados en Google Colab, que reciban datos ambientales, los procesen mediante expresiones matemáticas y lógicas, y presenten resultados en formato de informe técnico.
+
+\subsection{Objetivos específicos}
+\begin{enumerate}
+  \item Configurar y operar un cuaderno de Google Colab: crear celdas, ejecutarlas, guardarlas y compartirlas.
+  \item Distinguir los tres tipos de errores de programación y aplicar una estrategia para corregirlos.
+  \item Declarar variables y constantes con nombres descriptivos según la convención \code{snake\_case}.
+  \item Identificar el tipo de dato adecuado para cada medición ambiental.
+  \item Escribir fórmulas ambientales usando correctamente la jerarquía de operadores.
+  \item Construir condiciones de alerta con operadores relacionales y lógicos.
+  \item Integrar todo lo aprendido en un programa con estructura Entrada--Proceso--Salida.
+\end{enumerate}
+
+\subsection{Resultado de aprendizaje esperado}
+Al terminar la práctica, el estudiante será capaz de \textbf{explicar línea por línea} un programa en Python que resuelve un problema ambiental sencillo y de \textbf{modificarlo} para un caso nuevo sin ayuda externa.
+
+% ============================================================
+\section{Materiales y requisitos previos}
+% ============================================================
+
+\begin{itemize}
+  \item Computador (o tablet con teclado) con un navegador actualizado: Google Chrome, Microsoft Edge o Mozilla Firefox.
+  \item Cuenta de Google activa (correo Gmail o cuenta institucional habilitada para Google).
+  \item Conexión estable a internet: Colab se ejecuta en servidores de Google, \textbf{no en su computador}.
+  \item Archivo del cuaderno de trabajo: \nbfile{}, entregado por el docente.
+  \item Cuaderno de apuntes para registrar dudas, errores encontrados y su solución.
+\end{itemize}
+
+\begin{tip}
+No necesita instalar Python para esta práctica. Google Colab ya trae Python y las librerías más usadas en ciencia de datos. La instalación local (VS Code + Python) descrita en la \emph{Guía de instalación del entorno} se usará más adelante en el proyecto integrador.
+\end{tip}
+
+% ============================================================
+\section{Fundamento teórico breve}
+% ============================================================
+
+\subsection{¿Qué es programar?}
+Una computadora no ``entiende'' problemas: solo ejecuta \textbf{instrucciones precisas, una tras otra, en el orden en que se escriben}. Programar es traducir la solución de un problema a esas instrucciones.
+
+\begin{itemize}
+  \item \textbf{Problema:} situación que se desea resolver (p.\,ej., saber si una microcuenca tiene déficit de agua).
+  \item \textbf{Algoritmo:} secuencia finita y ordenada de pasos para resolverlo, escrita en lenguaje humano.
+  \item \textbf{Programa:} el algoritmo escrito en un lenguaje de programación (Python) que la computadora puede ejecutar.
+\end{itemize}
+
+\subsection{¿Por qué Python?}
+Python es un lenguaje \textbf{interpretado} (se ejecuta instrucción por instrucción, sin un paso de compilación previo), con una sintaxis cercana al inglés y muy utilizado en ciencias ambientales, hidrología, teledetección y análisis de datos.
+
+\subsection{El modelo Entrada -- Proceso -- Salida}
+Casi todo programa técnico sigue este esquema, que usaremos durante todo el curso:
+
+\begin{center}
+\begin{tcolorbox}[colback=tealClaro!35,colframe=tealProfundo,width=0.31\textwidth,box align=center,nobeforeafter,halign=center,arc=2pt]
+\textbf{ENTRADA}\\[-2pt]{\small datos de campo}
+\end{tcolorbox}
+\enspace$\Longrightarrow$\enspace
+\begin{tcolorbox}[colback=moradoClaro!45,colframe=morado,width=0.25\textwidth,box align=center,nobeforeafter,halign=center,arc=2pt]
+\textbf{PROCESO}\\[-2pt]{\small cálculos}
+\end{tcolorbox}
+\enspace$\Longrightarrow$\enspace
+\begin{tcolorbox}[colback=acentoClaro!70,colframe=acento,width=0.25\textwidth,box align=center,nobeforeafter,halign=center,arc=2pt]
+\textbf{SALIDA}\\[-2pt]{\small informe}
+\end{tcolorbox}
+\end{center}
+
+\subsection{¿Qué es un cuaderno (\emph{notebook}) de Colab?}
+Un cuaderno es un documento con extensión \code{.ipynb} formado por \textbf{celdas}:
+\begin{itemize}
+  \item \textbf{Celdas de texto} (Markdown): explicaciones, títulos, fórmulas. No se ejecutan como código.
+  \item \textbf{Celdas de código}: instrucciones Python. Al ejecutarlas, el resultado aparece justo debajo.
+\end{itemize}
+Todas las celdas de código comparten la misma memoria (la \textbf{sesión} o \emph{entorno de ejecución}). Una variable creada en una celda puede usarse en otra celda posterior, \textbf{siempre que la primera ya se haya ejecutado}.
+
+% ============================================================
+\section{Preparación del entorno en Google Colab}
+% ============================================================
+
+\subsection{Paso 1. Ingresar a Google Colab}
+\begin{enumerate}
+  \item Abra el navegador y vaya a \url{https://colab.research.google.com}.
+  \item Pulse \menu{Acceder} (esquina superior derecha) e inicie sesión con su cuenta de Google.
+  \item Si aparece la ventana ``Abrir cuaderno'', manténgala abierta: la usaremos en el paso siguiente.
+\end{enumerate}
+
+\subsection{Paso 2. Abrir el cuaderno de la práctica}
+Use \textbf{una} de las siguientes opciones, según cómo el docente haya compartido el material:
+
+\begin{itemize}
+  \item \textbf{Opción A -- Subir el archivo desde su computador:} en Colab vaya a \menu{Archivo $\rightarrow$ Subir cuaderno}, seleccione la pestaña \menu{Subir}, pulse \menu{Explorar} y elija \nbfile{}.
+  \item \textbf{Opción B -- Desde Google Drive:} si el docente compartió el archivo en Drive, ábralo con doble clic y elija \menu{Abrir con $\rightarrow$ Google Colaboratory}.
+  \item \textbf{Opción C -- Desde GitHub:} en \menu{Archivo $\rightarrow$ Abrir cuaderno}, pestaña \menu{GitHub}, pegue la dirección del repositorio indicada por el docente.
+\end{itemize}
+
+\subsection{Paso 3. Guardar su propia copia}
+\begin{crit}
+El cuaderno que abre por las opciones B o C pertenece al docente. Si no guarda su propia copia, \textbf{perderá todo su trabajo} al cerrar la pestaña.
+
+Vaya inmediatamente a \menu{Archivo $\rightarrow$ Guardar una copia en Drive}. Colab abrirá una nueva pestaña con el título ``Copia de \ldots''. \textbf{Trabaje siempre en esa copia.}
+\end{crit}
+
+Luego renombre la copia haciendo clic sobre el título (parte superior izquierda) y use el formato:
+\begin{center}
+\code{P01\_Apellido\_Nombre.ipynb}\qquad (por ejemplo: \code{P01\_Jaramillo\_Ana.ipynb})
+\end{center}
+La copia se guarda automáticamente en su Google Drive, en la carpeta \code{Colab Notebooks}.
+
+\subsection{Paso 4. Conocer la interfaz}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{4.3cm} X}
+\toprule
+Elemento & Para qué sirve \\
+\midrule
+Barra de menú & \menu{Archivo}, \menu{Editar}, \menu{Ver}, \menu{Insertar}, \menu{Entorno de ejecución}, \menu{Herramientas}. \\
+Botones \menu{+ Código} / \menu{+ Texto} & Insertan una nueva celda de código o de texto debajo de la celda seleccionada. \\
+Botón \menu{Conectar} (derecha) & Asigna una máquina virtual de Google para ejecutar el código. Al conectarse muestra los indicadores de RAM y Disco. \\
+Botón \emph{play} ($\blacktriangleright$) de cada celda & Ejecuta esa celda. \\
+Indicador \code{[n]} a la izquierda & Número de orden en que se ejecutó la celda. Una celda sin número aún no se ha ejecutado. \\
+Panel lateral izquierdo & Índice del cuaderno, búsqueda, variables (\{x\}) y explorador de archivos (carpeta). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Paso 5. Ejecutar celdas y atajos de teclado}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l l}
+\toprule
+\textbf{Acción} & \textbf{Atajo} \\
+\midrule
+Ejecutar la celda y quedarse en ella & \tecla{Ctrl} + \tecla{Enter} \\
+Ejecutar la celda y pasar a la siguiente & \tecla{Shift} + \tecla{Enter} \\
+Ejecutar la celda e insertar una nueva debajo & \tecla{Alt} + \tecla{Enter} \\
+Insertar celda de código arriba / abajo & \tecla{Ctrl}+\tecla{M} y luego \tecla{A} / \tecla{B} \\
+Eliminar la celda seleccionada & \tecla{Ctrl}+\tecla{M} y luego \tecla{D} \\
+Convertir celda a texto / a código & \tecla{Ctrl}+\tecla{M} y luego \tecla{M} / \tecla{Y} \\
+Comentar o descomentar líneas & \tecla{Ctrl} + \tecla{/} \\
+Ejecutar todas las celdas & \tecla{Ctrl} + \tecla{F9} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warn}
+La primera ejecución de la sesión tarda unos segundos porque Colab debe asignarle una máquina. Si la sesión permanece inactiva un tiempo, Colab la desconecta y \textbf{borra las variables de memoria} (no el código). Al volver, use \menu{Entorno de ejecución $\rightarrow$ Ejecutar todas} para reconstruir el estado.
+\end{warn}
+
+\subsection{Paso 6. Prueba de funcionamiento}
+Pulse \menu{+ Código} al final del cuaderno, escriba lo siguiente y ejecútelo con \tecla{Shift}+\tecla{Enter}:
+
+\begin{codigo}
+print("Hola, Colab")
+2 + 3
+\end{codigo}
+\begin{salida}
+Hola, Colab
+5
+\end{salida}
+
+\begin{tip}
+En Colab, si la \textbf{última línea} de una celda es una expresión (como \code{2 + 3}), su valor se muestra automáticamente aunque no use \code{print()}. Esto \textbf{solo ocurre con la última línea}; en un programa \code{.py} ejecutado fuera de Colab no sucede. Por eso, en esta guía usaremos siempre \code{print()} para mostrar resultados.
+\end{tip}
+
+\begin{verify}
+\begin{itemize}[nosep]
+  \item[$\square$] Estoy trabajando en \textbf{mi copia} (\code{P01\_Apellido\_Nombre}), no en el original.
+  \item[$\square$] El botón \menu{Conectar} muestra los indicadores de RAM/Disco.
+  \item[$\square$] La celda de prueba muestra ``Hola, Colab'' y ``5''.
+\end{itemize}
+\end{verify}
+
+\subsection{Uso de la asistencia de IA integrada en Colab}
+Colab puede ofrecer funciones de IA (generación de código, autocompletado en gris mientras escribe, explicación de errores). En esta práctica el objetivo es que \textbf{usted} desarrolle el razonamiento. Se recomienda:
+\begin{itemize}
+  \item Desactivar las sugerencias automáticas de código desde \menu{Herramientas $\rightarrow$ Configuración} (sección de asistencia de IA o del editor), si su cuenta muestra esa opción.
+  \item No aceptar código generado que no pueda explicar. Revise la sección~\ref{sec:ia} antes de usar cualquier asistente.
+\end{itemize}
+
+% ============================================================
+\section{Desarrollo de la práctica}
+% ============================================================
+
+\textbf{Forma de trabajo para cada actividad:}
+\begin{enumerate}
+  \item Lea la celda de texto ``¿Qué vamos a realizar?'' del cuaderno.
+  \item Ejecute la celda de código correspondiente y compare su resultado con la \emph{salida esperada} de esta guía.
+  \item Lea la explicación detallada y responda mentalmente: \emph{¿por qué se obtuvo ese resultado?}
+  \item Realice los ejercicios del recuadro \textbf{Experimente usted mismo} en \textbf{nuevas celdas} (\menu{+ Código}) debajo de la actividad. No borre el código original.
+\end{enumerate}
+
+\begin{tip}
+Para agregar sus respuestas escritas, inserte celdas de texto (\menu{+ Texto}) con el título \textbf{``Mi respuesta -- Actividad N''}. Así el docente encontrará fácilmente su trabajo.
+\end{tip}
+
+% ------------------------------------------------------------
+\subsection{Actividad 1. Mi primer programa: \code{print()} y comentarios}
+\actividad{escribir la primera instrucción que comunica un mensaje en pantalla y documentar el código con comentarios.}
+
+\textbf{Paso a paso:}
+\begin{enumerate}
+  \item Ubique la \textbf{Parte 1} del cuaderno y ejecute la celda de código.
+  \item Observe que las líneas que comienzan con \code{\#} no producen ninguna salida.
+\end{enumerate}
+
+\begin{codigo}
+# =====================================================================
+# Mi primer programa en Python
+# Carrera de Ingeniería Ambiental - Universidad Nacional de Loja
+# =====================================================================
+
+# La siguiente instrucción envía un texto a la pantalla de salida:
+print("Bienvenido al curso de Programación y Base de Datos - UNL")
+print("Iniciando análisis ambiental con Python...")
+\end{codigo}
+\begin{salida}
+Bienvenido al curso de Programación y Base de Datos - UNL
+Iniciando análisis ambiental con Python...
+\end{salida}
+
+\textbf{¿Qué ocurrió?}
+\begin{itemize}
+  \item \code{\#} inicia un \textbf{comentario}: Python lo ignora; sirve para explicar el código a otras personas (o a usted mismo dentro de unas semanas).
+  \item \code{print(...)} es una \textbf{función predefinida}: recibe un valor entre paréntesis y lo muestra en pantalla.
+  \item Las comillas \code{"..."} delimitan una \textbf{cadena de texto} (\code{str}). Pueden ser dobles o simples (\code{'...'}), pero deben abrir y cerrar con el mismo tipo.
+  \item Cada \code{print()} termina con un salto de línea automático.
+\end{itemize}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Imprima tres líneas con: su nombre completo, su paralelo y el nombre de un río o quebrada de su localidad.
+  \item Ejecute \code{print("Temperatura:", 19.4, "°C")}. ¿Qué hace la coma dentro de \code{print()}? ¿Qué separador coloca Python entre los valores?
+  \item Ejecute \code{print()} sin argumentos. ¿Qué observa?
+\end{enumerate}
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 2. Los tres tipos de errores}
+\actividad{reconocer los errores de sintaxis, de ejecución y lógicos, leer el mensaje de error de Colab y corregirlo.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.2cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Tipo & ¿Cuándo ocurre? & ¿Cómo se manifiesta? \\
+\midrule
+Sintaxis & Se rompen las reglas de escritura del lenguaje (paréntesis o comillas sin cerrar, palabras mal escritas). & El programa \textbf{no llega a ejecutarse}. Aparece \code{SyntaxError}. \\
+Ejecución & El código está bien escrito, pero pide algo imposible mientras corre (dividir para cero, usar una variable que no existe). & El programa se detiene en la línea del problema: \code{ZeroDivisionError}, \code{NameError}, \code{TypeError}, \code{ValueError}\ldots \\
+Lógico & La fórmula o el razonamiento están mal planteados. & \textbf{No hay mensaje de error}: el programa termina, pero el resultado es incorrecto. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{2.1 Error lógico: el promedio mal calculado (celda del cuaderno)}
+\begin{codigo}
+dia1 = 12.0
+dia2 = 18.0
+dia3 = 15.0
+
+promedio_incorrecto = dia1 + dia2 + dia3 / 3     # Error lógico
+promedio_correcto = (dia1 + dia2 + dia3) / 3     # Forma correcta
+
+print("Resultado con error lógico (fórmula mal agrupada):", promedio_incorrecto, "mm")
+print("Resultado correcto:", promedio_correcto, "mm")
+\end{codigo}
+\begin{salida}
+Resultado con error lógico (fórmula mal agrupada): 35.0 mm
+Resultado correcto: 15.0 mm
+\end{salida}
+
+Python aplica la \textbf{jerarquía de operadores}: la división se resuelve antes que la suma. En la primera fórmula calcula $15.0/3 = 5.0$ y luego $12.0 + 18.0 + 5.0 = 35.0$. Los paréntesis obligan a sumar primero ($45.0$) y luego dividir ($15.0$).
+
+\begin{crit}
+Los errores lógicos son los más peligrosos en ingeniería ambiental: el programa no se detiene, pero entrega cifras falsas a un informe técnico. \textbf{Siempre verifique un resultado con un cálculo manual o una estimación aproximada.}
+\end{crit}
+
+\subsubsection{2.2 Provoque y corrija errores (en celdas nuevas)}
+Cree una celda nueva para \textbf{cada} fragmento, ejecútelo, lea el mensaje y luego corríjalo.
+
+\begin{codigo}
+# a) Error de sintaxis: falta cerrar el paréntesis
+print("Monitoreo de calidad del aire"
+\end{codigo}
+
+\begin{codigo}
+# b) Error de ejecución: división para cero
+numero_dias = 0
+lluvia_total = 45.0
+print(lluvia_total / numero_dias)
+\end{codigo}
+
+\begin{codigo}
+# c) Error de ejecución: variable inexistente (nombre mal escrito)
+temperatura_media = 18.6
+print(temperatura_maedia)
+\end{codigo}
+
+\textbf{Cómo leer un mensaje de error en Colab:}
+\begin{enumerate}
+  \item Vaya a la \textbf{última línea} del recuadro rojo: indica el \textbf{tipo} de error y una descripción (por ejemplo, \code{ZeroDivisionError: float division by zero}).
+  \item Busque la flecha \code{---->} o el número de línea: señala \textbf{dónde} ocurrió.
+  \item Formule una hipótesis, corrija \textbf{un solo cambio} y vuelva a ejecutar.
+\end{enumerate}
+
+\begin{tip}
+Debajo del error, Colab puede mostrar un botón para \emph{explicar el error} con IA. Úselo solo \textbf{después} de intentar entenderlo por su cuenta, y anote con sus palabras la causa del error.
+\end{tip}
+
+\begin{experimente}
+Registre en una celda de texto una tabla con tres filas (a, b, c) y las columnas: \emph{tipo de error}, \emph{mensaje que mostró Colab}, \emph{causa} y \emph{corrección aplicada}.
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 3. Variables, identificadores y constantes}
+\actividad{guardar datos de una estación meteorológica en variables con nombres claros y distinguir variables de constantes.}
+
+\begin{codigo}
+# Identificadores descriptivos en formato snake_case:
+estacion_meteorologica = "La Argelia - UNL"
+altitud_msnm = 2160
+temperatura_actual_celsius = 19.4
+lluvia_activa = False
+
+# Constantes (por convención se escriben en MAYÚSCULAS):
+GRAVEDAD_ESTANDAR = 9.80665   # m/s^2
+DENSIDAD_AGUA = 1000.0        # kg/m^3
+
+print("Estación:", estacion_meteorologica)
+print("Altitud:", altitud_msnm, "metros sobre el nivel del mar")
+print("Temperatura:", temperatura_actual_celsius, "°C")
+print("¿Está lloviendo actualmente?:", lluvia_activa)
+\end{codigo}
+\begin{salida}
+Estación: La Argelia - UNL
+Altitud: 2160 metros sobre el nivel del mar
+Temperatura: 19.4 °C
+¿Está lloviendo actualmente?: False
+\end{salida}
+
+\textbf{Conceptos clave:}
+\begin{itemize}
+  \item El signo \code{=} es \textbf{asignación}, no igualdad matemática: ``calcule lo que está a la derecha y guárdelo con el nombre de la izquierda''. Por eso \code{x = x + 1} es válido en Python.
+  \item \textbf{Reglas para nombrar variables:} empiezan con letra o \code{\_}; no llevan espacios, guiones medios, tildes ni ñ (aunque Python 3 acepta tildes, evítelas por compatibilidad); no pueden ser palabras reservadas (\code{print}, \code{if}, \code{for}, \code{True}\ldots).
+  \item Python \textbf{distingue mayúsculas y minúsculas}: \code{Temperatura}, \code{temperatura} y \code{TEMPERATURA} son tres variables distintas.
+  \item \textbf{Constantes:} Python no impide modificarlas; escribirlas en MAYÚSCULAS es un acuerdo entre programadores para indicar ``este valor no debe cambiar''.
+  \item Incluya la \textbf{unidad} en el nombre o en un comentario: \code{altitud\_msnm}, \code{lluvia\_mm}, \code{area\_ha}.
+\end{itemize}
+
+\begin{tip}
+Abra el panel \textbf{Variables} (ícono \{x\} en la barra lateral izquierda) para ver todas las variables que existen en la sesión, su tipo y su valor actual.
+\end{tip}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Indique cuáles de estos nombres son válidos y pruébelo en Colab: \code{2estacion}, \code{estacion\_2}, \code{altitud msnm}, \code{caudal-rio}, \code{\_caudal}, \code{print}.
+  \item Cree variables para una estación de su elección (nombre, altitud, temperatura y si hay neblina) e imprímalas.
+  \item Ejecute en una celda \code{temperatura\_actual\_celsius = 21.0} y vuelva a imprimirla. ¿Qué le pasó al valor anterior?
+\end{enumerate}
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 4. Los cuatro tipos de datos primitivos}
+\actividad{identificar el tipo de dato de cada medición ambiental con la función \code{type()}.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{l l l}
+\toprule
+\textbf{Tipo} & \textbf{Representa} & \textbf{Ejemplo ambiental} \\
+\midrule
+\code{int} & Números enteros & número de focos de calor: \code{7} \\
+\code{float} & Números con decimales & velocidad del viento: \code{24.85} \\
+\code{str} & Texto entre comillas & parroquia: \code{"Malacatos"} \\
+\code{bool} & Verdadero o falso & alerta activada: \code{True} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codigo}
+parroquia = "Malacatos"                # str
+numero_focos_calor = 7                 # int
+velocidad_viento_kmh = 24.85           # float
+alerta_incendio_activada = True        # bool
+
+print("parroquia:", parroquia, "--> Tipo:", type(parroquia))
+print("numero_focos_calor:", numero_focos_calor, "--> Tipo:", type(numero_focos_calor))
+print("velocidad_viento_kmh:", velocidad_viento_kmh, "--> Tipo:", type(velocidad_viento_kmh))
+print("alerta_incendio_activada:", alerta_incendio_activada, "--> Tipo:", type(alerta_incendio_activada))
+\end{codigo}
+\begin{salida}
+parroquia: Malacatos --> Tipo: <class 'str'>
+numero_focos_calor: 7 --> Tipo: <class 'int'>
+velocidad_viento_kmh: 24.85 --> Tipo: <class 'float'>
+alerta_incendio_activada: True --> Tipo: <class 'bool'>
+\end{salida}
+
+\begin{warn}
+\begin{itemize}[nosep]
+  \item Los decimales se escriben con \textbf{punto}: \code{24.85}. Si escribe \code{24,85}, Python crea una \emph{tupla} de dos enteros \code{(24, 85)}, no un número decimal.
+  \item \code{True} y \code{False} se escriben con mayúscula inicial. \code{true} produce un \code{NameError}.
+  \item \code{"7"} (con comillas) es texto, no número: \code{type("7")} devuelve \code{<class 'str'>}.
+\end{itemize}
+\end{warn}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Para cada dato, decida el tipo y compruébelo con \code{type()}: pH del suelo (6.8), número de especies observadas (23), nombre del bosque (Bosque Protector El Colambo), ¿la muestra está contaminada? (no), coordenada de latitud ($-4.0$).
+  \item Ejecute \code{print(type(24,85))} y explique el mensaje obtenido. Luego ejecute \code{dato = 24,85} y \code{print(type(dato))}.
+\end{enumerate}
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 5. Operadores aritméticos y fórmulas ambientales}
+\actividad{convertir temperaturas, distribuir horas de monitoreo y calcular el área de cobertura de un sensor.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c l c c}
+\toprule
+\textbf{Operador} & \textbf{Operación} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\code{+} & Suma & \code{12 + 5} & \code{17} \\
+\code{-} & Resta & \code{12 - 5} & \code{7} \\
+\code{*} & Multiplicación & \code{12 * 5} & \code{60} \\
+\code{/} & División real (siempre \code{float}) & \code{12 / 5} & \code{2.4} \\
+\code{//} & División entera & \code{12 // 5} & \code{2} \\
+\code{\%} & Módulo (residuo) & \code{12 \% 5} & \code{2} \\
+\code{**} & Potencia & \code{12 ** 2} & \code{144} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Jerarquía (de mayor a menor prioridad):} \code{( )} $\;\rightarrow\;$ \code{**} $\;\rightarrow\;$ \code{*}, \code{/}, \code{//}, \code{\%} $\;\rightarrow\;$ \code{+}, \code{-}. A igual prioridad, se evalúa de izquierda a derecha.
+
+\begin{codigo}
+temp_celsius = 25.0
+
+# 1. Conversión de temperatura a Fahrenheit: F = C * 9/5 + 32
+temp_fahrenheit = (temp_celsius * 9 / 5) + 32
+
+# 2. Operaciones con horas de monitoreo de campo:
+total_horas_monitoreo = 58
+duracion_turno = 8
+turnos_completos = total_horas_monitoreo // duracion_turno  # División entera
+horas_sobrantes = total_horas_monitoreo % duracion_turno    # Módulo (residuo)
+
+# 3. Potenciación: área de influencia de un sensor circular (A = pi * r^2)
+PI = 3.141592
+radio_cobertura_km = 4.5
+area_cobertura_km2 = PI * (radio_cobertura_km ** 2)
+
+print("Temperatura en Celsius:", temp_celsius, "°C")
+print("Temperatura equivalente en Fahrenheit:", temp_fahrenheit, "°F")
+print("--------------------------------------------------")
+print("Total de horas de monitoreo:", total_horas_monitoreo)
+print("Turnos completos de 8 horas:", turnos_completos)
+print("Horas restantes para el siguiente turno:", horas_sobrantes)
+print("--------------------------------------------------")
+print("Área de monitoreo del sensor:", area_cobertura_km2, "km²")
+\end{codigo}
+\begin{salida}
+Temperatura en Celsius: 25.0 °C
+Temperatura equivalente en Fahrenheit: 77.0 °F
+--------------------------------------------------
+Total de horas de monitoreo: 58
+Turnos completos de 8 horas: 7
+Horas restantes para el siguiente turno: 2
+--------------------------------------------------
+Área de monitoreo del sensor: 63.617238 km²
+\end{salida}
+
+\textbf{Análisis:}
+\begin{itemize}
+  \item \code{58 // 8 = 7} porque el 8 cabe 7 veces completas en 58; \code{58 \% 8 = 2} porque $7 \times 8 = 56$ y sobran 2 horas.
+  \item La potencia se escribe con \code{**}. El símbolo \code{\^{}} \textbf{no} es potencia en Python (es una operación lógica entre bits): \code{4.5 \^{} 2} produce un \code{TypeError}.
+  \item El módulo \code{\%} sirve, por ejemplo, para saber si un número es par (\code{n \% 2 == 0}).
+\end{itemize}
+
+\begin{tip}
+En lugar de escribir \code{PI = 3.141592}, Python ofrece el valor exacto en el módulo \code{math}:
+\begin{codigo}
+import math
+print(math.pi * 4.5 ** 2)
+\end{codigo}
+\end{tip}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Escriba la conversión inversa, de Fahrenheit a Celsius: $C = (F - 32)\times\frac{5}{9}$. Pruebe con $F = 77$ (debe obtener $25.0$).
+  \item Una campaña de muestreo dura 100 horas en turnos de 6 horas. ¿Cuántos turnos completos hay y cuántas horas quedan?
+  \item Calcule $\dfrac{12 + 18}{2 \times 3}$ en Python. Escríbalo primero \textbf{sin} paréntesis y luego con ellos; explique la diferencia.
+\end{enumerate}
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 6. Operadores relacionales y lógicos: la regla 30-30-30}
+\actividad{construir condiciones de alerta de incendio forestal que devuelvan \code{True} o \code{False}.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c l @{\qquad} c l}
+\toprule
+\multicolumn{2}{c}{\textbf{Relacionales}} & \multicolumn{2}{c}{\textbf{Lógicos}} \\
+\midrule
+\code{==} & igual a & \code{and} & verdadero si \textbf{todas} se cumplen \\
+\code{!=} & diferente de & \code{or} & verdadero si \textbf{al menos una} se cumple \\
+\code{>}\,/\,\code{>=} & mayor / mayor o igual & \code{not} & invierte el valor lógico \\
+\code{<}\,/\,\code{<=} & menor / menor o igual & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Regla 30-30-30} (riesgo crítico de incendio): temperatura $> 30$\,°C, humedad relativa $< 30$\,\% y viento $> 30$\,km/h, \textbf{simultáneamente}.
+
+\begin{codigo}
+temperatura = 31.5        # °C
+humedad_relativa = 26.0   # %
+velocidad_viento = 34.0   # km/h
+
+condicion_temp = temperatura > 30.0
+condicion_humedad = humedad_relativa < 30.0
+condicion_viento = velocidad_viento > 30.0
+
+alerta_critica_30_30_30 = condicion_temp and condicion_humedad and condicion_viento
+alerta_moderada = condicion_temp or condicion_viento
+
+print("¿La temperatura supera los 30 °C?:", condicion_temp)
+print("¿La humedad es menor al 30 %?:", condicion_humedad)
+print("¿El viento supera los 30 km/h?:", condicion_viento)
+print("==================================================")
+print("¿ESTADO DE ALERTA CRÍTICA (30-30-30)?:", alerta_critica_30_30_30)
+print("¿ESTADO DE ALERTA PREVENTIVA MODERADA?:", alerta_moderada)
+\end{codigo}
+\begin{salida}
+¿La temperatura supera los 30 °C?: True
+¿La humedad es menor al 30 %?: True
+¿El viento supera los 30 km/h?: True
+==================================================
+¿ESTADO DE ALERTA CRÍTICA (30-30-30)?: True
+¿ESTADO DE ALERTA PREVENTIVA MODERADA?: True
+\end{salida}
+
+\textbf{Tabla de verdad} (\code{A} y \code{B} son condiciones):
+\begin{center}
+\begin{tabular}{cc|ccc}
+\toprule
+\code{A} & \code{B} & \code{A and B} & \code{A or B} & \code{not A} \\
+\midrule
+\code{True} & \code{True} & \code{True} & \code{True} & \code{False} \\
+\code{True} & \code{False} & \code{False} & \code{True} & \code{False} \\
+\code{False} & \code{True} & \code{False} & \code{True} & \code{True} \\
+\code{False} & \code{False} & \code{False} & \code{False} & \code{True} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warn}
+No confunda \code{=} (asignar un valor) con \code{==} (preguntar si dos valores son iguales). Escribir \code{if temperatura = 30} produce un \code{SyntaxError}.
+\end{warn}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Cambie \code{humedad\_relativa} a \code{45.0} y vuelva a ejecutar. ¿Qué alertas cambian y por qué?
+  \item Prediga \textbf{antes de ejecutar} el resultado con temperatura $= 28.0$, humedad $= 20.0$ y viento $= 35.0$. Compruebe en Colab.
+  \item Cree la variable \code{condiciones\_seguras = not alerta\_critica\_30\_30\_30} e imprímala.
+\end{enumerate}
+\end{experimente}
+
+Estas condiciones son la base de las estructuras de decisión (\code{if}, \code{elif}, \code{else}) que se estudiarán en la siguiente unidad.
+
+% ------------------------------------------------------------
+\subsection{Actividad 7. Entrada de datos con \code{input()}, conversión de tipos y \emph{f-strings}}
+\actividad{pedir datos al usuario, convertirlos a número y mostrar resultados con un número controlado de decimales.}
+
+\begin{crit}
+\textbf{Regla de oro:} \code{input()} \textbf{siempre devuelve texto} (\code{str}), aunque el usuario escriba números. Para hacer cálculos debe convertir el dato con \code{float()} o \code{int()}.
+\end{crit}
+
+\subsubsection{7.1 Celda del cuaderno (entrada simulada)}
+\begin{codigo}
+entrada_lluvia_texto = "14.8"   # Esto es lo que recibe input() internamente
+
+lluvia_mm = float(entrada_lluvia_texto)   # Conversión de texto a número
+lluvia_adicional = 5.2
+lluvia_total = lluvia_mm + lluvia_adicional
+
+nombre_sector = "Vilcabamba"
+
+print(f"Sector evaluado: {nombre_sector}")
+print(f"Precipitación registrada: {lluvia_mm:.2f} mm")
+print(f"Precipitación adicional estimada: {lluvia_adicional:.2f} mm")
+print(f"Precipitación acumulada final: {lluvia_total:.2f} mm")
+\end{codigo}
+\begin{salida}
+Sector evaluado: Vilcabamba
+Precipitación registrada: 14.80 mm
+Precipitación adicional estimada: 5.20 mm
+Precipitación acumulada final: 20.00 mm
+\end{salida}
+
+\subsubsection{7.2 Entrada real desde el teclado en Colab (celda nueva)}
+Ahora use \code{input()} de verdad. Cree una celda nueva y ejecute:
+
+\begin{codigo}
+nombre_sector = input("Nombre del sector: ")
+lluvia_texto = input("Precipitación registrada (mm): ")
+
+print("Tipo de dato recibido:", type(lluvia_texto))
+
+lluvia_mm = float(lluvia_texto)
+lluvia_total = lluvia_mm + 5.2
+print(f"{nombre_sector}: precipitación acumulada = {lluvia_total:.2f} mm")
+\end{codigo}
+
+\textbf{Cómo funciona en Colab:}
+\begin{enumerate}
+  \item Al ejecutar la celda, aparece un \textbf{cuadro de texto} debajo de ella con el mensaje ``Nombre del sector:''.
+  \item Escriba el valor (por ejemplo, \code{Vilcabamba}) y pulse \tecla{Enter}. Luego aparecerá la segunda pregunta.
+  \item Mientras Colab espera su respuesta, la celda muestra un ícono girando. \textbf{No ejecute otras celdas} hasta responder: quedarán en cola.
+  \item Si la celda queda ``colgada'', pulse el botón de detener (cuadrado) junto a la celda o use \menu{Entorno de ejecución $\rightarrow$ Interrumpir ejecución}.
+\end{enumerate}
+
+\begin{warn}
+Si escribe el número con coma (\code{14,8}), \code{float()} producirá \code{ValueError: could not convert string to float}. Escriba siempre los decimales con \textbf{punto}.
+\end{warn}
+
+\subsubsection{7.3 Formato con \emph{f-strings}}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{l l l}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo con 102600.456} \\
+\midrule
+\code{\{x\}} & valor tal cual & \code{102600.456} \\
+\code{\{x:.2f\}} & 2 decimales & \code{102600.46} \\
+\code{\{x:.1f\}} & 1 decimal & \code{102600.5} \\
+\code{\{x:,.2f\}} & separador de miles y 2 decimales & \code{102,600.46} \\
+\code{\{x:.0f\}} & sin decimales (redondeado) & \code{102600} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Ejecute \code{print("14.8" + "10")} y \code{print(float("14.8") + float("10"))}. Explique la diferencia (concatenación frente a suma).
+  \item Modifique la celda 7.2 para que pida también el número de días de lluvia (use \code{int()}) y muestre la lluvia promedio por día con 1 decimal.
+  \item Ingrese a propósito la palabra \code{mucho} como precipitación. ¿Qué tipo de error aparece? ¿Es de sintaxis, ejecución o lógico?
+\end{enumerate}
+\end{experimente}
+
+% ------------------------------------------------------------
+\subsection{Actividad 8. Programa integrado: balance hídrico de una microcuenca}
+\actividad{integrar variables, operadores, condiciones y formato de salida en un programa completo de ingeniería.}
+
+\textbf{Planteamiento del problema:}
+\begin{itemize}
+  \item \textbf{Entradas:} nombre de la microcuenca, precipitación mensual $P$ (mm), evapotranspiración potencial $ETP$ (mm) y área (ha).
+  \item \textbf{Proceso:}
+  \begin{enumerate}[nosep]
+    \item Balance hídrico neto: $BH = P - ETP$.
+    \item Déficit: existe si $BH < 0$.
+    \item Volumen: $V = BH \times \text{Área} \times 10$, porque $1\ \text{mm}$ de lámina de agua sobre $1\ \text{ha}$ equivale a $10\ \text{m}^3$ ($0.001\ \text{m} \times 10\,000\ \text{m}^2$).
+  \end{enumerate}
+  \item \textbf{Salida:} informe técnico en pantalla.
+\end{itemize}
+
+\begin{codigo}
+# 1. ENTRADA DE DATOS:
+nombre_cuenca = "Microcuenca Malacatos - Sector El Carmen"
+precipitacion_mm = 65.4       # Lluvia en el mes (mm)
+evapotranspiracion_mm = 88.2  # Pérdida de agua por evaporación y plantas (mm)
+area_hectareas = 450.0        # Área de captación (ha)
+
+# 2. PROCESAMIENTO:
+balance_hidrico_mm = precipitacion_mm - evapotranspiracion_mm
+existe_deficit = balance_hidrico_mm < 0.0
+volumen_neto_m3 = balance_hidrico_mm * area_hectareas * 10.0
+
+# 3. SALIDA DE RESULTADOS:
+print("=====================================================================")
+print("          INFORME TÉCNICO DE BALANCE HÍDRICO MENSUAL                 ")
+print("               Carrera de Ingeniería Ambiental - UNL                ")
+print("=====================================================================")
+print(f"Zona de estudio:             {nombre_cuenca}")
+print(f"Área territorial:            {area_hectareas:,.1f} hectáreas")
+print(f"Precipitación mensual (P):   {precipitacion_mm:.1f} mm")
+print(f"Evapotranspiración (ETP):    {evapotranspiracion_mm:.1f} mm")
+print("---------------------------------------------------------------------")
+print(f"Balance Hídrico Neto:        {balance_hidrico_mm:.2f} mm")
+print(f"¿Existe déficit de agua?:    {existe_deficit}")
+print(f"Volumen hídrico resultante:  {volumen_neto_m3:,.2f} m³ de agua")
+print("=====================================================================")
+\end{codigo}
+\begin{salida}
+=====================================================================
+          INFORME TÉCNICO DE BALANCE HÍDRICO MENSUAL
+               Carrera de Ingeniería Ambiental - UNL
+=====================================================================
+Zona de estudio:             Microcuenca Malacatos - Sector El Carmen
+Área territorial:            450.0 hectáreas
+Precipitación mensual (P):   65.4 mm
+Evapotranspiración (ETP):    88.2 mm
+---------------------------------------------------------------------
+Balance Hídrico Neto:        -22.80 mm
+¿Existe déficit de agua?:    True
+Volumen hídrico resultante:  -102,600.00 m³ de agua
+=====================================================================
+\end{salida}
+
+\textbf{Verificación manual del resultado} (hábito obligatorio del ingeniero):
+\[
+BH = 65.4 - 88.2 = -22.8\ \text{mm} \qquad
+V = -22.8 \times 450 \times 10 = -102\,600\ \text{m}^3
+\]
+El signo negativo indica que en ese mes se pierde más agua por evapotranspiración de la que ingresa por lluvia: \textbf{déficit hídrico}.
+
+\begin{experimente}
+\begin{enumerate}[nosep]
+  \item Copie el programa en una celda nueva y reemplace las cuatro entradas por \code{input()} (con las conversiones necesarias).
+  \item Ejecútelo para un mes lluvioso: $P = 180.0$ mm, $ETP = 95.5$ mm, área $= 320$ ha. Verifique a mano el balance y el volumen.
+  \item Agregue al informe una línea con el volumen expresado en litros ($1\ \text{m}^3 = 1000$ L).
+\end{enumerate}
+\end{experimente}
+
+\begin{verify}
+\begin{itemize}[nosep]
+  \item[$\square$] Todas las celdas del cuaderno tienen número \code{[n]} (se ejecutaron sin errores).
+  \item[$\square$] Cada actividad tiene debajo sus celdas de \emph{Experimente usted mismo} resueltas.
+  \item[$\square$] Mis respuestas escritas están en celdas de texto tituladas ``Mi respuesta -- Actividad N''.
+\end{itemize}
+\end{verify}
+
+% ============================================================
+\section{Buenas prácticas y uso ético de la inteligencia artificial}\label{sec:ia}
+% ============================================================
+
+\subsection{Buenas prácticas de programación}
+\begin{itemize}
+  \item Use nombres de variables descriptivos y con unidades: \code{caudal\_m3s} mejor que \code{c}.
+  \item Comente el \textbf{porqué} de una fórmula, no lo obvio.
+  \item Organice cada programa en bloques: \emph{entrada}, \emph{proceso} y \emph{salida}.
+  \item Verifique los resultados con un cálculo manual o una estimación de orden de magnitud.
+  \item Antes de entregar, use \menu{Entorno de ejecución $\rightarrow$ Reiniciar sesión y ejecutar todo} para confirmar que el cuaderno funciona de principio a fin, en orden.
+\end{itemize}
+
+\subsection{Uso responsable de la IA}
+Las herramientas de IA (Gemini en Colab, ChatGPT, Claude, Copilot) son asistentes valiosos si se usan con criterio técnico.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+\textbf{\color{tealProfundo}Uso adecuado} & \textbf{\color{alerta}Uso inadecuado} \\
+\midrule
+Pedir que explique un mensaje de error que no comprende: ``¿Por qué ocurre este \code{TypeError} en mi línea 4?''. &
+Copiar y pegar código que no puede explicar. \\
+Solicitar analogías: ``Explícame la diferencia entre \code{int} y \code{float} con un ejemplo ambiental''. &
+Pedir que resuelva los micro-retos, trabajos o el proyecto sin su participación. \\
+Comparar su solución, ya terminada, con una alternativa y analizar cuál es más legible. &
+Aceptar el autocompletado de Colab sin leerlo. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{crit}
+En la defensa individual se le pedirá explicar cualquier línea de su código. Si no puede explicar lo que entregó, la calificación de ese componente será \textbf{cero}.
+\end{crit}
+
+% ============================================================
+\section{Micro-reto práctico}
+% ============================================================
+
+\textbf{Consigna.} En una celda nueva al final del cuaderno, escriba un programa que calcule el \textbf{índice de densidad de vegetación} de una parcela de reforestación de \textbf{12 hectáreas} en la que se contabilizaron \textbf{3\,840 árboles} nativos de \emph{Alnus acuminata} (aliso).
+
+\begin{enumerate}
+  \item Defina las variables \code{nombre\_especie}, \code{area\_ha} y \code{total\_arboles} con el tipo de dato adecuado.
+  \item Calcule la densidad:
+  \[
+  \text{densidad} = \frac{\text{total\_arboles}}{\text{area\_ha}} \quad [\text{árboles/ha}]
+  \]
+  \item Evalúe si la densidad es óptima: se considera óptima si \textbf{supera} los 250 árboles/ha (resultado \code{True}/\code{False}).
+  \item Imprima un reporte formateado con \emph{f-strings} que muestre la especie, la densidad con 1 decimal y si cumple la condición.
+\end{enumerate}
+
+\textbf{Extensión (opcional):} modifique el programa para que los tres datos se ingresen con \code{input()} y calcule cuántos árboles faltarían plantar para alcanzar 400 árboles/ha.
+
+\begin{tip}
+Antes de escribir código, escriba el algoritmo en una celda de texto con sus palabras (Entrada, Proceso, Salida) y estime el resultado a mano. Luego compare con lo que obtiene Python.
+\end{tip}
+
+% ============================================================
+\section{Errores frecuentes y cómo solucionarlos}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.6cm} X}
+\toprule
+\textbf{Mensaje o síntoma} & \textbf{Causa probable y solución} \\
+\midrule
+\code{SyntaxError: '(' was never closed} & Falta cerrar un paréntesis. Cuente los paréntesis de apertura y cierre. \\
+\code{SyntaxError: unterminated string literal} & Comillas sin cerrar o mezcladas (\code{"texto'}). \\
+\code{NameError: name '...' is not defined} & Variable mal escrita, o definida en una celda que aún no se ha ejecutado. Ejecute las celdas anteriores en orden. \\
+\code{TypeError: can only concatenate str (not "float") to str} & Se intentó sumar texto con número. Convierta con \code{float()} o use \emph{f-strings}. \\
+\code{ValueError: could not convert string to float} & Se ingresó texto o un decimal con coma en \code{input()}. Use punto decimal. \\
+\code{ZeroDivisionError} & División entre cero. Revise el valor del divisor. \\
+\code{IndentationError: unexpected indent} & Espacios al inicio de la línea. En esta unidad, todas las líneas empiezan en la columna 1. \\
+Resultado numérico absurdo, sin error & Error lógico: revise paréntesis y jerarquía de operadores, unidades y fórmula. \\
+La celda no termina (ícono girando) & Está esperando un \code{input()} o hay otra celda en ejecución. Responda o interrumpa la ejecución. \\
+``Sesión desconectada'' / variables perdidas & Colab cerró la sesión por inactividad. Vuelva a conectar y use \menu{Ejecutar todas}. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\section{Preguntas de autoevaluación}
+% ============================================================
+Responda en una celda de texto al final del cuaderno:
+
+\begin{enumerate}
+  \item ¿Cuál es la diferencia entre un algoritmo y un programa?
+  \item ¿Por qué un error lógico es más peligroso que un error de sintaxis en un informe ambiental?
+  \item ¿Qué valor devuelve \code{10 / 4}? ¿Y \code{10 // 4}? ¿Y \code{10 \% 4}? Justifique.
+  \item ¿Qué tipo de dato usaría para: número de muestras de agua, concentración de nitratos (mg/L), nombre del río, presencia de coliformes?
+  \item Explique por qué \code{input()} requiere conversión antes de realizar cálculos.
+  \item ¿Qué diferencia hay entre \code{=} y \code{==}?
+  \item Con temperatura $= 33$\,°C, humedad $= 35$\,\% y viento $= 40$\,km/h, ¿se activa la alerta crítica 30-30-30? ¿Y la moderada? Justifique sin ejecutar código.
+  \item ¿Qué significa \code{\{volumen:,.2f\}} dentro de una \emph{f-string}?
+  \item ¿Qué sucede con las variables de un cuaderno de Colab cuando la sesión se desconecta?
+\end{enumerate}
+
+% ============================================================
+\section{Entregable y criterios de evaluación}
+% ============================================================
+
+\subsection{¿Qué entregar?}
+\begin{enumerate}
+  \item El cuaderno \code{P01\_Apellido\_Nombre.ipynb} con:
+  \begin{itemize}[nosep]
+    \item todas las celdas originales ejecutadas;
+    \item los ejercicios \emph{Experimente usted mismo} de las actividades 1 a 8;
+    \item la tabla de errores de la actividad 2;
+    \item el micro-reto resuelto;
+    \item las respuestas de autoevaluación.
+  \end{itemize}
+  \item \textbf{Forma de entrega:} descargue el archivo con \menu{Archivo $\rightarrow$ Descargar $\rightarrow$ Descargar .ipynb} y súbalo a la plataforma indicada por el docente, \textbf{o} comparta el enlace con \menu{Compartir} (botón superior derecho), asignando permiso de \emph{Lector} al correo del docente.
+\end{enumerate}
+
+\begin{warn}
+Antes de entregar ejecute \menu{Entorno de ejecución $\rightarrow$ Reiniciar sesión y ejecutar todo}. Si alguna celda falla, corríjala. Un cuaderno que solo funciona ejecutando las celdas en un orden ``especial'' no es un programa correcto.
+\end{warn}
+
+\subsection{Rúbrica de evaluación}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.6cm} X X X}
+\toprule
+\textbf{Criterio} & \textbf{Excelente} & \textbf{Satisfactorio} & \textbf{En desarrollo} \\
+\midrule
+Funcionamiento del cuaderno &
+Todo se ejecuta en orden, sin errores, tras reiniciar la sesión. &
+Errores menores en uno o dos ejercicios. &
+Varias celdas fallan o no se ejecutaron. \\
+Ejercicios \emph{Experimente} &
+Todos resueltos y con explicación de lo observado. &
+La mayoría resueltos; explicaciones breves. &
+Incompletos o sin explicación. \\
+Micro-reto &
+Correcto, con nombres claros, comentarios y formato con \emph{f-strings}. &
+Correcto, pero con formato o nombres mejorables. &
+Resultado incorrecto o incompleto. \\
+Comprensión de errores &
+Tabla completa; identifica tipo, causa y corrección. &
+Tabla con alguna imprecisión. &
+No identifica correctamente los tipos de error. \\
+Autoevaluación y defensa &
+Respuestas precisas; explica cualquier línea de su código. &
+Respuestas correctas con vacíos menores. &
+No logra explicar su propio código. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\section{Referencias}
+% ============================================================
+\begin{itemize}
+  \item Python Software Foundation. (2025). \emph{El tutorial de Python}. \url{https://docs.python.org/es/3/tutorial/}
+  \item Google. (s.f.). \emph{Colaboratory: preguntas frecuentes}. \url{https://research.google.com/colaboratory/faq.html}
+  \item Downey, A. B. (2024). \emph{Think Python: How to think like a computer scientist} (3.\textsuperscript{a} ed.). O'Reilly Media. \url{https://allendowney.github.io/ThinkPython/}
+  \item Matthes, E. (2023). \emph{Python Crash Course} (3.\textsuperscript{a} ed.). No Starch Press.
+\end{itemize}
+
+\end{document}

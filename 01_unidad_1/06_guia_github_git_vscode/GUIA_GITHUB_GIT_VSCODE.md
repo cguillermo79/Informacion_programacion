@@ -203,10 +203,10 @@ Debe aparecer la carpeta **`Informacion_programacion`**. También la verá en el
 Dentro encontrará:
 
 - `01_unidad_1`, `02_unidad_2`, `03_unidad_3`: material de cada unidad.
-- `bases_datos_proyecto_integrador`: las bases de datos de los equipos.
+- `01_unidad_1/05_proyecto_integrador/Unidad_1/bases_datos_proyecto_integrador`: las bases de datos de los equipos.
 - `README.md` y `requirements.txt`.
 
-> Las bases de datos pesan **pocos megabytes** (unos 10 a 15 MB cada una). La descarga completa tarda solo unos instantes.
+> Las bases de datos son **pequeñas** (entre 200 y 450 KB cada una). La descarga completa tarda solo unos instantes.
 
 > **Esto se hace una sola vez.** Si lo repite le dirá `destination path already exists`: es normal, significa que ya lo descargó. Para tener lo nuevo use `git pull` (Paso 15).
 
@@ -313,11 +313,11 @@ Debe responder **`Todo listo`**. (`sqlite3`, que usaremos en SQL, ya viene con P
 import pandas as pd
 
 # CAMBIE SOLO ESTA LINEA por la carpeta de su equipo (ver lista abajo)
-EQUIPO = "equipo_01_relieve_zona_norte"
+EQUIPO = "equipo_01_relieve_norte"
 
 ruta = (
-    "Informacion_programacion/bases_datos_proyecto_integrador/"
-    f"{EQUIPO}/base_programacion_{EQUIPO}_2019_2024.csv"
+    "Informacion_programacion/01_unidad_1/05_proyecto_integrador/Unidad_1/"
+    f"bases_datos_proyecto_integrador/{EQUIPO}/{EQUIPO}.csv"
 )
 
 df = pd.read_csv(ruta)
@@ -331,12 +331,12 @@ print(df.head(3))
 
 **La línea `EQUIPO = ...` debe tener el nombre de la carpeta de su equipo:**
 
-- Equipo 1: `equipo_01_relieve_zona_norte`
-- Equipo 2: `equipo_02_relieve_zona_sur`
-- Equipo 3: `equipo_03_cobertura_loja_completo`
-- Equipo 4: `equipo_04_clima_zona_norte`
-- Equipo 5: `equipo_05_clima_zona_sur`
-- Equipo 6: `equipo_06_incendios_loja_completo`
+- Equipo 1: `equipo_01_relieve_norte`
+- Equipo 2: `equipo_02_relieve_sur`
+- Equipo 3: `equipo_03_cobertura_loja`
+- Equipo 4: `equipo_04_clima_norte`
+- Equipo 5: `equipo_05_clima_sur`
+- Equipo 6: `equipo_06_incendios_loja`
 
 **Ejecutar la prueba.** En la terminal (con `(.venv)` visible y en `C:\Programacion`) escriba:
 
@@ -346,9 +346,9 @@ python mis_trabajos\test_datos.py
 
 **Resultado esperado según su equipo:**
 
-- Equipos **1, 2, 4 y 5**: `Filas: 18000`, `Celdas unicas: 250`.
-- Equipos **3 y 6**: `Filas: 36000`, `Celdas unicas: 500`.
-- Columnas: equipos 1 y 2 → **66**; equipo 3 → **53**; equipos 4 y 5 → **57**; equipo 6 → **41**.
+- Equipos **1, 2, 4 y 5**: `Filas: 2160`, `Celdas unicas: 30`.
+- Equipos **3 y 6**: `Filas: 4320`, `Celdas unicas: 60`.
+- Columnas: equipos 1 y 2 → **15**; equipo 3 → **22**; equipos 4 y 5 → **18**; equipo 6 → **15**.
 
 Si coincide, **su entorno está listo**. Si aparece `FileNotFoundError`, el nombre de la carpeta en `EQUIPO` está mal escrito o la terminal no está en `C:\Programacion` (use `pwd`).
 
